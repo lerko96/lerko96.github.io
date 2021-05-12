@@ -4,68 +4,149 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200;0,400;0,600;1,200;1,400;1,600&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" type="text/css" href="style.css" />
     <title>Tyler Koenig</title>
   </head>
   <body>
-    <nav>
-      <div class="name">
-        <a href="/index.html">Tyler Koenig</a>
-      </div>
-      <div class="indexLinks"></div>
-      <a href="/index.html" target="#">About</a>
-      <a href="/index.html" target="#">Projects</a>
+    <nav id="links">
+      <ul>
+        <li style="float: left"><a href="index.html">TYLER KOENIG</a></li>
+        <li><a href="#projects" target="_self">PROJECTS</a></li>
+        <li><a href="#contact" target="_self">CONTACT</a></li>
+        <li><a href="#bio" target="_self">ABOUT</a></li>
+      </ul>
     </nav>
     <header>
-      <img src="/images/rally.jpg" alt="tyler" />
-      <h1 class="title">Tyler Koenig</h1>
+      <img src="/images/profile.png" alt="tyler" />
+      <h1>
+        <a href="index.html">Tyler Koenig</a>
+      </h1>
       <h2 class="intro">
-        warehouse associate at amazon
-        <p>student at we can code it</p>
+        Warehouse Associate at Amazon
+        <p>Student at We Can Code IT</p>
         <p>Web Developer in the making!</p>
       </h2>
     </header>
     <main>
-      <section class="about">
-        <div class="bio">
-          <h3>About Me</h3>
+      <section id="aboutMe">
+        <div id="bio">
+          <h2>about me</h2>
           <p>
-            I'm Tyler Koenig, a software developer in the making. Lorem ipsum
-            dolor sit amet consectetur adipisicing elit. Iste quod architecto
-            eius numquam. Sunt ducimus deserunt alias id eligendi repellendus
-            dicta veniam asperiores, rerum magnam totam autem ipsum cumque.
-            Fugit.
+            I'm Tyler Koenig, a lifelong student. Graduated with an Associate of
+            Arts from Lorain County Community College in 2018.
           </p>
-        </div>
-        <div class="skills">
-          <h3>skills</h3>
+          <h4>skills</h4>
           <ul>
             <li>problem solver</li>
             <li>microsoft office</li>
           </ul>
         </div>
-        <div class="contact">
-          <h3>Contact</h3>
-          <div class="links">
-            <a href="https://github.com/lerko96" target="_blank" title="github"
-              >github</a
-            >
-            <a
-              href="https://www.linkedin.com/in/tyler-koenig-72607a18b/"
-              target="_blank"
-              title="LinkedIn"
-              >linkedin</a
-            >
-            <a href="mailto:tylerkng96@icloud.com" target="_blank" title="email"
-              >email</a
-            >
-          </div>
+        <div id="contact">
+          <h3>contact</h3>
+          <ul class="contactLinks">
+            <li>
+              <a
+                href="https://github.com/lerko96"
+                target="_blank"
+                title="github"
+                >github</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.linkedin.com/in/tyler-koenig-72607a18b/"
+                target="_blank"
+                title="LinkedIn"
+                >linkedin</a
+              >
+            </li>
+            <li>
+              <a
+                href="mailto:tylerkng96@icloud.com"
+                target="_blank"
+                title="email"
+                >email</a
+              >
+            </li>
+          </ul>
         </div>
       </section>
-      <section class="projects">
-        <h2>Projects</h2>
+      <section id="projects">
+        <h2>projects.</h2>
+        <div>
+          <article class="project-item">
+            <div>
+              <h3>
+                <a
+                  href="https://github.com/2021-Spring-Part-Time/virtual-pets-amok-lerko96"
+                  target="_blank"
+                  >virtual-pet-amok</a
+                >
+              </h3>
+            </div>
+            <img src="/images/amok.png" alt="virtual-pet-amok-console" />
+            <ul class="project-skills">
+              <h4>skills</h4>
+              <li>Interface</li>
+              <li>Abstract Classes</li>
+              <li>Encapsulation</li>
+              <li>TDD</li>
+            </ul>
+          </article>
+          <article class="project-item">
+            <div>
+              <h3>
+                <a
+                  href="https://github.com/2021-Spring-Part-Time/virtual-pet-shelter-lerko96"
+                  target="_blank"
+                >
+                  virtual-pet-shelter</a
+                >
+              </h3>
+            </div>
+            <img src="/images/shelter.png" alt="virtual-pet-shelter-console" />
+            <ul class="project-skills">
+              <h4>Skills</h4>
+              <li>abstract</li>
+              <li>encaps</li>
+              <li>tdd</li>
+            </ul>
+          </article>
+          <article class="project-item">
+            <div>
+              <h3>
+                <a
+                  href="https://github.com/2021-Spring-Part-Time/virtual-pet-lerko96"
+                  target="_blank"
+                >
+                  virtual-pet</a
+                >
+              </h3>
+            </div>
+            <img src="/images/pet.png" alt="virtual-pet-console" />
+            <ul class="project-skills">
+              <h4>Skills</h4>
+              <li>game loop</li>
+              <li>user input</li>
+              <li>classes</li>
+              <li>instance variables</li>
+              <li>methods</li>
+              <li>clean code</li>
+            </ul>
+          </article>
+        </div>
       </section>
     </main>
-    <footer></footer>
+    <footer>
+      <ul class="footLinks">
+        <li><a href=""></a></li>
+      </ul>
+    </footer>
   </body>
 </html>
