@@ -1,9 +1,16 @@
 body {
-  margin: 0;
+  /* box-sizing: border-box; */
   color: #c9cacc;
   background-color: #1b1b1b;
-  font-size: 1.1rem;
+  font-size: 15px;
   font-family: "Source Code Pro", monospace;
+  font-weight: 400;
+  line-height: 1.725;
+  text-rendering: geometricPrecision;
+  min-height: 100%;
+  display: block;
+  flex-direction: column;
+  margin: 0;
 }
 
 #links ul {
@@ -33,14 +40,21 @@ body {
 }
 
 header {
-  background-color: #767f90;
-  color: #1b1b1b;
+  background-color: #1b1b1b;
+  color: #c9cacc;
   margin: 0 auto;
   text-align: center;
   padding: 2rem;
   line-height: 0.75rem;
-  border-top: 2px solid #ffffff;
-  border-bottom: 2px solid #ffffff;
+  border-top: 1.5px solid #c9cacc;
+  border-bottom: 1.5px solid #c9cacc;
+}
+
+header img {
+  width: 150px;
+  border: 5px solid #f4f1de;
+  border: 5px solid grey;
+  border-radius: 165px;
 }
 
 h1 {
@@ -49,7 +63,7 @@ h1 {
 }
 
 h1 a {
-  color: #3d405b;
+  color: #c9cacc;
   text-decoration: none;
 }
 
@@ -64,25 +78,26 @@ h2,
 h3,
 h4 {
   letter-spacing: 0.1em;
-}
-
-header img {
-  width: 165px;
-  border: 5px solid #f4f1de;
-  border: 5px solid grey;
-  border-radius: 165px;
+  font-weight: 800;
 }
 
 /* h2 {
   font-size: 1.3rem;
 } */
 
+main {
+  width: 700px;
+  margin: 0 auto;
+}
+
 #aboutMe {
   display: flex;
   border: 2px solid black;
-  width: 70%;
+  /* width: 70%; */
   padding: 1.5rem;
   margin: 0 auto;
+  text-align: center;
+  justify-content: center;
 }
 
 @media (max-width: 620px) {
@@ -99,12 +114,15 @@ header img {
   }
 }
 #bio {
-  width: 66%;
+  width: 400px;
   margin: 0 auto;
   padding: 1.5rem;
+  text-align: start;
 }
 
 #contact {
+  border: 1px solid red;
+  width: fit-content;
   text-align: end;
   margin: 0 auto;
   padding: 1.5rem;
@@ -113,6 +131,7 @@ header img {
 .contactLinks li {
   list-style: none;
   line-height: 2rem;
+  letter-spacing: 0.15rem;
 }
 
 .contactLinks a {
@@ -128,7 +147,7 @@ header img {
 
 #projects {
   display: block;
-  width: 70%;
+  /* width: 70%; */
   border: 2px solid red;
   padding: 1.5rem;
   margin: 0 auto;
@@ -163,7 +182,8 @@ header img {
 }
 
 .project-item img {
-  width: 45%;
+  max-height: 200px;
+  /* width: 45%; */
   border: 2px solid red;
   margin: 0 auto;
 }
@@ -181,13 +201,16 @@ header img {
 }
 
 #projects h4 {
+  font-weight: 400;
 }
 
 .project-skills {
+  color: #666;
+  border: 1px solid red;
   list-style: none;
-  width: 25%;
+  width: 33%;
   margin: 0 auto;
   text-align: end;
   float: left;
-  line-height: 1.2rem;
+  line-height: 1.15rem;
 }
