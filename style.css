@@ -1,5 +1,4 @@
 body {
-  /* box-sizing: border-box; */
   color: #c9cacc;
   background-color: #1b1b1b;
   font-size: 15px;
@@ -8,28 +7,28 @@ body {
   line-height: 1.725;
   text-rendering: geometricPrecision;
   min-height: 100%;
-  display: block;
-  flex-direction: column;
-  margin: 0;
+  margin: 0 auto;
 }
 
-#links ul {
-  /* display: inline; */
-  /* display: inline-block; */
+@media (max-width: 768px) {
+  nav {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+nav ul {
   list-style-type: none;
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
   overflow: hidden;
-
-  /* background-color: black; */
-  /* padding: 4rem auto; */
 }
 
-#links li {
+nav li {
   float: right;
 }
 
-#links li a {
+nav li a {
   display: block;
   color: #c9cacc;
   font-weight: 600;
@@ -39,46 +38,54 @@ body {
   text-decoration: none;
 }
 
+nav li a:hover {
+  background-color: #2a9d8f;
+  transition: 150ms ease-in;
+}
+
 header {
   background-color: #1b1b1b;
   color: #c9cacc;
   margin: 0 auto;
   text-align: center;
   padding: 2rem;
-  line-height: 0.75rem;
-  border-top: 1.5px solid #c9cacc;
-  border-bottom: 1.5px solid #c9cacc;
+  line-height: 1.75rem;
+  border-top: 1.5px solid #666;
+  border-bottom: 1.5px solid #666;
 }
 
 header img {
-  width: 150px;
-  border: 5px solid #f4f1de;
-  border: 5px solid grey;
+  width: 100px;
+  border: 5px solid #666;
   border-radius: 165px;
 }
 
 h1 {
-  font-size: 2.5rem;
-  padding: 1rem;
+  /* border: 1px solid red; */
+  margin: 0.5rem;
+  letter-spacing: 0.01rem;
 }
 
 h1 a {
+  font-size: 3rem;
   color: #c9cacc;
   text-decoration: none;
 }
 
 h1 a:hover {
-  color: #81b29a;
+  color: #2a9d8f;
 }
 
-h1 a:active {
-  color: #3d405b;
+header h2 {
+  font-weight: 200;
+  font-size: 1.2rem;
+  letter-spacing: 0.01rem;
 }
+
 h2,
 h3,
 h4 {
-  letter-spacing: 0.1em;
-  font-weight: 800;
+  letter-spacing: 0.01rem;
 }
 
 /* h2 {
@@ -86,43 +93,38 @@ h4 {
 } */
 
 main {
-  width: 700px;
+  width: 620px;
   margin: 0 auto;
 }
 
 #aboutMe {
   display: flex;
   border: 2px solid black;
-  /* width: 70%; */
   padding: 1.5rem;
   margin: 0 auto;
   text-align: center;
   justify-content: center;
+  letter-spacing: 0.01rem;
 }
 
-@media (max-width: 620px) {
-  #aboutMe {
-    display: block;
-    justify-content: center;
-  }
-  #contact {
-    display: table;
-  }
-  #projects {
-    height: auto;
-    overflow: scroll;
-  }
-}
 #bio {
-  width: 400px;
-  margin: 0 auto;
+  flex: 3;
+  border: 1px solid purple;
   padding: 1.5rem;
   text-align: start;
 }
 
+#bio h4 {
+  color: #666;
+}
+#bio ul {
+  line-height: 1.35rem;
+  font-weight: 200;
+}
+
 #contact {
+  flex: 1;
   border: 1px solid red;
-  width: fit-content;
   text-align: end;
   margin: 0 auto;
   padding: 1.5rem;
@@ -131,7 +133,7 @@ main {
 .contactLinks li {
   list-style: none;
   line-height: 2rem;
-  letter-spacing: 0.15rem;
+  letter-spacing: 0.01rem;
 }
 
 .contactLinks a {
@@ -146,46 +148,8 @@ main {
 }
 
 #projects {
-  display: block;
-  /* width: 70%; */
-  border: 2px solid red;
+  border: 2px solid green;
   padding: 1.5rem;
-  margin: 0 auto;
-  height: auto;
-  /* justify-content: center; */
-
-  /* overflow: auto; */
-}
-
-.project-item {
-  display: block;
-  border: 1px solid blue;
-  margin: 10px auto 20px;
-  height: auto;
-  text-align: center;
-  justify-content: center;
-  /* background-color: #282c34; */
-  /* color: #ffffff; */
-  font-weight: 200;
-  padding: 2rem auto;
-  /* padding: auto auto 50px; */
-  /* padding: 1.1rem; */
-}
-
-.project-item a {
-  color: #c9cacc;
-  text-decoration: none;
-}
-
-.project-item a:hover {
-  color: #81b29a;
-}
-
-.project-item img {
-  max-height: 200px;
-  /* width: 45%; */
-  border: 2px solid red;
-  margin: 0 auto;
 }
 
 #projects h2 {
@@ -194,10 +158,28 @@ main {
   border: 1px solid #3d405b;
 }
 
+.project-item {
+  border: 1px solid blue;
+  margin: 0 auto;
+  text-align: center;
+  font-weight: 200;
+  padding: 1.5rem;
+}
+
+.project-item a {
+  color: #c9cacc;
+  text-decoration: none;
+}
+
+.project-item a:hover {
+  color: #2a9d8f;
+}
+
 #projects h3 {
   border: 1px solid brown;
   text-align: left;
-  padding: 1.5rem;
+  margin: 0 auto;
+  /* padding: 1rem; */
 }
 
 #projects h4 {
@@ -209,8 +191,45 @@ main {
   border: 1px solid red;
   list-style: none;
   width: 33%;
-  margin: 0 auto;
+  margin: 1.5rem auto;
   text-align: end;
   float: left;
   line-height: 1.15rem;
+}
+
+.project-item img {
+  max-height: 200px;
+  /* width: 45%; */
+  border: 2px solid red;
+  margin: 1rem auto;
+}
+
+footer {
+  color: #666;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0 auto;
+  border: 1px dotted red;
+  padding: 1.5rem;
+  height: 100px;
+}
+
+#copyright {
+  border: 1px solid yellow;
+  letter-spacing: 0.1rem;
+}
+
+#footLinks {
+  border: 1px solid blue;
+  letter-spacing: 0.8rem;
+}
+
+#footLinks a {
+  color: #666;
+}
+
+#footLinks a:hover {
+  color: #c9cacc;
+  transition: 160ms ease-in;
 }
