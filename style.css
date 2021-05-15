@@ -199,8 +199,8 @@ footer {
   align-items: center;
   margin: 0 auto;
   border: 1px dotted red;
-  padding: 1.5rem;
-  height: 100px;
+  /* padding: 1.5rem; */
+  /* height: 90px; */
 }
 
 #copyright {
@@ -224,6 +224,8 @@ footer {
 
 @media (min-width: 768px) {
   #wrapper {
+    width: 560px;
+    /* text-align: center; */
   }
   nav {
     display: flex;
@@ -233,7 +235,6 @@ footer {
     margin: auto;
     flex: 4;
     justify-content: flex-start;
-
     /* justify-content: space-between; */
   }
 
@@ -243,17 +244,53 @@ footer {
 
   nav ul {
     display: flex;
-    flex: 2;
+    /* flex: 5; */
   }
 
   #aboutMe {
     display: flex;
   }
 
+  #bio {
+    flex: 2;
+  }
+
+  #contact {
+    flex: 1;
+    text-align: end;
+  }
+
   .contactLinks {
     display: flex;
     flex-direction: column;
   }
+
+  #project-container {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+
+  .project-item img {
+    flex: 3;
+  }
+
+  .project-skills {
+    flex: 1;
+    padding-right: 1rem;
+    text-align: end;
+  }
+
+  .project-item a {
+    align-self: start;
+  }
+
+  footer {
+    margin: 0 auto;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 90%;
+  }
+
 }
 
 @media (min-width: 1200px) {
