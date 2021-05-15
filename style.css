@@ -1,4 +1,5 @@
 body {
+  box-sizing: border-box;
   color: #c9cacc;
   background-color: #1b1b1b;
   font-size: 15px;
@@ -6,39 +7,40 @@ body {
   font-weight: 400;
   line-height: 1.725;
   text-rendering: geometricPrecision;
-  min-height: 100%;
+  min-height: 100vh;
   margin: 0 auto;
 }
 
-@media (max-width: 768px) {
-  nav {
-    display: flex;
-    flex-direction: column;
-  }
+#wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0 auto;
+}
+
+nav {
+  /* border: 1px solid red; */
+  /* margin: 0 auto; */
+  /* width: 70%; */
+}
+
+nav a {
+  text-decoration: none;
+  border: 1px solid yellow;
+  padding: 1rem;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  color: #c9cacc;
 }
 
 nav ul {
   list-style-type: none;
-  margin: 0 auto;
-  padding: 0;
-  overflow: hidden;
+  margin: auto;
+  padding: 0em;
 }
 
-nav li {
-  float: right;
-}
-
-nav li a {
-  display: block;
-  color: #c9cacc;
-  font-weight: 600;
-  text-align: center;
-  letter-spacing: 0.18rem;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-nav li a:hover {
+nav a:hover {
   background-color: #2a9d8f;
   transition: 150ms ease-in;
 }
@@ -61,8 +63,11 @@ header img {
 }
 
 h1 {
+  line-height: 2rem;
   /* border: 1px solid red; */
-  margin: 0.5rem;
+  /* margin: .5rem auto; */
+  /* justify-content: space-evenly; */
+  /* text-align: center; */
   letter-spacing: 0.01rem;
 }
 
@@ -88,27 +93,13 @@ h4 {
   letter-spacing: 0.01rem;
 }
 
-/* h2 {
-  font-size: 1.3rem;
-} */
-
-main {
-  width: 620px;
-  margin: 0 auto;
-}
-
 #aboutMe {
-  display: flex;
-  border: 2px solid black;
+  border: 2px solid white;
   padding: 1.5rem;
-  margin: 0 auto;
-  text-align: center;
-  justify-content: center;
   letter-spacing: 0.01rem;
 }
 
 #bio {
-  flex: 3;
   border: 1px solid purple;
   padding: 1.5rem;
   text-align: start;
@@ -123,17 +114,13 @@ main {
 }
 
 #contact {
-  flex: 1;
+  /* justify-content: space-between; */
   border: 1px solid red;
-  text-align: end;
-  margin: 0 auto;
   padding: 1.5rem;
 }
 
 .contactLinks li {
-  list-style: none;
-  line-height: 2rem;
-  letter-spacing: 0.01rem;
+  display: inline;
 }
 
 .contactLinks a {
@@ -148,22 +135,26 @@ main {
 }
 
 #projects {
+  display: flex;
+  flex-direction: column;
   border: 2px solid green;
   padding: 1.5rem;
 }
 
 #projects h2 {
-  margin: 0 auto;
+  margin: 0;
   padding: 1.5rem;
   border: 1px solid #3d405b;
 }
 
 .project-item {
+  display: flex;
+  flex-direction: column;
   border: 1px solid blue;
   margin: 0 auto;
   text-align: center;
   font-weight: 200;
-  padding: 1.5rem;
+  /* padding: 1.5rem; */
 }
 
 .project-item a {
@@ -179,34 +170,31 @@ main {
   border: 1px solid brown;
   text-align: left;
   margin: 0 auto;
-  /* padding: 1rem; */
-}
-
-#projects h4 {
-  font-weight: 400;
+  padding: 1.5rem;
 }
 
 .project-skills {
   color: #666;
   border: 1px solid red;
   list-style: none;
-  width: 33%;
-  margin: 1.5rem auto;
-  text-align: end;
-  float: left;
-  line-height: 1.15rem;
+  width: 66%;
+  margin: 0 auto;
+  line-height: 1.25rem;
+  text-align: start;
+  padding-top: 0;
+  padding-bottom: 1.5rem;
 }
 
 .project-item img {
-  max-height: 200px;
-  /* width: 45%; */
+  width: 100%;
   border: 2px solid red;
-  margin: 1rem auto;
+  margin: auto;
 }
 
 footer {
   color: #666;
   display: flex;
+  flex-direction: column-reverse;
   justify-content: space-around;
   align-items: center;
   margin: 0 auto;
@@ -232,4 +220,49 @@ footer {
 #footLinks a:hover {
   color: #c9cacc;
   transition: 160ms ease-in;
+}
+
+@media (min-width: 768px) {
+  #wrapper {
+  }
+  nav {
+    display: flex;
+  }
+
+  nav a {
+    margin: auto;
+    flex: 4;
+    justify-content: flex-start;
+
+    /* justify-content: space-between; */
+  }
+
+  nav li {
+    display: inline-block;
+  }
+
+  nav ul {
+    display: flex;
+    flex: 2;
+  }
+
+  #aboutMe {
+    display: flex;
+  }
+
+  .contactLinks {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 1200px) {
+  #wrapper {
+    width: 920px;
+  }
+
+  nav {
+    /* width: 150%; */
+    /* text-align: center; */
+  }
 }
