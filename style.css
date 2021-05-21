@@ -19,6 +19,12 @@ body {
   margin: 0 auto;
 }
 
+nav ul {
+  list-style-type: none;
+  margin: auto;
+  padding: 0em;
+}
+
 nav a {
   text-decoration: none;
   border-radius: 500px;
@@ -30,11 +36,6 @@ nav a {
   letter-spacing: 0.09rem;
 }
 
-nav ul {
-  list-style-type: none;
-  margin: auto;
-  padding: 0em;
-}
 
 nav a:hover {
   background-color: #2a9d8f;
