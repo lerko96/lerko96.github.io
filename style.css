@@ -1,4 +1,4 @@
-body {
+/* body {
 	box-sizing: border-box;
 	color: #c9cacc;
 	background-color: #272727;
@@ -244,11 +244,11 @@ footer {
 #footLinks a:hover {
 	color: #c9cacc;
 	transition: 160ms ease-in;
-}
+} */
 
 /* color: #1b1b1b; */
 /* color: #2a9d8f */
-@media (min-width: 576px) {
+/* @media (min-width: 576px) {
 	#wrapper {
 		width: 560px;
 	}
@@ -340,4 +340,4 @@ footer {
 		flex-direction: row;
 		justify-content: space-between;
 	}
-}
+} */
