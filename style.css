@@ -167,7 +167,7 @@ h4 {
 .project-item {
 	display: flex;
 	flex-direction: column;
-	margin: 1.5rem;
+	margin: 1.5rem 0;
 	text-align: center;
 	font-weight: 200;
 	letter-spacing: 0.01rem;
