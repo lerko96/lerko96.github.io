@@ -2,7 +2,7 @@ body {
 	box-sizing: border-box;
 	color: #c9cacc;
 	background-color: #272727;
-	font-size: 15px;
+	font-size: 16px;
 	font-family: 'Source Code Pro', monospace, Arial, Helvetica, sans-serif;
 	font-weight: 400;
 	line-height: 1.725;
@@ -146,21 +146,28 @@ h4 {
 	font-weight: 600;
 }
 
-#projects {
-	display: flex;
-	flex-direction: column;
+#project-wrapper {
 }
 
-#projects h2 {
+#project-wrapper h2 {
 	margin: 0;
+	padding: 0;
 	padding: 1.5rem 1.5rem 0 1.5rem;
 	font-size: 2rem;
+}
+
+#project-wrapper h3 {
+	font-size: 1.5rem;
+	text-align: left;
+	margin: 0 auto;
+	padding: 1.5rem;
+	letter-spacing: 0.01rem;
 }
 
 .project-item {
 	display: flex;
 	flex-direction: column;
-	margin: 1rem auto;
+	margin: 1.5rem;
 	text-align: center;
 	font-weight: 200;
 	letter-spacing: 0.01rem;
@@ -175,12 +182,9 @@ h4 {
 	color: #29f3c3;
 }
 
-#projects h3 {
-	font-size: 1.5rem;
-	text-align: left;
-	margin: 0 auto;
-	padding: 1.5rem;
-	letter-spacing: 0.01rem;
+.project-desc {
+	margin: 0;
+	padding: 0 .8rem;
 }
 
 .project-skills {
@@ -196,7 +200,7 @@ h4 {
 
 .project-skills h4 {
 	font-size: 1.5rem;
-	flex: 1;
+	/* flex: 1; */
 }
 
 .project-skills li {
@@ -205,7 +209,7 @@ h4 {
 }
 
 .project-skills ul {
-	flex: 2;
+	/* flex: 9; */
 	line-height: 2rem;
 	text-align: start;
 }
