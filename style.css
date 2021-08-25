@@ -1,8 +1,12 @@
+html {
+	scroll-behavior: smooth;
+}
+
 body {
 	box-sizing: border-box;
 	color: #c9cacc;
 	background-color: #272727;
-	font-size: 15px;
+	font-size: 16px;
 	font-family: 'Source Code Pro', monospace, Arial, Helvetica, sans-serif;
 	font-weight: 400;
 	line-height: 1.725;
@@ -89,7 +93,8 @@ h4 {
 	letter-spacing: 0.01rem;
 }
 
-#bio {
+#bio,
+#skills {
 	padding: 1.5rem;
 	text-align: start;
 }
@@ -98,18 +103,36 @@ h4 {
 	font-size: 2.2rem;
 }
 
-#bio h4 {
+#skills h4 {
 	color: #666;
 	font-size: 1.5rem;
 	margin: 0 auto 20px;
 }
-
-#bio ul {
+#skills ul {
 	line-height: 1.35rem;
 	font-weight: 200;
+	text-align: center;
+	align-items: center;
 	margin: 0;
 	padding: 0;
 	list-style-type: none;
+}
+
+.skills {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+	gap: 10px 75px;
+	grid-auto-flow: row;
+	grid-template-areas:
+		'. .'
+		'. .'
+		'. .'
+		'. .'
+		'. .'
+		'. .'
+		'. .'
+		'. .';
 }
 
 #contact {
@@ -146,21 +169,28 @@ h4 {
 	font-weight: 600;
 }
 
-#projects {
-	display: flex;
-	flex-direction: column;
+#project-wrapper {
+	margin-top: 2.5rem;
 }
 
-#projects h2 {
+#project-wrapper h2 {
 	margin: 0;
 	padding: 1.5rem 1.5rem 0 1.5rem;
 	font-size: 2rem;
 }
 
+#project-wrapper h3 {
+	font-size: 1.5rem;
+	text-align: left;
+	margin: 0 auto;
+	padding: 1.5rem;
+	letter-spacing: 0.01rem;
+}
+
 .project-item {
 	display: flex;
 	flex-direction: column;
-	margin: 1rem auto;
+	margin: 1.5rem 0;
 	text-align: center;
 	font-weight: 200;
 	letter-spacing: 0.01rem;
@@ -175,12 +205,9 @@ h4 {
 	color: #29f3c3;
 }
 
-#projects h3 {
-	font-size: 1.5rem;
-	text-align: left;
-	margin: 0 auto;
-	padding: 1.5rem;
-	letter-spacing: 0.01rem;
+.project-desc {
+	margin: 0;
+	padding: 0 0.8rem;
 }
 
 .project-skills {
@@ -196,7 +223,7 @@ h4 {
 
 .project-skills h4 {
 	font-size: 1.5rem;
-	flex: 1;
+	/* flex: 1; */
 }
 
 .project-skills li {
@@ -205,13 +232,14 @@ h4 {
 }
 
 .project-skills ul {
-	flex: 2;
+	/* flex: 9; */
 	line-height: 2rem;
 	text-align: start;
 }
 
 .project-item img {
-	width: 90%;
+	max-width: 375px;
+	/* width: 90%; */
 	box-shadow: 10px 10px 11px 0px rgba(0, 0, 0, 0.75);
 	-webkit-box-shadow: 10px 10px 11px 0px rgba(0, 0, 0, 0.75);
 	-moz-box-shadow: 10px 10px 11px 0px rgba(0, 0, 0, 0.75);
@@ -299,6 +327,10 @@ footer {
 
 	.contactLinks i {
 		margin: auto 5px;
+	}
+
+	#skills {
+		padding: 0;
 	}
 
 	#project-container {
