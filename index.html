@@ -10,14 +10,15 @@
 			href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200;0,400;0,600;1,200;1,400;1,600&display=swap"
 			rel="stylesheet"
 		/>
-    <style>
-      @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;600;700&display=swap');
-      </style> 
+		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;600;700&display=swap');
+		</style>
 		<style>
 			@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap');
-			</style> 
+		</style>
 		<script src="https://use.fontawesome.com/e427b1b41a.js"></script>
-		<link rel="stylesheet" type="text/css" href="style.css" />
+		<!-- <link rel="stylesheet" type="text/css" href="style.css" /> -->
+		<link rel="stylesheet" href="style.css">
 		<title>Tyler Koenig</title>
 	</head>
 	<body>
@@ -34,6 +35,8 @@
 				</ul>
 			</nav>
 			<header>
+				<div class="card">
+					<div class="card-top"></div>
 				<img src="/images/headshot-tyler_koenig.png" alt="tyler" />
 				<h1>
 					<a href="index.html">Tyler Koenig</a>
@@ -43,6 +46,7 @@
 					<br />
 					Student at We Can Code IT, Web Developer in the making!
 				</h2>
+			</div>
 			</header>
 			<main>
 				<section id="aboutMe">
@@ -121,8 +125,54 @@
 						<li>Relational Databases</li>
 						<li>Source Control/ Github</li>
 					</ul>
-
 				</section>
+
+				<article class="postcard dark blue">
+					<a class="postcard__img_link" href="#">
+						<img
+							class="postcard__img"
+							src="https://picsum.photos/1000/1000"
+							alt="Image Title"
+						/>
+					</a>
+					<div class="postcard__text">
+						<h1 class="postcard__title blue">
+							<a href="#">Podcast Title</a>
+						</h1>
+						<div class="postcard__subtitle small">
+							<time datetime="2020-05-25 12:00:00">
+								<i class="fas fa-calendar-alt mr-2"></i>Mon, May
+								25th 2020
+							</time>
+						</div>
+						<div class="postcard__bar"></div>
+						<div class="postcard__preview-txt">
+							Lorem ipsum dolor sit amet consectetur adipisicing
+							elit. Eligendi, fugiat asperiores inventore beatae
+							accusamus odit minima enim, commodi quia, doloribus
+							eius! Ducimus nemo accusantium maiores velit
+							corrupti tempora reiciendis molestiae repellat vero.
+							Eveniet ipsam adipisci illo iusto quibusdam, sunt
+							neque nulla unde ipsum dolores nobis enim quidem
+							excepturi, illum quos!
+						</div>
+						<ul class="postcard__tagbox">
+							<li class="tag__item">
+								<i class="fa fa-tag mr-2"></i>Podcast
+							</li>
+							<li class="tag__item">
+								<i class="fa fa-clock mr-2"></i>55 mins.
+							</li>
+							<li class="tag__item play blue">
+								<a href="#"
+									><i class="fa fa-play mr-2"></i>Play
+									Episode</a
+								>
+							</li>
+						</ul>
+					</div>
+				</article>
+
 				<section id="project-wrapper">
 					<h2>projects</h2>
 					<div>
@@ -426,6 +476,6 @@
 				</div>
 			</footer>
 		</div>
-		<script src="index.js" type="text/java"></script>
+		<script src="app/js/script.js"></script>
 	</body>
 </html>
