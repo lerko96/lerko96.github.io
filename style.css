@@ -167,10 +167,17 @@ nav a:hover {
 	border: 1px solid #fff;
 }
 
-.project-img img {
-	width: 100%;
-	height: ;
+.project_img {
+	max-height: 50px;
+	min-width: 300px;
+	background-position-x: center;
+	background-position-y:center ;
+	overflow: hidden;
+}
 
+.project_img img {
+	width: 100%;
+	height: 100%;
 }
 
 /* end new  */
@@ -620,7 +627,7 @@ a:hover {
 
 /* color: #1b1b1b; */
 /* color: #2a9d8f */
-@media (min-width: 768px) {
+/* @media (min-width: 768px) {
 	#wrapper {
 		max-width: 992px;
 	}
@@ -716,6 +723,6 @@ a:hover {
 		flex-direction: row;
 		justify-content: space-between;
 	}
-}
+} */
 
 
