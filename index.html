@@ -18,40 +18,78 @@
 		</style>
 		<script src="https://use.fontawesome.com/e427b1b41a.js"></script>
 		<!-- <link rel="stylesheet" type="text/css" href="style.css" /> -->
-		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" href="style.css" />
 		<title>Tyler Koenig</title>
 	</head>
 	<body>
 		<div id="wrapper">
-			<nav>
-				<a href="index.html">TYLER KOENIG</a>
-				<ul>
-					<li><a href="#bio" target="_self">ABOUT</a></li>
-					<li><a href="#contact" target="_self">CONTACT</a></li>
-					<li>
-						<a href="#project-wrapper" target="_self">PROJECTS</a>
-					</li>
-					<li><a href="#skills" target="_self">SKILLS</a></li>
-				</ul>
-			</nav>
 			<header>
-				<div class="card">
-					<div class="card-top"></div>
-				<img src="/images/headshot-tyler_koenig.png" alt="tyler" />
-				<h1>
-					<a href="index.html">Tyler Koenig</a>
-				</h1>
-				<h2>
-					Warehouse Associate at Amazon
-					<br />
-					Student at We Can Code IT, Web Developer in the making!
-				</h2>
-			</div>
+				<nav>
+					<a href="index.html">TYLER KOENIG</a>
+					<ul>
+						<li><a href="#bio" target="_self">ABOUT</a></li>
+						<li><a href="#contact" target="_self">CONTACT</a></li>
+						<li>
+							<a href="#projects" target="_self">PROJECTS</a>
+						</li>
+						<li><a href="#skills" target="_self">SKILLS</a></li>
+					</ul>
+				</nav>
 			</header>
 			<main>
-				<section id="aboutMe">
-					<div id="bio">
-						<h2>about me</h2>
+				<div class="card">
+					<div class="card-top">
+						<div class="avatar-holder">
+							<img
+								id="headshot"
+								src="/images/headshot-tyler_koenig.png"
+								alt="tyler"
+							/>
+						</div>
+					</div>
+					<div class="name">
+						<a href="index.html">Tyler Koenig</a>
+					</div>
+					<div class="short-bio">
+						<p>
+							Passionate Software Developer
+							<br />
+							Recent Graduate of We Can Code IT
+						</p>
+					</div>
+					<div class="contact-links" id="contact">
+						<a
+							href="https://github.com/lerko96"
+							target="_blank"
+							title="github"
+							><i
+								class="fa fa-github fa-2x"
+								aria-hidden="true"
+							></i
+						></a>
+						<a
+							href="https://www.linkedin.com/in/tyler-koenig-72607a18b/"
+							target="_blank"
+							title="LinkedIn"
+							><i
+								class="fa fa-linkedin-square fa-2x"
+								aria-hidden="true"
+							></i
+						></a>
+						<a
+							href="mailto:tylerkng96@icloud.com"
+							target="_blank"
+							title="email"
+							><i
+								class="fa fa-envelope-o fa-2x"
+								aria-hidden="true"
+							></i
+						></a>
+					</div>
+				</div>
+				<div class="card">
+					<section id="bio">
+						<h2>about</h2>
 						<p>
 							I'm Tyler Koenig, a lifelong student. Graduated with
 							an Associate of Arts from Lorain County Community
@@ -60,118 +98,120 @@
 							front-end web development through We Can Code IT
 							Bootcamp. Always interested in a challenge!
 						</p>
-					</div>
-					<div id="contact">
-						<h3>contact</h3>
-						<ul class="contactLinks">
-							<li>
-								<a
-									href="https://github.com/lerko96"
-									target="_blank"
-									title="github"
-								>
-									github
-									<i
-										class="fa fa-github fa-lg"
-										aria-hidden="true"
-									></i>
-								</a>
-							</li>
-							<li>
-								<a
-									href="https://www.linkedin.com/in/tyler-koenig-72607a18b/"
-									target="_blank"
-									title="LinkedIn"
-								>
-									linkedin
-									<i
-										class="fa fa-linkedin-square fa-lg"
-										aria-hidden="true"
-									></i>
-								</a>
-							</li>
-							<li>
-								<a
-									href="mailto:tylerkng96@icloud.com"
-									target="_blank"
-									title="tylerkng96@icloud.com"
-									>email
-									<i
-										class="fa fa-envelope-o fa-lg"
-										aria-hidden="true"
-									></i>
-								</a>
-							</li>
-						</ul>
-					</div>
-				</section>
-				<section id="skills">
-					<h4>skills</h4>
-					<ul class="skills">
-						<li>Java</li>
-						<li>Spring</li>
-						<li>Thymeleaf</li>
-						<li>JavaScript</li>
-						<li>MVC</li>
-						<li>HTML</li>
-						<li>CSS</li>
-						<li>Test Driven Development</li>
-						<li>Agile (Scrum)</li>
-						<li>Object Oriented Programming</li>
-						<li>JSON</li>
-						<li>React</li>
-						<li>REST APIs</li>
-						<li>Responsive Design</li>
-						<li>Relational Databases</li>
-						<li>Source Control/ Github</li>
-					</ul>
-				</section>
+					</section>
+				</div>
 
-				<article class="postcard dark blue">
-					<a class="postcard__img_link" href="#">
-						<img
-							class="postcard__img"
-							src="https://picsum.photos/1000/1000"
-							alt="Image Title"
-						/>
-					</a>
-					<div class="postcard__text">
-						<h1 class="postcard__title blue">
-							<a href="#">Podcast Title</a>
-						</h1>
-						<div class="postcard__subtitle small">
-							<time datetime="2020-05-25 12:00:00">
-								<i class="fas fa-calendar-alt mr-2"></i>Mon, May
-								25th 2020
-							</time>
-						</div>
-						<div class="postcard__bar"></div>
-						<div class="postcard__preview-txt">
-							Lorem ipsum dolor sit amet consectetur adipisicing
-							elit. Eligendi, fugiat asperiores inventore beatae
-							accusamus odit minima enim, commodi quia, doloribus
-							eius! Ducimus nemo accusantium maiores velit
-							corrupti tempora reiciendis molestiae repellat vero.
-							Eveniet ipsam adipisci illo iusto quibusdam, sunt
-							neque nulla unde ipsum dolores nobis enim quidem
-							excepturi, illum quos!
-						</div>
-						<ul class="postcard__tagbox">
-							<li class="tag__item">
-								<i class="fa fa-tag mr-2"></i>Podcast
-							</li>
-							<li class="tag__item">
-								<i class="fa fa-clock mr-2"></i>55 mins.
-							</li>
-							<li class="tag__item play blue">
-								<a href="#"
-									><i class="fa fa-play mr-2"></i>Play
-									Episode</a
-								>
-							</li>
+				<div class="card">
+					<section id="skills">
+						<h2>skills</h2>
+						<ul>
+							<li>Java</li>
+							<li>Spring</li>
+							<li>Thymeleaf</li>
+							<li>JavaScript</li>
+							<li>MVC</li>
+							<li>HTML</li>
+							<li>CSS</li>
+							<li>Test Driven Development</li>
+							<li>Agile (Scrum)</li>
+							<li>Object Oriented Programming</li>
+							<li>JSON</li>
+							<li>React</li>
+							<li>REST APIs</li>
+							<li>Responsive Design</li>
+							<li>Relational Databases</li>
+							<li>Source Control/ Github</li>
 						</ul>
-					</div>
-				</article>
+					</section>
+				</div>
+
+				<div class="card">
+					<section id="projects">
+						<h2>projects</h2>
+
+						<article class="project">
+							<div class="project-img">
+								<a
+									href="https://github.com/pt-spring-2021-team-project-spa/team-2-spa-repo"
+									target="_blank"
+								>
+									<img
+										src="/images/mystery-educator.png"
+										alt=""
+								/></a>
+							</div>
+							<div class="project-name">
+								<h3>mystery educator</h3>
+							</div>
+							<div class="project-date">
+								<p>mon, may 25th 2021</p>
+							</div>
+							<div class="project-bar"></div>
+							<div class="project-about">
+								<p>
+									Lorem ipsum dolor sit amet consectetur
+									adipisicing elit. Et a maiores laborum quo
+									animi, unde repellat. Libero ab sequi vel
+									beatae natus numquam consequuntur molestias
+									ducimus. Ad laudantium neque nobis?
+								</p>
+							</div>
+							<ul class="project-tagbox">
+								<li class="tag__item">
+									java
+
+								</li>
+							</ul>
+						</article>
+						<article class="postcard dark blue">
+							<a class="postcard__img_link" href="#">
+								<img
+									class="postcard__img"
+									src="https://picsum.photos/1000/1000"
+									alt="Image Title"
+								/>
+							</a>
+							<div class="postcard__text">
+								<h1 class="postcard__title blue">
+									<a href="#">Podcast Title</a>
+								</h1>
+								<div class="postcard__subtitle small">
+									<time datetime="2020-05-25 12:00:00">
+										<i class="fas fa-calendar-alt mr-2"></i
+										>Mon, May 25th 2020
+									</time>
+								</div>
+								<div class="postcard__bar"></div>
+								<div class="postcard__preview-txt">
+									Lorem ipsum dolor sit amet consectetur
+									adipisicing elit. Eligendi, fugiat
+									asperiores inventore beatae accusamus odit
+									minima enim, commodi quia, doloribus eius!
+									Ducimus nemo accusantium maiores velit
+									corrupti tempora reiciendis molestiae
+									repellat vero. Eveniet ipsam adipisci illo
+									iusto quibusdam, sunt neque nulla unde ipsum
+									dolores nobis enim quidem excepturi, illum
+									quos!
+								</div>
+								<ul class="postcard__tagbox">
+									<li class="tag__item">
+										<i class="fa fa-tag mr-2"></i>Podcast
+									</li>
+									<li class="tag__item">
+										<i class="fa fa-clock mr-2"></i>55 mins.
+									</li>
+									<li class="tag__item play blue">
+										<a href="#"
+											><i class="fa fa-play mr-2"></i>Play
+											Episode</a
+										>
+									</li>
+								</ul>
+							</div>
+						</article>
+					</section>
+				</div>
 
 				<section id="project-wrapper">
 					<h2>projects</h2>
