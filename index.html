@@ -27,7 +27,9 @@
 				<a href="index.html">TYLER KOENIG</a>
 				<ul>
 					<li><a href="#about" target="_self">ABOUT</a></li>
-					<li><a href="#contact" target="_self">CONTACT</a></li>
+					<li id="nav__contact">
+						<a href="#contact" target="_self">CONTACT</a>
+					</li>
 					<li>
 						<a href="#projects" target="_self">PROJECTS</a>
 					</li>
@@ -36,6 +38,29 @@
 			</nav>
 		</header>
 		<main>
+			<div class="side__nav">
+				<a
+					href="https://www.linkedin.com/in/tyler-koenig-72607a18b/"
+					target="_blank"
+					title="LinkedIn"
+					><i
+						class="fa fa-linkedin-square fa-2x"
+						aria-hidden="true"
+					></i
+				></a>
+				<a
+					href="https://github.com/lerko96"
+					target="_blank"
+					title="github"
+					><i class="fa fa-github fa-2x" aria-hidden="true"></i
+				></a>
+				<a
+					href="mailto:tylerkng96@icloud.com"
+					target="_blank"
+					title="email"
+					><i class="fa fa-envelope-o fa-2x" aria-hidden="true"></i
+				></a>
+			</div>
 			<div id="wrapper">
 				<section id="intro">
 					<div class="top__wrap">
@@ -124,41 +149,6 @@
 						</ul>
 					</article>
 				</section>
-				<!-- <section>
-					<article class="card" id="about">
-						<h2>about</h2>
-						<p>
-							I'm Tyler Koenig, a lifelong student. Graduated with
-							an Associate of Arts from Lorain County Community
-							College in 2018. Inbound associate at Amazon CLE-3
-							since December 2019. Currently learning Java and
-							front-end web development through We Can Code IT
-							Bootcamp. Always interested in a challenge!
-						</p>
-					</article>
-
-					<article class="card" id="skills">
-						<h2>skills</h2>
-						<ul>
-							<li>Java</li>
-							<li>Spring</li>
-							<li>Thymeleaf</li>
-							<li>JavaScript</li>
-							<li>MVC</li>
-							<li>HTML</li>
-							<li>CSS</li>
-							<li>Test Driven Development</li>
-							<li>Agile (Scrum)</li>
-							<li>Object Oriented Programming</li>
-							<li>JSON</li>
-							<li>React</li>
-							<li>REST APIs</li>
-							<li>Responsive Design</li>
-							<li>Relational Databases</li>
-							<li>Source Control/ Github</li>
-						</ul>
-					</article>
-				</section> -->
 				<section class="card" id="projects">
 					<h2>projects</h2>
 					<article class="project">
@@ -423,227 +413,6 @@
 						</div>
 					</article>
 				</section>
-
-				<div class="card">
-					<section id="projects">
-						<h2>old project style</h2>
-
-						<article class="project">
-							<a
-								class="project__img_link"
-								href="https://github.com/pt-spring-2021-team-project-spa/team-2-spa-repo"
-								target="_blank"
-							>
-								<img
-									class="project__img"
-									src="/images/mystery-educator.png"
-									alt=""
-							/></a>
-							<div class="project__text">
-								<h3 class="project__title">
-									<a
-										href="https://github.com/pt-spring-2021-team-project-spa/team-2-spa-repo"
-										target="_blank"
-										>Mystery Educator</a
-									>
-								</h3>
-								<div class="project__subtitle_small">
-									<time datetime="2020-05-25 12:00:00">
-										<i class="fas fa-calendar-alt mr-2"></i
-										>Mon, May 25th 2020
-									</time>
-								</div>
-								<div class="project__bar"></div>
-								<div class="project__info">
-									<p>
-										Lorem ipsum dolor sit amet consectetur
-										adipisicing elit. Et a maiores laborum
-										quo animi, unde repellat. Libero ab
-										sequi vel beatae natus numquam
-										consequuntur molestias ducimus. Ad
-										laudantium neque nobis?
-									</p>
-								</div>
-								<ul class="project__tagbox">
-									<li class="tag__item">java</li>
-									<li class="tag__item">java</li>
-									<li class="tag__item">java</li>
-									<li class="tag__item">java</li>
-									<li class="tag__item">java</li>
-								</ul>
-							</div>
-						</article>
-						<article class="postcard dark blue">
-							<a class="postcard__img_link" href="#">
-								<img
-									class="postcard__img"
-									src="/images/mystery-educator.png"
-									alt="Image Title"
-								/>
-							</a>
-							<div class="postcard__text">
-								<h1 class="postcard__title blue">
-									<a href="#">Podcast Title</a>
-								</h1>
-								<div class="postcard__subtitle_small">
-									<time datetime="2020-05-25 12:00:00">
-										<i class="fas fa-calendar-alt mr-2"></i
-										>Mon, May 25th 2020
-									</time>
-								</div>
-								<div class="postcard__bar"></div>
-								<div class="postcard__preview-txt">
-									Lorem ipsum dolor sit amet consectetur
-									adipisicing elit. Eligendi, fugiat
-									asperiores inventore beatae accusamus odit
-									minima enim, commodi quia, doloribus eius!
-									Ducimus nemo accusantium maiores velit
-									corrupti tempora reiciendis molestiae
-									repellat vero. Eveniet ipsam adipisci illo
-									iusto quibusdam, sunt neque nulla unde ipsum
-									dolores nobis enim quidem excepturi, illum
-									quos!
-								</div>
-								<ul class="postcard__tagbox">
-									<li class="tag__item">
-										<i class="fa fa-tag mr-2"></i>Podcast
-									</li>
-									<li class="tag__item">
-										<i class="fa fa-clock mr-2"></i>55 mins.
-									</li>
-									<li class="tag__item play blue">
-										<a href="#"
-											><i class="fa fa-play mr-2"></i>Play
-											Episode</a
-										>
-									</li>
-								</ul>
-							</div>
-						</article>
-					</section>
-				</div>
-
-				<!-- WCCI Early Projects -->
-				<!-- <section id="project-wrapper">
-					<h2>projects</h2>
-					<div>
-						<article class="project-item">
-							<div>
-								<h3>
-									<a
-										href="https://github.com/2021-Spring-Part-Time/virtual-pets-amok-lerko96"
-										target="_blank"
-										>Virtual Pets Amok</a
-									>
-								</h3>
-							</div>
-							<div id="project-container">
-								<div class="container-right">
-									<img
-										src="/images/amok.png"
-										alt="virtual-pet-amok-console"
-									/>
-									<div class="project-desc">
-										<p>
-											Console App that builds off of
-											virtual-pet-shelter. This add's
-											robotic pets to the shelter, with
-											their own robotic needs.
-										</p>
-									</div>
-								</div>
-								<div class="project-skills">
-									<h4>skills</h4>
-									<ul>
-										<li>TDD</li>
-										<li>polymorphism</li>
-										<li>encapsulation</li>
-										<li>interface (implements)</li>
-										<li>abstract class (extends)</li>
-									</ul>
-								</div>
-							</div>
-						</article>
-						<article class="project-item">
-							<div>
-								<h3>
-									<a
-										href="https://github.com/2021-Spring-Part-Time/virtual-pet-shelter-lerko96"
-										target="_blank"
-									>
-										Virtual Pet Shelter</a
-									>
-								</h3>
-							</div>
-							<div id="project-container">
-								<div class="container-right">
-									<img
-										src="/images/shelter.png"
-										alt="virtual-pet-shelter-console"
-									/>
-									<div class="project-desc">
-										<p>
-											Built a console application allowing
-											users to take care of multiple pets.
-											Added the ability to admit pets, or
-											adopt.
-										</p>
-									</div>
-								</div>
-								<div class="project-skills">
-									<h4>skills</h4>
-									<ul>
-										<li>TDD</li>
-										<li>constructor() {...}</li>
-										<li>getter() {...}</li>
-										<li>map<> = hashmap<>()></li>
-										<li>collections<></li>
-									</ul>
-								</div>
-							</div>
-						</article>
-						<article class="project-item">
-							<div>
-								<h3>
-									<a
-										href="https://github.com/2021-Spring-Part-Time/virtual-pet-lerko96"
-										target="_blank"
-									>
-										Virtual Pet</a
-									>
-								</h3>
-							</div>
-							<div id="project-container">
-								<div class="container-right">
-									<img
-										src="/images/pet.png"
-										alt="virtual-pet-console"
-									/>
-									<div class="project-desc">
-										<p>
-											Built a console application in Java
-											that allows the user to take care of
-											one virtual pet. This includes
-											keeping track of the pets' hunger,
-											thirst and bordedom.
-										</p>
-									</div>
-								</div>
-								<div class="project-skills">
-									<h4>skills</h4>
-									<ul>
-										<li>game loop</li>
-										<li>user input</li>
-										<li>classes</li>
-										<li>instance variables</li>
-										<li>methods</li>
-										<li>clean code</li>
-									</ul>
-								</div>
-							</div>
-						</article>
-					</div>
-				</section> -->
 			</div>
 		</main>
 		<footer>
