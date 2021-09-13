@@ -27,7 +27,7 @@
 				<nav>
 					<a href="index.html">TYLER KOENIG</a>
 					<ul>
-						<li><a href="#bio" target="_self">ABOUT</a></li>
+						<li><a href="#about" target="_self">ABOUT</a></li>
 						<li><a href="#contact" target="_self">CONTACT</a></li>
 						<li>
 							<a href="#projects" target="_self">PROJECTS</a>
@@ -37,58 +37,58 @@
 				</nav>
 			</header>
 			<main>
-				<div class="card">
-					<div class="card-top">
-						<div class="avatar-holder">
-							<img
-								id="headshot"
-								src="/images/headshot-tyler_koenig.png"
-								alt="tyler"
-							/>
+				<section id="intro">
+					<article class="card">
+						<div class="card_top">
+							<div class="avatar-holder">
+								<img
+									id="headshot"
+									src="/images/headshot-tyler_koenig.png"
+									alt="tyler"
+								/>
+							</div>
 						</div>
-					</div>
-					<div class="name">
-						<a href="index.html">Tyler Koenig</a>
-					</div>
-					<div class="short-bio">
-						<p>
-							Passionate Software Developer
-							<br />
-							Recent Graduate of We Can Code IT
-						</p>
-					</div>
-					<div class="contact-links" id="contact">
-						<a
-							href="https://github.com/lerko96"
-							target="_blank"
-							title="github"
-							><i
-								class="fa fa-github fa-2x"
-								aria-hidden="true"
-							></i
-						></a>
-						<a
-							href="https://www.linkedin.com/in/tyler-koenig-72607a18b/"
-							target="_blank"
-							title="LinkedIn"
-							><i
-								class="fa fa-linkedin-square fa-2x"
-								aria-hidden="true"
-							></i
-						></a>
-						<a
-							href="mailto:tylerkng96@icloud.com"
-							target="_blank"
-							title="email"
-							><i
-								class="fa fa-envelope-o fa-2x"
-								aria-hidden="true"
-							></i
-						></a>
-					</div>
-				</div>
-				<div class="card">
-					<section id="bio">
+						<div class="name">
+							<a href="index.html">Tyler Koenig</a>
+						</div>
+						<div class="intro_bio">
+							<p>
+								Passionate Software Developer
+								<br />
+								Recent Graduate of We Can Code IT
+							</p>
+						</div>
+						<div class="contact-links" id="contact">
+							<a
+								href="https://github.com/lerko96"
+								target="_blank"
+								title="github"
+								><i
+									class="fa fa-github fa-2x"
+									aria-hidden="true"
+								></i
+							></a>
+							<a
+								href="https://www.linkedin.com/in/tyler-koenig-72607a18b/"
+								target="_blank"
+								title="LinkedIn"
+								><i
+									class="fa fa-linkedin-square fa-2x"
+									aria-hidden="true"
+								></i
+							></a>
+							<a
+								href="mailto:tylerkng96@icloud.com"
+								target="_blank"
+								title="email"
+								><i
+									class="fa fa-envelope-o fa-2x"
+									aria-hidden="true"
+								></i
+							></a>
+						</div>
+					</article>
+					<article class="card" id="about">
 						<h2>about</h2>
 						<p>
 							I'm Tyler Koenig, a lifelong student. Graduated with
@@ -98,11 +98,8 @@
 							front-end web development through We Can Code IT
 							Bootcamp. Always interested in a challenge!
 						</p>
-					</section>
-				</div>
-
-				<div class="card">
-					<section id="skills">
+					</article>
+					<article class="card" id="skills">
 						<h2>skills</h2>
 						<ul>
 							<li>Java</li>
@@ -122,51 +119,362 @@
 							<li>Relational Databases</li>
 							<li>Source Control/ Github</li>
 						</ul>
-					</section>
-				</div>
+					</article>
+				</section>
+				<!-- <section>
+					<article class="card" id="about">
+						<h2>about</h2>
+						<p>
+							I'm Tyler Koenig, a lifelong student. Graduated with
+							an Associate of Arts from Lorain County Community
+							College in 2018. Inbound associate at Amazon CLE-3
+							since December 2019. Currently learning Java and
+							front-end web development through We Can Code IT
+							Bootcamp. Always interested in a challenge!
+						</p>
+					</article>
 
-				<div class="card">
-					<section id="projects">
-						<h2>projects</h2>
-
-						<article class="project">
-							<div class="project_img">
+					<article class="card" id="skills">
+						<h2>skills</h2>
+						<ul>
+							<li>Java</li>
+							<li>Spring</li>
+							<li>Thymeleaf</li>
+							<li>JavaScript</li>
+							<li>MVC</li>
+							<li>HTML</li>
+							<li>CSS</li>
+							<li>Test Driven Development</li>
+							<li>Agile (Scrum)</li>
+							<li>Object Oriented Programming</li>
+							<li>JSON</li>
+							<li>React</li>
+							<li>REST APIs</li>
+							<li>Responsive Design</li>
+							<li>Relational Databases</li>
+							<li>Source Control/ Github</li>
+						</ul>
+					</article>
+				</section> -->
+				<section class="card" id="projects">
+					<h2>projects</h2>
+					<article class="project">
+						<a
+							class="project__img_link"
+							href="https://github.com/pt-spring-2021-team-project-spa/team-2-spa-repo"
+							target="_blank"
+						>
+							<img
+								class="project__img"
+								src="/images/headshot-tyler_koenig.png"
+								alt="were-hooked-img"
+						/></a>
+						<div class="project__text">
+							<h3 class="project__title">
 								<a
 									href="https://github.com/pt-spring-2021-team-project-spa/team-2-spa-repo"
 									target="_blank"
+									>We're Hooked</a
 								>
-									<img
-										src="/images/mystery-educator.png"
-										alt=""
-								/></a>
+							</h3>
+							<div class="project__subtitle_small">
+								<time datetime="2021-08-20 12:00:00">
+									<i class="fas fa-calendar-alt mr-2"></i>Fri,
+									August 20th 2021
+								</time>
 							</div>
-							<div class="project_name">
-								<h3>mystery educator</h3>
-							</div>
-							<div class="project_date">
-								<p>mon, may 25th 2021</p>
-							</div>
-							<div class="project_bar"></div>
-							<div class="project_about">
+							<div class="project__bar"></div>
+							<div class="project__info">
 								<p>
-									Lorem ipsum dolor sit amet consectetur
-									adipisicing elit. Et a maiores laborum quo
-									animi, unde repellat. Libero ab sequi vel
-									beatae natus numquam consequuntur molestias
-									ducimus. Ad laudantium neque nobis?
+									Designed, built and tested an MVC
+									application that allows users to discover
+									fishing locations in Ohio, as well as teach
+									beginners how to get started fishing and the
+									current regulations that are needed to
+									follow. This project was built between a
+									team of five in a completely remote
+									environment with the help of Github, Zoom
+									and Slack.
 								</p>
 							</div>
-							<ul class="project_tagbox">
-								<li class="tag__item">
-									java
-								</li>
+							<ul class="project__tagbox">
+								<li class="tag__item">JavaScript</li>
+								<li class="tag__item">RESTful APIs</li>
+								<li class="tag__item">Java</li>
+								<li class="tag__item">OOP</li>
+								<li class="tag__item">Thymeleaf</li>
+								<li class="tag__item">HTML</li>
+								<li class="tag__item">CSS</li>
+								<li class="tag__item">Responsive Design</li>
+								<li class="tag__item">TDD</li>
+								<li class="tag__item">VS Code</li>
+								<li class="tag__item">Github</li>
+								<li class="tag__item">Agile</li>
+								<li class="tag__item">Scrum</li>
+								<li class="tag__item">Zoom</li>
+								<li class="tag__item">Slack</li>
 							</ul>
+						</div>
+					</article>
+					<article class="project">
+						<a
+							class="project__img_link"
+							href="https://github.com/pt-spring-2021-team-project-spa/team-2-spa-repo"
+							target="_blank"
+						>
+							<img
+								class="project__img"
+								src="/images/mystery-educator.png"
+								alt=""
+						/></a>
+						<div class="project__text">
+							<h3 class="project__title">
+								<a
+									href="https://github.com/pt-spring-2021-team-project-spa/team-2-spa-repo"
+									target="_blank"
+									>Mystery Educator</a
+								>
+							</h3>
+							<div class="project__subtitle_small">
+								<time datetime="2021-07-23 12:00:00">
+									<i class="fas fa-calendar-alt mr-2"></i>Fri,
+									July 23rd 2021
+								</time>
+							</div>
+							<div class="project__bar"></div>
+							<div class="project__info">
+								<p>
+									Designed, built and tested a single page
+									application that renders unique data from
+									the MET Museum and NASA APIs each time you
+									visit. We also built a local backend
+									database to store historical information.
+									This project was built between a team of
+									four in a completely remote environemnt with
+									the help of Github, Zoom, and Slack.
+								</p>
+							</div>
+							<ul class="project__tagbox">
+								<li class="tag__item">JavaScript</li>
+								<li class="tag__item">Node.js</li>
+								<li class="tag__item">RESTful APIs</li>
+								<li class="tag__item">Java</li>
+								<li class="tag__item">HTML</li>
+								<li class="tag__item">CSS</li>
+								<li class="tag__item">Responsive Design</li>
+								<li class="tag__item">TDD</li>
+								<li class="tag__item">VS Code</li>
+								<li class="tag__item">Github</li>
+								<li class="tag__item">Agile</li>
+								<li class="tag__item">Scrum</li>
+								<li class="tag__item">Zoom</li>
+								<li class="tag__item">Slack</li>
+							</ul>
+						</div>
+					</article>
+					<article class="project">
+						<a
+							class="project__img_link"
+							href="https://github.com/2021-Spring-Part-Time/donut-clicker-lerko96"
+							target="_blank"
+						>
+							<img
+								class="project__img"
+								src="/images/donut-clicker.png"
+								alt="donut-clicker-img"
+						/></a>
+						<div class="project__text">
+							<h3 class="project__title">
+								<a
+									href="https://github.com/2021-Spring-Part-Time/donut-clicker-lerko96"
+									target="_blank"
+									>Donut Clicker</a
+								>
+							</h3>
+							<div class="project__subtitle_small">
+								<time datetime="2021-07-09 12:00:00">
+									<i class="fas fa-calendar-alt mr-2"></i>Fri,
+									July 9th 2021
+								</time>
+							</div>
+							<div class="project__bar"></div>
+							<div class="project__info">
+								<p>
+									Designed, built and tested a single page
+									application that lets users make virtual
+									donuts via clicking. Once enough donuts are
+									made you have the ability to purchase
+									upgrades such as auto-clickers and
+									clicking-multipliers.
+								</p>
+							</div>
+							<ul class="project__tagbox">
+								<li class="tag__item">JavaScript</li>
+								<li class="tag__item">Node.js</li>
+								<li class="tag__item">HTML</li>
+								<li class="tag__item">CSS</li>
+								<li class="tag__item">Responsive Design</li>
+								<li class="tag__item">TDD</li>
+								<li class="tag__item">VS Code</li>
+								<li class="tag__item">Github</li>
+							</ul>
+						</div>
+					</article>
+					<article class="project">
+						<a
+							class="project__img_link"
+							href="https://github.com/pt-spring-2021-team-project-fullstack/team-4-trek"
+							target="_blank"
+						>
+							<img
+								class="project__img"
+								src="/images/trek.png"
+								alt="trekking-img"
+						/></a>
+						<div class="project__text">
+							<h3 class="project__title">
+								<a
+									href="https://github.com/pt-spring-2021-team-project-fullstack/team-4-trek"
+									target="_blank"
+									>Trekking Site</a
+								>
+							</h3>
+							<div class="project__subtitle_small">
+								<time datetime="2021-06-18 12:00:00">
+									<i class="fas fa-calendar-alt mr-2"></i>Fri,
+									June 18th 2021
+								</time>
+							</div>
+							<div class="project__bar"></div>
+							<div class="project__info">
+								<p>
+									Designed, built and tested an MVC
+									application that lets users discover treks
+									located by continent, region and type. This
+									project was built between a team of four in
+									a completely remote environemnt with the
+									help of Github, Zoom and Slack.
+								</p>
+							</div>
+							<ul class="project__tagbox">
+								<li class="tag__item">Java</li>
+								<li class="tag__item">SpringJPA</li>
+								<li class="tag__item">OOP</li>
+								<li class="tag__item">HTML</li>
+								<li class="tag__item">CSS</li>
+								<li class="tag__item">Responsive Design</li>
+								<li class="tag__item">TDD</li>
+								<li class="tag__item">IntelliJ</li>
+								<li class="tag__item">Github</li>
+								<li class="tag__item">Agile</li>
+								<li class="tag__item">Scrum</li>
+								<li class="tag__item">Zoom</li>
+								<li class="tag__item">Slack</li>
+							</ul>
+						</div>
+					</article>
+					<article class="project">
+						<a
+							class="project__img_link"
+							href="https://github.com/2021-Spring-Part-Time/reviews-mvc-lerko96"
+							target="_blank"
+						>
+							<img
+								class="project__img"
+								src="/images/review-site.png"
+								alt="review-site-img"
+						/></a>
+						<div class="project__text">
+							<h3 class="project__title">
+								<a
+									href="https://github.com/2021-Spring-Part-Time/reviews-mvc-lerko96"
+									target="_blank"
+									>Review Site</a
+								>
+							</h3>
+							<div class="project__subtitle_small">
+								<time datetime="2021-06-04 12:00:00">
+									<i class="fas fa-calendar-alt mr-2"></i>Fri,
+									June 4th 2021
+								</time>
+							</div>
+							<div class="project__bar"></div>
+							<div class="project__info">
+								<p>
+									Designed, built and tested a Java
+									application for movie reviews.
+								</p>
+							</div>
+							<ul class="project__tagbox">
+								<li class="tag__item">Java</li>
+								<li class="tag__item">SpringJPA</li>
+								<li class="tag__item">OOP</li>
+								<li class="tag__item">Thymeleaf</li>
+								<li class="tag__item">HTML</li>
+								<li class="tag__item">CSS</li>
+								<li class="tag__item">Responsive Design</li>
+								<li class="tag__item">TDD</li>
+								<li class="tag__item">IntelliJ</li>
+								<li class="tag__item">Github</li>
+							</ul>
+						</div>
+					</article>
+				</section>
+
+				<div class="card">
+					<section id="projects">
+						<h2>old project style</h2>
+
+						<article class="project">
+							<a
+								class="project__img_link"
+								href="https://github.com/pt-spring-2021-team-project-spa/team-2-spa-repo"
+								target="_blank"
+							>
+								<img
+									class="project__img"
+									src="/images/mystery-educator.png"
+									alt=""
+							/></a>
+							<div class="project__text">
+								<h3 class="project__title">
+									<a
+										href="https://github.com/pt-spring-2021-team-project-spa/team-2-spa-repo"
+										target="_blank"
+										>Mystery Educator</a
+									>
+								</h3>
+								<div class="project__subtitle_small">
+									<time datetime="2020-05-25 12:00:00">
+										<i class="fas fa-calendar-alt mr-2"></i
+										>Mon, May 25th 2020
+									</time>
+								</div>
+								<div class="project__bar"></div>
+								<div class="project__info">
+									<p>
+										Lorem ipsum dolor sit amet consectetur
+										adipisicing elit. Et a maiores laborum
+										quo animi, unde repellat. Libero ab
+										sequi vel beatae natus numquam
+										consequuntur molestias ducimus. Ad
+										laudantium neque nobis?
+									</p>
+								</div>
+								<ul class="project__tagbox">
+									<li class="tag__item">java</li>
+									<li class="tag__item">java</li>
+									<li class="tag__item">java</li>
+									<li class="tag__item">java</li>
+									<li class="tag__item">java</li>
+								</ul>
+							</div>
 						</article>
 						<article class="postcard dark blue">
 							<a class="postcard__img_link" href="#">
 								<img
 									class="postcard__img"
-									src="https://picsum.photos/1000/1000"
+									src="/images/mystery-educator.png"
 									alt="Image Title"
 								/>
 							</a>
@@ -174,7 +482,7 @@
 								<h1 class="postcard__title blue">
 									<a href="#">Podcast Title</a>
 								</h1>
-								<div class="postcard__subtitle small">
+								<div class="postcard__subtitle_small">
 									<time datetime="2020-05-25 12:00:00">
 										<i class="fas fa-calendar-alt mr-2"></i
 										>Mon, May 25th 2020
@@ -212,161 +520,10 @@
 					</section>
 				</div>
 
-				<section id="project-wrapper">
+				<!-- WCCI Early Projects -->
+				<!-- <section id="project-wrapper">
 					<h2>projects</h2>
 					<div>
-						<article class="project-item">
-							<div>
-								<h3>
-									<a
-										href="https://github.com/pt-spring-2021-team-project-spa/team-2-spa-repo"
-										target="_blank"
-										>Mystery Educator</a
-									>
-								</h3>
-							</div>
-							<div id="project-container">
-								<div class="container-right">
-									<img
-										src="/images/mystery-educator.png"
-										alt="virtual-pet-amok-console"
-									/>
-									<div class="project-desc">
-										<p>
-											Designed a single page application
-											that brings back unique data from
-											MET Museum and NASA APIs.
-										</p>
-									</div>
-								</div>
-								<div class="project-skills">
-									<h4>skills</h4>
-									<ul>
-										<li>Java</li>
-										<li>JavaScript</li>
-										<li>HTML</li>
-										<li>CSS</li>
-										<li>VS Code</li>
-										<li>Github</li>
-										<li>TDD</li>
-										<li>OOP</li>
-									</ul>
-								</div>
-							</div>
-						</article>
-						<article class="project-item">
-							<div>
-								<h3>
-									<a
-										href="https://github.com/2021-Spring-Part-Time/donut-clicker-lerko96"
-										target="_blank"
-										>Donut Clicker</a
-									>
-								</h3>
-							</div>
-							<div id="project-container">
-								<div class="container-right">
-									<img
-										src="/images/donut-clicker.png"
-										alt="virtual-pet-amok-console"
-									/>
-									<div class="project-desc">
-										<p>
-											Designed a single page application
-											that lets users make virtual donuts
-											and buy upgrades for the game.
-										</p>
-									</div>
-								</div>
-								<div class="project-skills">
-									<h4>skills</h4>
-									<ul>
-										<li>JavaScript</li>
-										<li>HTML</li>
-										<li>CSS</li>
-										<li>VS Code</li>
-										<li>Github</li>
-										<li>TDD</li>
-										<li>OOP</li>
-									</ul>
-								</div>
-							</div>
-						</article>
-						<article class="project-item">
-							<div>
-								<h3>
-									<a
-										href="https://github.com/pt-spring-2021-team-project-fullstack/team-4-trek"
-										target="_blank"
-										>Trekking Website</a
-									>
-								</h3>
-							</div>
-							<div id="project-container">
-								<div class="container-right">
-									<img
-										src="/images/trek.png"
-										alt="virtual-pet-amok-console"
-									/>
-									<div class="project-desc">
-										<p>
-											Designed an MVC website that lets
-											users find treks located by region
-											and continent.
-										</p>
-									</div>
-								</div>
-								<div class="project-skills">
-									<h4>skills</h4>
-									<ul>
-										<li>Java</li>
-										<li>SpringJPA</li>
-										<li>HTML</li>
-										<li>CSS</li>
-										<li>IntelliJ</li>
-										<li>VS Code</li>
-										<li>Github</li>
-										<li>TDD</li>
-										<li>OOP</li>
-									</ul>
-								</div>
-							</div>
-						</article>
-						<article class="project-item">
-							<div>
-								<h3>
-									<a
-										href="https://github.com/2021-Spring-Part-Time/reviews-mvc-lerko96"
-										target="_blank"
-										>Reviews Site</a
-									>
-								</h3>
-							</div>
-							<div id="project-container">
-								<div class="container-right">
-									<img src="/images/review-site.png" alt="" />
-									<div class="project-desc">
-										<p>
-											Designed a movie reviews website
-											using thymeleaf templates.
-										</p>
-									</div>
-								</div>
-								<div class="project-skills">
-									<h4>skills</h4>
-									<ul>
-										<li>Java</li>
-										<li>Thymeleaf</li>
-										<li>HTML</li>
-										<li>CSS</li>
-										<li>IntelliJ</li>
-										<li>Github</li>
-										<li>TDD</li>
-										<li>OOP</li>
-									</ul>
-								</div>
-							</div>
-						</article>
 						<article class="project-item">
 							<div>
 								<h3>
@@ -483,7 +640,7 @@
 							</div>
 						</article>
 					</div>
-				</section>
+				</section> -->
 			</main>
 			<footer>
 				<span id="copyright">&copy; 2021 Tyler Koenig</span>
