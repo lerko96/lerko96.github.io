@@ -117,17 +117,13 @@ nav a:hover {
 }
 
 .intro_bio {
-	height: 175px;
-	margin: 20px;
+	/* height: 175px; */
+	margin: 20px 1.5rem 40px;
 }
 
 .contact-links {
-	position: absolute;
-	font-size: 80%;
-	left: 0;
-	right: 0;
-	bottom: 30px;
-	margin-top: 40px;
+	font-size: 110%;
+	margin-bottom: 40px;
 }
 
 .contact-links a {
