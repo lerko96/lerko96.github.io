@@ -16,6 +16,9 @@
 		<style>
 			@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap');
 		</style>
+		<style>
+			@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+		</style>
 		<script src="https://use.fontawesome.com/e427b1b41a.js"></script>
 		<!-- <link rel="stylesheet" type="text/css" href="style.css" /> -->
 		<link rel="stylesheet" href="style.css" />
@@ -39,6 +42,20 @@
 		</header>
 		<main>
 			<div class="side__nav">
+				<button onclick="myFunction()">Switch Mode</button>
+				<div class="side__dark">
+					<input
+						onclick="mySwitch()"
+						type="checkbox"
+						class="checkbox"
+						id="checkbox"
+					/>
+					<label class="label" for="checkbox">
+						<i class="far fa-moon"></i>
+						<i class="fas fa-sun"></i>
+						<div class="ball"></div>
+					</label>
+				</div>
 				<a
 					href="https://www.linkedin.com/in/tyler-koenig-72607a18b/"
 					target="_blank"
@@ -75,14 +92,10 @@
 								</div>
 							</div>
 							<div class="name">
-								<a href="index.html">Tyler Koenig</a>
+								<a href="index.html">TYLER KOENIG</a>
 							</div>
 							<div class="intro_bio">
-								<p>
-									Passionate Software Developer
-									<br />
-									Recent Graduate of We Can Code IT
-								</p>
+								<p>SOFTWARE DEVELOPER</p>
 							</div>
 							<div class="contact-links" id="contact">
 								<a
@@ -441,6 +454,6 @@
 				></a>
 			</div>
 		</footer>
-		<script src="app/js/script.js"></script>
+		<script src="index.js"></script>
 	</body>
 </html>

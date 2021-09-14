@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
 * {
 	padding: 0;
 	margin: 0;
@@ -15,16 +16,68 @@ body {
 	box-sizing: border-box;
 	color: #fff;
 	/* color: #c9cacc; */
-	background-color: #110f16;
+	background: #fafafa;
+	/* background: #110f16; */
 	/* background-color: #1C1924; */
 	/* background-color: #272727;  */
-	font-family: 'Source Code Pro', monospace, Arial, Helvetica, sans-serif;
+	font-family: 'Montserrat', sans-serif;
 	font-size: 16px;
 	font-weight: 400;
+	letter-spacing: 0.04rem;
 	/* line-height: 1.725; */
 	text-rendering: optimizeLegibility;
 	min-height: 100vh;
+	transition: background 0.2s linear;
 	/* margin: 0 auto; */
+}
+
+body.dark{
+	background: #292c35;
+	color: #fff;
+}
+
+
+.checkbox {
+	opacity: 0;
+	position: absolute;
+}
+
+.label {
+	background-color: #111;
+	border-radius: 50px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 5px;
+	position: relative;
+	height: 26px;
+	width: 50px;
+	transform: scale(1.5);
+}
+
+.label .ball {
+	background-color: #fff;
+	border-radius: 50%;
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	height: 22px;
+	width: 22px;
+	transform: translateX(0px);
+	transition: transform 0.2s linear;
+}
+
+.checkbox:checked + .label .ball {
+	transform: translateX(24px);
+}
+
+.far fa-moon {
+	color: #f1c40f;
+}
+
+.far fa-sun {
+	color: #f39c12;
 }
 
 #wrapper {
@@ -87,7 +140,7 @@ header {
 	/* display: flex; */
 	flex-wrap: wrap;
 	/* position: relative; */
-	background-color: #151515;
+	background: #151515;
 	margin: 2rem auto;
 	/* height: 400px; */
 	min-width: 320px;
@@ -97,6 +150,8 @@ header {
 	box-shadow: 0 10px 25px 5px rgba(0, 0, 0, 0.2);
 	overflow: hidden;
 }
+
+
 
 .card_top {
 	position: relative;
@@ -622,7 +677,8 @@ a:hover {
 	}
 
 	nav {
-		margin: auto 2rem auto 90px;
+		border: 1px solid red;
+		margin: 2rem 2rem 2rem 90px;
 		display: flex;
 	}
 
