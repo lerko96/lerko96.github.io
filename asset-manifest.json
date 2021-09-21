@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/static/css/main.07610185.chunk.css",
+    "main.js": "/static/js/main.0e17c742.chunk.js",
+    "main.js.map": "/static/js/main.0e17c742.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.a5200bbc.js",
+    "runtime-main.js.map": "/static/js/runtime-main.a5200bbc.js.map",
+    "static/js/2.4b78bfff.chunk.js": "/static/js/2.4b78bfff.chunk.js",
+    "static/js/2.4b78bfff.chunk.js.map": "/static/js/2.4b78bfff.chunk.js.map",
+    "static/js/3.47eb47fc.chunk.js": "/static/js/3.47eb47fc.chunk.js",
+    "static/js/3.47eb47fc.chunk.js.map": "/static/js/3.47eb47fc.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.07610185.chunk.css.map": "/static/css/main.07610185.chunk.css.map",
+    "static/js/2.4b78bfff.chunk.js.LICENSE.txt": "/static/js/2.4b78bfff.chunk.js.LICENSE.txt",
+    "static/media/donut-clicker.c1f3eb06.png": "/static/media/donut-clicker.c1f3eb06.png",
+    "static/media/headshot-tyler_koenig.e8f467ab.png": "/static/media/headshot-tyler_koenig.e8f467ab.png",
+    "static/media/mystery-educator.353efa24.png": "/static/media/mystery-educator.353efa24.png",
+    "static/media/trek.12f3df33.png": "/static/media/trek.12f3df33.png",
+    "static/media/were-hooked.d303952b.png": "/static/media/were-hooked.d303952b.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a5200bbc.js",
+    "static/js/2.4b78bfff.chunk.js",
+    "static/css/main.07610185.chunk.css",
+    "static/js/main.0e17c742.chunk.js"
+  ]
+}
