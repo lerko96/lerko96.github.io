@@ -11,6 +11,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
+    "watch": "^1.0.2",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
@@ -40,6 +41,7 @@
     ]
   },
   "devDependencies": {
-    "node-sass": "^6.0.1"
+    "node-sass": "^6.0.1",
+    "npm-watch": "^0.11.0"
   }
 }
