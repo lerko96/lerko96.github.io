@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
     <footer className="border-t border-[var(--color-border)] py-5 mt-8">
-      <div className="max-w-5xl mx-auto px-6 flex items-center justify-between">
+      <div className="max-w-3xl mx-auto px-6 flex items-center justify-between">
         <span className="font-mono text-xs text-[var(--color-text-dim)]">
           &copy; {new Date().getFullYear()} Tyler Koenig
         </span>
