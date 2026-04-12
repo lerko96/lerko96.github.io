@@ -3,65 +3,53 @@
 @variant dark (&:where(.dark, .dark *));
 
 @theme {
-  /* Colors */
-  --color-green: #2bf3c4;
-  --color-green-dark: #27bb98;
-  --color-green-darker: #238770;
-  --color-green-darkest: #1f4b40;
-
-  --color-bg: #272727;
-  --color-bg-deep: #1b1b1b;
-  --color-surface: #333333;
-
-  --color-grey-1: #4b4b4b;
-  --color-grey-2: #707171;
-  --color-grey-3: #999a9a;
-  --color-grey-4: #c5c6c6;
-
-  --color-text: #c5c6c6;
-  --color-text-muted: #999a9a;
-  --color-text-light: #f7f9fb;
+  /* Terminal-Noir palette */
+  --color-bg:             #0a0a0a;
+  --color-surface:        #111111;
+  --color-surface-raised: #1a1a1a;
+  --color-border:         #2a2a2a;
+  --color-border-bright:  #444444;
+  --color-text:           #e8e8e8;
+  --color-text-label:     #666666;
+  --color-text-dim:       #444444;
+  --color-accent-green:   #00cc44;
+  --color-accent-red:     #cc2200;
 
   /* Typography */
   --font-mono: "Source Code Pro", ui-monospace, monospace;
-  --font-sans: "Montserrat", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: ui-sans-serif, system-ui, sans-serif;
 
   /* Breakpoints */
   --breakpoint-xs: 576px;
 
   /* Animations */
-  --animate-fade-in: fadeIn 0.6s ease forwards;
-  --animate-slide-up: slideUp 0.5s ease forwards;
-  --animate-app-scale: appScale 0.4s ease forwards;
+  --animate-fade-in: fadeIn 120ms linear forwards;
 
   @keyframes fadeIn {
     from { opacity: 0; }
     to   { opacity: 1; }
-  }
-
-  @keyframes slideUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes appScale {
-    from { transform: scale(0.97); opacity: 0; }
-    to   { transform: scale(1);    opacity: 1; }
   }
 }
 
 /* Base */
 html {
   scroll-behavior: smooth;
-  background-color: var(--color-bg-deep);
+  background-color: var(--color-bg);
   color: var(--color-text);
-  font-family: var(--font-sans);
+  font-family: var(--font-mono);
 }
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+/* Default transitions — linear, fast */
+a,
+button {
+  transition: color 120ms linear, border-color 120ms linear,
+    background-color 120ms linear, opacity 120ms linear;
 }
 
 @media (prefers-reduced-motion: reduce) {

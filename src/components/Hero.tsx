@@ -2,61 +2,74 @@ import Image from "next/image";
 
 export default function Hero() {
   return (
-    <section className="flex flex-col sm:flex-row items-center sm:items-start gap-8 mb-20">
-      <div className="shrink-0">
+    <section className="mb-12">
+      {/* Section header */}
+      <div className="flex items-center gap-3 mb-6">
+        <span className="font-mono text-xs text-[var(--color-text-label)] tracking-widest uppercase">
+          identity
+        </span>
+        <div className="flex-1 h-px bg-[var(--color-border)]" aria-hidden="true" />
+      </div>
+
+      <div className="flex items-start gap-5">
         <Image
           src="/images/headshot-tyler_koenig.png"
           alt="Tyler Koenig"
-          width={120}
-          height={120}
-          className="rounded-full border-2 border-[var(--color-green-darker)]"
+          width={56}
+          height={56}
+          className="shrink-0 object-cover"
           priority
         />
-      </div>
 
-      <div className="flex flex-col gap-4 text-center sm:text-left">
-        <div>
-          <h1 className="font-mono text-2xl font-bold text-[var(--color-text-light)] tracking-wide">
-            Tyler Koenig
-          </h1>
-          <p className="font-mono text-sm text-[var(--color-green)] tracking-widest uppercase mt-1">
-            SOC Helpdesk I by day, building beyond the title
+        <div className="flex flex-col gap-3">
+          <div>
+            <p className="font-mono text-base font-bold text-[var(--color-text)]">
+              Tyler Koenig
+            </p>
+            <p className="font-mono text-xs text-[var(--color-text-label)] mt-0.5">
+              SOC Helpdesk I · Homelab Operator
+            </p>
+          </div>
+
+          <p className="font-sans text-sm text-[var(--color-text-label)] leading-relaxed max-w-lg">
+            I write software and run infrastructure that goes well past what my
+            job title implies. Games, AI tooling, mobile apps, and a homelab
+            running 20+ self-hosted services on segmented VLANs. Continuously
+            learning by building things that actually work.
           </p>
-        </div>
 
-        <p className="text-[var(--color-grey-3)] text-sm leading-relaxed max-w-lg">
-          I write software and run infrastructure that goes well past what my job
-          title implies. Games, AI tooling, mobile apps, and a homelab running
-          20+ self-hosted services on segmented VLANs. Continuously learning
-          by building things that actually work.
-        </p>
-
-        <div className="flex items-center gap-5 justify-center sm:justify-start">
-          <a
-            href="https://github.com/lerko96"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub"
-            className="text-[var(--color-grey-2)] hover:text-[var(--color-green)] transition-colors"
-          >
-            <i className="fab fa-github text-xl" aria-hidden="true" />
-          </a>
-          <a
-            href="https://www.linkedin.com/in/tyler-koenig"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn"
-            className="text-[var(--color-grey-2)] hover:text-[var(--color-green)] transition-colors"
-          >
-            <i className="fab fa-linkedin text-xl" aria-hidden="true" />
-          </a>
-          <a
-            href="mailto:tylerkoenig96@gmail.com"
-            aria-label="Email"
-            className="text-[var(--color-grey-2)] hover:text-[var(--color-green)] transition-colors"
-          >
-            <i className="fas fa-envelope text-xl" aria-hidden="true" />
-          </a>
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-1">
+            <span className="font-mono text-xs text-[var(--color-accent-green)]">
+              ● online
+            </span>
+            <a
+              href="https://github.com/lerko96"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+              className="font-mono text-xs text-[var(--color-text-label)] hover:text-[var(--color-text)]"
+            >
+              <i className="fab fa-github mr-1.5" aria-hidden="true" />
+              github
+            </a>
+            <a
+              href="https://www.linkedin.com/in/tyler-koenig"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              className="font-mono text-xs text-[var(--color-text-label)] hover:text-[var(--color-text)]"
+            >
+              <i className="fab fa-linkedin mr-1.5" aria-hidden="true" />
+              linkedin
+            </a>
+            <a
+              href="mailto:tylerkoenig96@gmail.com"
+              aria-label="Email"
+              className="font-mono text-xs text-[var(--color-text-label)] hover:text-[var(--color-text)]"
+            >
+              @ email
+            </a>
+          </div>
         </div>
       </div>
     </section>

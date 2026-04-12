@@ -1,11 +1,13 @@
+import Widget from "@/components/Widget";
+
 const skillGroups = [
   {
     label: "Languages",
     skills: ["JavaScript", "TypeScript", "HTML", "CSS"],
   },
   {
-    label: "Frontend & Mobile",
-    skills: ["React", "React Native", "Expo", "Next.js", "Three.js", "Responsive Design"],
+    label: "Frontend",
+    skills: ["React", "React Native", "Expo", "Next.js", "Three.js"],
   },
   {
     label: "Desktop & Tools",
@@ -21,34 +23,28 @@ const skillGroups = [
   },
 ];
 
+const totalCount = skillGroups.reduce((n, g) => n + g.skills.length, 0);
+
 export default function Skills() {
   return (
-    <section className="mb-20" aria-labelledby="skills-heading">
-      <h2
-        id="skills-heading"
-        className="font-mono text-xs text-[var(--color-green)] tracking-widest uppercase mb-8"
-      >
-        Skills
-      </h2>
-      <div className="flex flex-col gap-5">
-        {skillGroups.map(({ label, skills }) => (
-          <div key={label} className="flex flex-col xs:flex-row gap-2 xs:items-start">
-            <span className="font-mono text-xs text-[var(--color-grey-2)] w-36 shrink-0 pt-0.5">
+    <Widget title="skills" badge={totalCount} as="section">
+      <div className="flex flex-col">
+        {skillGroups.map(({ label, skills }, i) => (
+          <div
+            key={label}
+            className={`flex flex-col xs:flex-row gap-1 xs:gap-6 py-3 ${
+              i < skillGroups.length - 1 ? "border-b border-[var(--color-border)]" : ""
+            }`}
+          >
+            <span className="font-mono text-xs text-[var(--color-text-dim)] w-28 shrink-0 uppercase tracking-wider">
               {label}
             </span>
-            <div className="flex flex-wrap gap-2">
-              {skills.map((skill) => (
-                <span
-                  key={skill}
-                  className="text-xs font-mono px-3 py-1 border border-[var(--color-grey-1)] text-[var(--color-grey-3)] rounded hover:border-[var(--color-green-darker)] hover:text-[var(--color-grey-4)] transition-colors"
-                >
-                  {skill}
-                </span>
-              ))}
-            </div>
+            <span className="font-mono text-xs text-[var(--color-text)]">
+              {skills.join(" · ")}
+            </span>
           </div>
         ))}
       </div>
-    </section>
+    </Widget>
   );
 }

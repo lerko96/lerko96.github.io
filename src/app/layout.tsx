@@ -1,16 +1,10 @@
 import type { Metadata } from "next";
-import { Montserrat, Source_Code_Pro } from "next/font/google";
+import { Source_Code_Pro } from "next/font/google";
 import "./globals.css";
 import ThemeScript from "@/components/ThemeScript";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import { ThemeProvider } from "@/context/ThemeContext";
-
-const montserrat = Montserrat({
-  subsets: ["latin"],
-  variable: "--font-sans",
-  display: "swap",
-});
 
 const sourceCodePro = Source_Code_Pro({
   subsets: ["latin"],
@@ -19,7 +13,7 @@ const sourceCodePro = Source_Code_Pro({
 });
 
 export const metadata: Metadata = {
-  title: "Tyler Koenig | Portfolio",
+  title: "Tyler Koenig",
   description:
     "SOC Helpdesk I by day, building beyond the title. Projects in AI tooling, mobile apps, infrastructure, and more.",
 };
@@ -41,11 +35,11 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${montserrat.variable} ${sourceCodePro.variable} bg-[var(--color-bg-deep)] text-[var(--color-text)] font-sans min-h-screen`}
+        className={`${sourceCodePro.variable} bg-[var(--color-bg)] text-[var(--color-text)] font-mono min-h-screen`}
       >
         <ThemeProvider>
           <Nav />
-          <main className="max-w-5xl mx-auto px-6 py-16">
+          <main className="max-w-5xl mx-auto px-6 py-14">
             {children}
           </main>
           <Footer />
