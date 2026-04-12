@@ -38,11 +38,16 @@ export default function RootLayout({
         className={`${sourceCodePro.variable} bg-[var(--color-bg)] text-[var(--color-text)] font-mono min-h-screen`}
       >
         <ThemeProvider>
+          {/* Full-width sticky nav */}
           <Nav />
-          <main className="max-w-[740px] mx-auto px-6 py-14">
-            {children}
-          </main>
-          <Footer />
+
+          {/* Centered content column — border-l/r makes centering always visible */}
+          <div className="max-w-[740px] mx-auto border-l border-r border-[var(--color-border)]">
+            <main className="px-8 py-14">
+              {children}
+            </main>
+            <Footer />
+          </div>
         </ThemeProvider>
       </body>
     </html>
