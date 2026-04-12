@@ -1,70 +1,58 @@
-# Getting Started with Create React App
+# lerko96 portfolio
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Personal portfolio site. Live at [lerkolabs.com](https://lerkolabs.com) — self-hosted, deployed and maintained through my own operation.
 
-## Available Scripts
+Source lives on my Gitea at [gitea.lerkolabs.com](https://gitea.lerkolabs.com). GitHub is a backup mirror, not the primary.
 
-In the project directory, you can run:
+**Stack:** Next.js 16 · React 19 · TypeScript · Tailwind v4
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Branches
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- `dev` — source code, all work happens here
+- `master` — built output only; what GitHub Pages serves for the backup mirror. don't touch this manually.
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Commands
 
-### `npm run build`
+```bash
+npm run dev      # dev server at localhost:3000
+npm run build    # static export into out/
+npm run deploy   # build + push out/ to master (GitHub mirror)
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## How it deploys
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+`npm run deploy` runs `predeploy` (build) then pushes the `out/` directory to `master` via `gh-pages`. That's what feeds the GitHub Pages backup at lerko96.com.
 
-### `npm run eject`
+`postbuild` drops `out/.nojekyll` so GitHub Pages doesn't ignore `_next/` assets.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Custom domain is in `public/CNAME` — gets copied into `out/` on build.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Project layout
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```
+src/
+  app/
+    layout.tsx          # root layout, fonts, ThemeProvider
+    page.tsx            # home: hero, skills, project cards
+    homelab/page.tsx    # homelab page: VLANs, services, ADRs
+    archive/page.tsx    # older projects grid
+    globals.css         # full design system (Tailwind v4 CSS-first, all tokens here)
+  components/           # Nav, Footer, Hero, ThemeScript, etc.
+  context/
+    ThemeContext.tsx     # dark mode provider + useTheme hook
+  data/
+    projects.ts         # all projects, featured + archive split
+    services.ts         # homelab services with categories
+public/
+  CNAME                 # www.lerko96.com
+```
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+> Tailwind v4 is CSS-first — no `tailwind.config.ts`. All custom tokens live in `globals.css` under `@theme {}`.

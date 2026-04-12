@@ -1,0 +1,43 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    container: node:22-alpine
+
+    steps:
+      - name: Install SSH and rsync
+        run: apk add --no-cache openssh-client rsync git
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build
+        run: npm ci && npm run build
+
+      - name: Setup SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H 10.99.0.23 >> ~/.ssh/known_hosts
+
+      - name: Sync out/ to Portfolio LXC
+        run: |
+          rsync -az --delete \
+            -e "ssh -i ~/.ssh/deploy_key" \
+            out/ root@10.99.0.23:/opt/lerkolabs/out/
+
+      - name: Rebuild and restart container
+        run: |
+          ssh -i ~/.ssh/deploy_key root@10.99.0.23 \
+            "cd /opt/lerkolabs && \
+             docker build -t portfolio . && \
+             docker stop portfolio 2>/dev/null || true && \
+             docker rm portfolio 2>/dev/null || true && \
+             docker run -d --name portfolio -p 80:80 --restart unless-stopped portfolio"
