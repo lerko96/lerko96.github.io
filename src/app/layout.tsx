@@ -39,7 +39,7 @@ export default function RootLayout({
       >
         <ThemeProvider>
           <Nav />
-          <main className="max-w-3xl mx-auto px-6 py-14">
+          <main className="max-w-[740px] mx-auto px-6 py-14">
             {children}
           </main>
           <Footer />

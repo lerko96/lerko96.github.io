@@ -13,7 +13,7 @@ export default function Nav() {
   const pathname = usePathname();
   return (
     <header className="sticky top-0 z-50 bg-[var(--color-surface)] border-b border-[var(--color-border)]">
-      <nav className="max-w-3xl mx-auto px-6 h-11 flex items-center justify-between">
+      <nav className="max-w-[740px] mx-auto px-6 h-11 flex items-center justify-between">
         <Link
           href="/"
           className="font-mono text-sm font-bold text-[var(--color-text)] tracking-widest hover:text-[var(--color-text-label)]"
