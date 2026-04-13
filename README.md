@@ -1,8 +1,8 @@
-# lerko96 portfolio
+# Tyler Koenig portfolio
 
-Personal portfolio site. Live at [lerkolabs.com](https://lerkolabs.com) — self-hosted, deployed and maintained through my own operation.
+Personal portfolio site. Live at [lerkolabs.com](https://lerkolabs.com) — self-hosted.
 
-Source lives on my Gitea at [gitea.lerkolabs.com](https://gitea.lerkolabs.com). GitHub is a backup mirror, not the primary.
+Source: [gitea.lerkolabs.com](https://gitea.lerkolabs.com)
 
 **Stack:** Next.js 16 · React 19 · TypeScript · Tailwind v4
 
@@ -10,8 +10,8 @@ Source lives on my Gitea at [gitea.lerkolabs.com](https://gitea.lerkolabs.com). 
 
 ## Branches
 
-- `dev` — source code, all work happens here
-- `master` — built output only; what GitHub Pages serves for the backup mirror. don't touch this manually.
+- `dev` — source code; pushing here updates lerkolabs.com
+- `master` — reserved for future GitHub mirror; don't touch manually
 
 ---
 
@@ -20,16 +20,20 @@ Source lives on my Gitea at [gitea.lerkolabs.com](https://gitea.lerkolabs.com). 
 ```bash
 npm run dev      # dev server at localhost:3000
 npm run build    # static export into out/
-npm run deploy   # build + push out/ to master (GitHub mirror)
 ```
 
 ---
 
-## How it deploys
+## Deploy
 
-`npm run deploy` runs `predeploy` (build) then pushes the `out/` directory to `master` via `gh-pages`. That's what feeds the GitHub Pages backup mirror.
+```bash
+git checkout dev && git merge <branch> && git push gitea dev
+```
 
-`postbuild` drops `out/.nojekyll` so GitHub Pages doesn't ignore `_next/` assets.
+Push to `dev` triggers Gitea Actions (`.gitea/workflows/deploy.yml`):
+1. Builds the static site (`npm run build`)
+2. rsyncs `out/` to the portfolio LXC
+3. Rebuilds and restarts the Docker container serving lerkolabs.com
 
 ---
 
