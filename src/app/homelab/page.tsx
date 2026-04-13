@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Widget from "@/components/Widget";
 import { services, categoryOrder, categoryLabels } from "@/data/services";
 
 export const metadata: Metadata = {
@@ -7,15 +8,27 @@ export const metadata: Metadata = {
     "Production-grade personal homelab: Proxmox, pfSense, 8 VLANs, WireGuard, Caddy, Authentik SSO, and 20+ self-hosted services.",
 };
 
+const glanceStats = [
+  { label: "Hypervisor", value: "Proxmox VE" },
+  { label: "Firewall", value: "pfSense (Intel N100)" },
+  { label: "Switching", value: "TP-Link Omada (managed)" },
+  { label: "ISP", value: "AT&T Fiber 1 Gbps" },
+  { label: "VPN", value: "WireGuard (pfSense)" },
+  { label: "Reverse Proxy", value: "Caddy + Cloudflare DNS-01" },
+  { label: "Auth", value: "Authentik SSO" },
+  { label: "DNS", value: "Pi-hole → Unbound → Cloudflare" },
+  { label: "Containers", value: "9 LXC + 2 VMs" },
+];
+
 const vlans = [
-  { id: "1000", name: "MGMT", subnet: "10.0.0.0/24", purpose: "Network equipment only" },
-  { id: "1010", name: "LAN", subnet: "10.1.0.0/24", purpose: "Trusted personal devices" },
-  { id: "1020", name: "Homelab", subnet: "10.2.0.0/24", purpose: "All self-hosted services" },
-  { id: "1030", name: "Guests", subnet: "10.3.0.0/24", purpose: "Internet only, RFC1918 blocked" },
-  { id: "1040", name: "IoT", subnet: "10.4.0.0/24", purpose: "Smart home, isolated" },
-  { id: "1050", name: "WFH", subnet: "10.5.0.0/24", purpose: "Work devices, no personal access" },
-  { id: "DMZ", name: "DMZ", subnet: "10.99.0.0/24", purpose: "Public-facing, hard-blocked internally" },
-  { id: "VPN", name: "VPN", subnet: "10.200.0.0/24", purpose: "WireGuard clients = LAN access" },
+  { id: "1000", name: "MGMT",    subnet: "10.0.0.0/24",   purpose: "Network equipment only" },
+  { id: "1010", name: "LAN",     subnet: "10.1.0.0/24",   purpose: "Trusted personal devices" },
+  { id: "1020", name: "Homelab", subnet: "10.2.0.0/24",   purpose: "All self-hosted services" },
+  { id: "1030", name: "Guests",  subnet: "10.3.0.0/24",   purpose: "Internet only, RFC1918 blocked" },
+  { id: "1040", name: "IoT",     subnet: "10.4.0.0/24",   purpose: "Smart home, isolated" },
+  { id: "1050", name: "WFH",     subnet: "10.5.0.0/24",   purpose: "Work devices, no personal access" },
+  { id: "DMZ",  name: "DMZ",     subnet: "10.99.0.0/24",  purpose: "Public-facing, hard-blocked internally" },
+  { id: "VPN",  name: "VPN",     subnet: "10.200.0.0/24", purpose: "WireGuard clients = LAN access" },
 ];
 
 const adrs = [
@@ -58,8 +71,8 @@ const adrs = [
   {
     title: "Gitea CI/CD: Self-hosted runner with container build + SSH rsync deploy",
     decision:
-      "act_runner v0.3.1 on Gitea LXC (10.99.0.22). Push to dev → node:22-alpine container builds Next.js → rsync out/ to Portfolio LXC → SSH docker rebuild. Runner WorkingDirectory=/opt/docker/gitea. Feature branches for daily work; merge to dev to deploy.",
-    why: "Keeps the full pipeline internal — no GitHub Actions, no external runners. Build runs in an isolated Alpine container so the Gitea LXC isn't polluted. Portfolio LXC (10.99.0.23) just serves pre-built static files via nginx. Runner must be registered with the LXC IP (10.99.0.22:3000), not localhost — containers can't resolve localhost to the host. The .runner file must live in WorkingDirectory or the daemon crashes on start.",
+      "act_runner v0.3.1 on Gitea LXC (10.99.0.22). Push to dev → node:22-alpine container builds Next.js → rsync out/ to Portfolio LXC → SSH docker rebuild.",
+    why: "Keeps the full pipeline internal — no GitHub Actions, no external runners. Build runs in an isolated Alpine container so the Gitea LXC isn't polluted. Portfolio LXC (10.99.0.23) just serves pre-built static files via nginx.",
   },
 ];
 
@@ -68,114 +81,115 @@ export default function HomelabPage() {
     <>
       {/* Header */}
       <div className="mb-16">
-        <p className="font-mono text-xs text-[var(--color-green)] tracking-widest uppercase mb-2">
-          lerkolabs
-        </p>
-        <h1 className="font-mono text-2xl font-bold text-[var(--color-text-light)] mb-4">
+        <div className="flex items-center gap-3 mb-4">
+          <span className="font-mono text-xs text-[var(--color-text-label)] tracking-widest uppercase">
+            lerkolabs
+          </span>
+          <div className="flex-1 h-px bg-[var(--color-border)]" aria-hidden="true" />
+        </div>
+        <h1 className="font-mono text-lg font-bold text-[var(--color-text)] mb-3">
           Home Infrastructure Lab
         </h1>
-        <p className="text-[var(--color-grey-3)] text-sm leading-relaxed max-w-2xl">
-          Personal infrastructure environment for learning, self-hosting, and operational practice.
-          Running 24/7 on production-grade hardware with real network segmentation, SSO,
-          monitoring, and IaC-style documentation.
+        <p className="font-sans text-sm text-[var(--color-text)] leading-relaxed max-w-2xl opacity-80">
+          Personal infrastructure environment for learning, self-hosting, and operational
+          practice. Running 24/7 on production-grade hardware with real network segmentation,
+          SSO, monitoring, and IaC-style documentation.
         </p>
       </div>
 
-      {/* At a glance */}
-      <section className="mb-16" aria-labelledby="glance-heading">
-        <h2
-          id="glance-heading"
-          className="font-mono text-xs text-[var(--color-green)] tracking-widest uppercase mb-6"
-        >
-          At a Glance
-        </h2>
-        <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 gap-4">
-          {[
-            { label: "Hypervisor", value: "Proxmox VE" },
-            { label: "Firewall", value: "pfSense (Intel N100)" },
-            { label: "Switching", value: "TP-Link Omada (managed)" },
-            { label: "ISP", value: "AT&T Fiber 1 Gbps" },
-            { label: "VPN", value: "WireGuard (pfSense)" },
-            { label: "Reverse Proxy", value: "Caddy + Cloudflare DNS-01" },
-            { label: "Auth", value: "Authentik SSO" },
-            { label: "DNS", value: "Pi-hole → Unbound → Cloudflare" },
-            { label: "Containers", value: "9 LXC + 2 VMs" },
-          ].map(({ label, value }) => (
+      {/* At a Glance */}
+      <Widget title="at a glance" badge={glanceStats.length} as="section">
+        <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 gap-px bg-[var(--color-border)]">
+          {glanceStats.map(({ label, value }) => (
             <div
               key={label}
-              className="border border-[var(--color-grey-1)] rounded-lg p-4 bg-[var(--color-bg)]"
+              className="bg-[var(--color-surface)] px-4 py-3"
             >
-              <p className="font-mono text-xs text-[var(--color-grey-2)] mb-1">{label}</p>
-              <p className="font-mono text-sm text-[var(--color-text-light)]">{value}</p>
+              <p className="font-mono text-xs text-[var(--color-text-dim)] uppercase tracking-wider mb-1">
+                {label}
+              </p>
+              <p className="font-mono text-sm text-[var(--color-text)]">{value}</p>
             </div>
           ))}
         </div>
-      </section>
+      </Widget>
 
       {/* VLAN table */}
-      <section className="mb-16" aria-labelledby="network-heading">
-        <h2
-          id="network-heading"
-          className="font-mono text-xs text-[var(--color-green)] tracking-widest uppercase mb-6"
-        >
-          Network — 8 Isolated VLANs
-        </h2>
-        <p className="text-xs text-[var(--color-grey-3)] mb-4">
-          Default deny inter-VLAN policy. Each VLAN has explicit firewall rules for what it can reach.
-        </p>
+      <Widget
+        title="network"
+        meta="8 isolated vlans · default deny inter-vlan"
+        as="section"
+      >
         <div className="overflow-x-auto">
-          <table className="w-full text-sm border-collapse">
+          <table className="w-full text-xs border-collapse">
             <thead>
-              <tr className="border-b border-[var(--color-grey-1)]">
-                <th className="font-mono text-xs text-[var(--color-grey-2)] text-left py-2 pr-4 uppercase tracking-wider">VLAN</th>
-                <th className="font-mono text-xs text-[var(--color-grey-2)] text-left py-2 pr-4 uppercase tracking-wider">Name</th>
-                <th className="font-mono text-xs text-[var(--color-grey-2)] text-left py-2 pr-4 uppercase tracking-wider">Subnet</th>
-                <th className="font-mono text-xs text-[var(--color-grey-2)] text-left py-2 uppercase tracking-wider">Purpose</th>
+              <tr className="border-b border-[var(--color-border)]">
+                <th className="font-mono text-[var(--color-text-dim)] text-left py-2 pr-6 uppercase tracking-wider">
+                  VLAN
+                </th>
+                <th className="font-mono text-[var(--color-text-dim)] text-left py-2 pr-6 uppercase tracking-wider">
+                  Name
+                </th>
+                <th className="font-mono text-[var(--color-text-dim)] text-left py-2 pr-6 uppercase tracking-wider">
+                  Subnet
+                </th>
+                <th className="font-mono text-[var(--color-text-dim)] text-left py-2 uppercase tracking-wider">
+                  Purpose
+                </th>
               </tr>
             </thead>
             <tbody>
               {vlans.map((v) => (
-                <tr key={v.id} className="border-b border-[var(--color-grey-1)] border-opacity-30 hover:bg-[var(--color-bg)] transition-colors">
-                  <td className="font-mono text-xs text-[var(--color-green)] py-2.5 pr-4">{v.id}</td>
-                  <td className="font-mono text-sm text-[var(--color-text-light)] py-2.5 pr-4">{v.name}</td>
-                  <td className="font-mono text-xs text-[var(--color-grey-3)] py-2.5 pr-4">{v.subnet}</td>
-                  <td className="text-xs text-[var(--color-grey-3)] py-2.5">{v.purpose}</td>
+                <tr
+                  key={v.id}
+                  className="border-b border-[var(--color-border)] hover:bg-[var(--color-surface)]"
+                >
+                  <td className="font-mono text-[var(--color-accent-green)] py-2.5 pr-6">
+                    {v.id}
+                  </td>
+                  <td className="font-mono text-[var(--color-text)] py-2.5 pr-6">{v.name}</td>
+                  <td className="font-mono text-[var(--color-text-label)] py-2.5 pr-6">
+                    {v.subnet}
+                  </td>
+                  <td className="font-sans text-sm text-[var(--color-text)] py-2.5 opacity-80">{v.purpose}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
-      </section>
+      </Widget>
 
       {/* Services */}
-      <section className="mb-16" aria-labelledby="services-heading">
-        <h2
-          id="services-heading"
-          className="font-mono text-xs text-[var(--color-green)] tracking-widest uppercase mb-6"
-        >
-          Self-Hosted Services
-        </h2>
+      <Widget
+        title="services"
+        badge={services.length}
+        as="section"
+      >
         <div className="flex flex-col gap-8">
           {categoryOrder.map((cat) => {
             const catServices = services.filter((s) => s.category === cat);
             return (
               <div key={cat}>
-                <h3 className="font-mono text-xs text-[var(--color-grey-2)] uppercase tracking-wider mb-3">
+                <p className="font-mono text-xs text-[var(--color-text-dim)] uppercase tracking-wider mb-3">
                   {categoryLabels[cat]}
-                </h3>
-                <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 gap-3">
+                </p>
+                <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 gap-px bg-[var(--color-border)]">
                   {catServices.map((svc) => (
                     <div
                       key={svc.name}
-                      className="flex items-start gap-3 border border-[var(--color-grey-1)] rounded-lg p-4 bg-[var(--color-bg)] hover:border-[var(--color-green-darker)] transition-colors"
+                      className="bg-[var(--color-surface)] hover:bg-[var(--color-surface-raised)] flex items-start gap-3 px-4 py-3"
                     >
                       <i
-                        className={`${svc.icon} text-[var(--color-green)] text-sm mt-0.5 w-4 shrink-0`}
+                        className={`${svc.icon} text-[var(--color-text-label)] text-xs mt-0.5 w-3.5 shrink-0`}
                         aria-hidden="true"
                       />
                       <div>
-                        <p className="font-mono text-xs text-[var(--color-text-light)] mb-0.5">{svc.name}</p>
-                        <p className="text-xs text-[var(--color-grey-2)] leading-relaxed">{svc.description}</p>
+                        <p className="font-mono text-xs text-[var(--color-text)] mb-0.5">
+                          {svc.name}
+                        </p>
+                        <p className="font-sans text-sm text-[var(--color-text)] leading-relaxed opacity-75">
+                          {svc.description}
+                        </p>
                       </div>
                     </div>
                   ))}
@@ -184,52 +198,48 @@ export default function HomelabPage() {
             );
           })}
         </div>
-      </section>
+      </Widget>
 
       {/* ADRs */}
-      <section className="mb-16" aria-labelledby="adr-heading">
-        <h2
-          id="adr-heading"
-          className="font-mono text-xs text-[var(--color-green)] tracking-widest uppercase mb-2"
-        >
-          Architecture Decisions
-        </h2>
-        <p className="text-xs text-[var(--color-grey-3)] mb-6">
-          Short-form ADRs — why things are configured the way they are.
-        </p>
-        <div className="flex flex-col gap-5">
+      <Widget
+        title="architecture decisions"
+        meta="why things are configured the way they are"
+        badge={adrs.length}
+        as="section"
+      >
+        <div className="flex flex-col gap-px bg-[var(--color-border)]">
           {adrs.map((adr) => (
             <div
               key={adr.title}
-              className="border border-[var(--color-grey-1)] rounded-lg p-5 bg-[var(--color-bg)] hover:border-[var(--color-green-darker)] transition-colors"
+              className="bg-[var(--color-surface)] hover:bg-[var(--color-surface-raised)] px-4 py-4"
             >
-              <h3 className="font-mono text-sm text-[var(--color-text-light)] mb-2">{adr.title}</h3>
-              <p className="text-xs text-[var(--color-grey-3)] leading-relaxed mb-2">
-                <span className="text-[var(--color-grey-2)]">Decision: </span>{adr.decision}
+              <p className="font-mono text-sm text-[var(--color-text)] mb-2">{adr.title}</p>
+              <p className="font-sans text-sm text-[var(--color-text)] leading-relaxed mb-1.5 opacity-75">
+                <span className="text-[var(--color-text-label)] opacity-100">decision: </span>
+                {adr.decision}
               </p>
-              <p className="text-xs text-[var(--color-grey-3)] leading-relaxed">
-                <span className="text-[var(--color-grey-2)]">Why: </span>{adr.why}
+              <p className="font-sans text-sm text-[var(--color-text)] leading-relaxed opacity-75">
+                <span className="text-[var(--color-text-label)] opacity-100">why: </span>
+                {adr.why}
               </p>
             </div>
           ))}
         </div>
-      </section>
+      </Widget>
 
       {/* GitHub CTA */}
-      <section className="border border-[var(--color-grey-1)] rounded-lg p-6 bg-[var(--color-bg)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-        <div>
-          <p className="font-mono text-sm text-[var(--color-text-light)] mb-1">lerkolabs on GitHub</p>
-          <p className="text-xs text-[var(--color-grey-3)]">
-            Full documentation: VLAN maps, runbooks, service registry, config exports, and setup guides.
-          </p>
-        </div>
+      <section className="border-t border-[var(--color-border)] pt-6">
+        <p className="font-mono text-sm text-[var(--color-text-label)] mb-1">lerkolabs on GitHub</p>
+        <p className="font-sans text-sm text-[var(--color-text)] mb-3 opacity-75">
+          Full documentation: VLAN maps, runbooks, service registry, config exports, and setup guides.
+        </p>
         <a
           href="https://github.com/lerko96/homelab-wip"
           target="_blank"
           rel="noopener noreferrer"
-          className="shrink-0 font-mono text-xs px-4 py-2 border border-[var(--color-green-darker)] text-[var(--color-green)] rounded hover:bg-[var(--color-green-darkest)] transition-colors"
+          className="font-mono text-xs text-[var(--color-text-label)] hover:text-[var(--color-text)]"
         >
-          View repo <i className="fas fa-arrow-up-right-from-square ml-1 text-xs" aria-hidden="true" />
+          ↗ github.com/lerko96/homelab-wip
         </a>
       </section>
     </>

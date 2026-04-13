@@ -27,11 +27,9 @@ npm run deploy   # build + push out/ to master (GitHub mirror)
 
 ## How it deploys
 
-`npm run deploy` runs `predeploy` (build) then pushes the `out/` directory to `master` via `gh-pages`. That's what feeds the GitHub Pages backup at lerko96.com.
+`npm run deploy` runs `predeploy` (build) then pushes the `out/` directory to `master` via `gh-pages`. That's what feeds the GitHub Pages backup mirror.
 
 `postbuild` drops `out/.nojekyll` so GitHub Pages doesn't ignore `_next/` assets.
-
-Custom domain is in `public/CNAME` — gets copied into `out/` on build.
 
 ---
 
@@ -51,8 +49,7 @@ src/
   data/
     projects.ts         # all projects, featured + archive split
     services.ts         # homelab services with categories
-public/
-  CNAME                 # www.lerko96.com
+public/                 # static assets copied into out/ on build
 ```
 
 > Tailwind v4 is CSS-first — no `tailwind.config.ts`. All custom tokens live in `globals.css` under `@theme {}`.

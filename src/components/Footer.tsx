@@ -1,35 +1,30 @@
 export default function Footer() {
   return (
-    <footer className="border-t border-[var(--color-grey-1)] py-8 mt-16">
-      <div className="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <p className="font-mono text-xs text-[var(--color-grey-2)] tracking-widest">
+    <footer className="border-t border-[var(--color-border)] py-5 mt-8">
+      <div className="px-8 flex items-center justify-between">
+        <span className="font-mono text-xs text-[var(--color-text-dim)]">
           &copy; {new Date().getFullYear()} Tyler Koenig
-        </p>
+        </span>
         <div className="flex items-center gap-5">
           <a
             href="https://github.com/lerko96"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"
-            className="text-[var(--color-grey-2)] hover:text-[var(--color-green)] transition-colors"
+            className="font-mono text-xs text-[var(--color-text-label)] hover:text-[var(--color-text)]"
           >
-            <i className="fab fa-github text-lg" aria-hidden="true" />
+            <i className="fab fa-github mr-1.5" aria-hidden="true" />
+            github
           </a>
           <a
             href="https://www.linkedin.com/in/tyler-koenig"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"
-            className="text-[var(--color-grey-2)] hover:text-[var(--color-green)] transition-colors"
+            className="font-mono text-xs text-[var(--color-text-label)] hover:text-[var(--color-text)]"
           >
-            <i className="fab fa-linkedin text-lg" aria-hidden="true" />
-          </a>
-          <a
-            href="mailto:tylerkoenig96@gmail.com"
-            aria-label="Email"
-            className="text-[var(--color-grey-2)] hover:text-[var(--color-green)] transition-colors"
-          >
-            <i className="fas fa-envelope text-lg" aria-hidden="true" />
+            <i className="fab fa-linkedin mr-1.5" aria-hidden="true" />
+            linkedin
           </a>
         </div>
       </div>
