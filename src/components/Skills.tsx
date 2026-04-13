@@ -32,14 +32,14 @@ export default function Skills() {
         {skillGroups.map(({ label, skills }, i) => (
           <div
             key={label}
-            className={`flex flex-col xs:flex-row gap-1 xs:gap-6 py-3 ${
+            className={`flex flex-col xs:flex-row gap-1 xs:gap-6 py-4 ${
               i < skillGroups.length - 1 ? "border-b border-[var(--color-border)]" : ""
             }`}
           >
             <span className="font-mono text-xs text-[var(--color-text-dim)] w-28 shrink-0 uppercase tracking-wider">
               {label}
             </span>
-            <span className="font-mono text-xs text-[var(--color-text)]">
+            <span className="font-mono text-sm text-[var(--color-text)]">
               {skills.join(" · ")}
             </span>
           </div>

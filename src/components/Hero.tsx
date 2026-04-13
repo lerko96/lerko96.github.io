@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Hero() {
   return (
-    <section className="mb-12">
+    <section className="mb-16">
       {/* Section header */}
       <div className="flex items-center gap-3 mb-6">
         <span className="font-mono text-xs text-[var(--color-text-label)] tracking-widest uppercase">
@@ -31,7 +31,7 @@ export default function Hero() {
             </p>
           </div>
 
-          <p className="font-sans text-sm text-[var(--color-text-label)] leading-relaxed max-w-lg">
+          <p className="font-sans text-sm text-[var(--color-text)] leading-relaxed max-w-lg opacity-80">
             I write software and run infrastructure that goes well past what my
             job title implies. Games, AI tooling, mobile apps, and a homelab
             running 20+ self-hosted services on segmented VLANs. Continuously

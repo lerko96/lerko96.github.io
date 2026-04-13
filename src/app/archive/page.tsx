@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function ArchivePage() {
   return (
     <>
-      <div className="mb-12">
+      <div className="mb-16">
         <div className="flex items-center gap-3 mb-4">
           <span className="font-mono text-xs text-[var(--color-text-label)] tracking-widest uppercase">
             archive
@@ -20,7 +20,7 @@ export default function ArchivePage() {
         <h1 className="font-mono text-lg font-bold text-[var(--color-text)] mb-3">
           Earlier Work
         </h1>
-        <p className="font-sans text-sm text-[var(--color-text-label)] leading-relaxed max-w-xl">
+        <p className="font-sans text-sm text-[var(--color-text)] leading-relaxed max-w-xl opacity-80">
           Experiments, browser extensions, and bootcamp projects. Kept here for context — not
           representative of current work.
         </p>
@@ -43,11 +43,11 @@ export default function ArchivePage() {
                       {project.year}
                     </span>
                   )}
-                  <span className="font-mono text-xs text-[var(--color-text)] group-hover:text-[var(--color-accent-green)] truncate">
+                  <span className="font-mono text-sm text-[var(--color-text)] group-hover:text-[var(--color-accent-green)] truncate">
                     {project.title}
                   </span>
                 </div>
-                <p className="font-sans text-xs text-[var(--color-text-dim)] leading-relaxed">
+                <p className="font-sans text-sm text-[var(--color-text)] leading-relaxed opacity-75">
                   {project.description}
                 </p>
                 <div className="flex flex-wrap gap-x-3 gap-y-0.5">

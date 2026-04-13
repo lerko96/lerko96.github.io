@@ -80,7 +80,7 @@ export default function HomelabPage() {
   return (
     <>
       {/* Header */}
-      <div className="mb-12">
+      <div className="mb-16">
         <div className="flex items-center gap-3 mb-4">
           <span className="font-mono text-xs text-[var(--color-text-label)] tracking-widest uppercase">
             lerkolabs
@@ -90,7 +90,7 @@ export default function HomelabPage() {
         <h1 className="font-mono text-lg font-bold text-[var(--color-text)] mb-3">
           Home Infrastructure Lab
         </h1>
-        <p className="font-sans text-sm text-[var(--color-text-label)] leading-relaxed max-w-2xl">
+        <p className="font-sans text-sm text-[var(--color-text)] leading-relaxed max-w-2xl opacity-80">
           Personal infrastructure environment for learning, self-hosting, and operational
           practice. Running 24/7 on production-grade hardware with real network segmentation,
           SSO, monitoring, and IaC-style documentation.
@@ -108,7 +108,7 @@ export default function HomelabPage() {
               <p className="font-mono text-xs text-[var(--color-text-dim)] uppercase tracking-wider mb-1">
                 {label}
               </p>
-              <p className="font-mono text-xs text-[var(--color-text)]">{value}</p>
+              <p className="font-mono text-sm text-[var(--color-text)]">{value}</p>
             </div>
           ))}
         </div>
@@ -151,7 +151,7 @@ export default function HomelabPage() {
                   <td className="font-mono text-[var(--color-text-label)] py-2.5 pr-6">
                     {v.subnet}
                   </td>
-                  <td className="font-sans text-[var(--color-text-label)] py-2.5">{v.purpose}</td>
+                  <td className="font-sans text-sm text-[var(--color-text)] py-2.5 opacity-80">{v.purpose}</td>
                 </tr>
               ))}
             </tbody>
@@ -187,7 +187,7 @@ export default function HomelabPage() {
                         <p className="font-mono text-xs text-[var(--color-text)] mb-0.5">
                           {svc.name}
                         </p>
-                        <p className="font-sans text-xs text-[var(--color-text-dim)] leading-relaxed">
+                        <p className="font-sans text-sm text-[var(--color-text)] leading-relaxed opacity-75">
                           {svc.description}
                         </p>
                       </div>
@@ -213,13 +213,13 @@ export default function HomelabPage() {
               key={adr.title}
               className="bg-[var(--color-surface)] hover:bg-[var(--color-surface-raised)] px-4 py-4"
             >
-              <p className="font-mono text-xs text-[var(--color-text)] mb-2">{adr.title}</p>
-              <p className="font-sans text-xs text-[var(--color-text-dim)] leading-relaxed mb-1.5">
-                <span className="text-[var(--color-text-label)]">decision: </span>
+              <p className="font-mono text-sm text-[var(--color-text)] mb-2">{adr.title}</p>
+              <p className="font-sans text-sm text-[var(--color-text)] leading-relaxed mb-1.5 opacity-75">
+                <span className="text-[var(--color-text-label)] opacity-100">decision: </span>
                 {adr.decision}
               </p>
-              <p className="font-sans text-xs text-[var(--color-text-dim)] leading-relaxed">
-                <span className="text-[var(--color-text-label)]">why: </span>
+              <p className="font-sans text-sm text-[var(--color-text)] leading-relaxed opacity-75">
+                <span className="text-[var(--color-text-label)] opacity-100">why: </span>
                 {adr.why}
               </p>
             </div>
@@ -229,8 +229,8 @@ export default function HomelabPage() {
 
       {/* GitHub CTA */}
       <section className="border-t border-[var(--color-border)] pt-6">
-        <p className="font-mono text-xs text-[var(--color-text-label)] mb-1">lerkolabs on GitHub</p>
-        <p className="font-sans text-xs text-[var(--color-text-dim)] mb-3">
+        <p className="font-mono text-sm text-[var(--color-text-label)] mb-1">lerkolabs on GitHub</p>
+        <p className="font-sans text-sm text-[var(--color-text)] mb-3 opacity-75">
           Full documentation: VLAN maps, runbooks, service registry, config exports, and setup guides.
         </p>
         <a

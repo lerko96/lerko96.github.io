@@ -6,7 +6,7 @@ type Props = {
 
 export default function ProjectCard({ project }: Props) {
   return (
-    <article className="border border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-bright)] flex flex-col gap-3 p-4">
+    <article className="border border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border-bright)] flex flex-col gap-4 p-5">
       <div className="flex items-start justify-between gap-3">
         <a
           href={project.githubUrl}
@@ -34,7 +34,7 @@ export default function ProjectCard({ project }: Props) {
         </div>
       </div>
 
-      <p className="font-sans text-xs text-[var(--color-text-label)] leading-relaxed flex-1">
+      <p className="font-sans text-sm text-[var(--color-text)] leading-relaxed flex-1 opacity-75">
         {project.description}
       </p>
 

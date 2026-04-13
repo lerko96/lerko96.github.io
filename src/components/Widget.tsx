@@ -16,8 +16,8 @@ export default function Widget({
   children,
 }: WidgetProps) {
   return (
-    <Tag className={`mb-12 ${className ?? ""}`}>
-      <div className="flex items-center gap-3 mb-6">
+    <Tag className={`mb-16 ${className ?? ""}`}>
+      <div className="flex items-center gap-3 mb-8">
         <span className="font-mono text-xs text-[var(--color-text-label)] tracking-widest uppercase whitespace-nowrap">
           {title}
         </span>
