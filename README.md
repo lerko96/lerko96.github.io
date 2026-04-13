@@ -2,7 +2,7 @@
 
 Personal portfolio site. Live at [lerkolabs.com](https://lerkolabs.com) — self-hosted.
 
-Source: [gitea.lerkolabs.com](https://gitea.lerkolabs.com)
+Source: [gitea.lerkolabs.com/lerko/lerkolabs.com](https://gitea.lerkolabs.com/lerko/lerkolabs.com)
 
 **Stack:** Next.js 16 · React 19 · TypeScript · Tailwind v4
 
