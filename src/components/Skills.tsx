@@ -27,16 +27,14 @@ const totalCount = skillGroups.reduce((n, g) => n + g.skills.length, 0);
 
 export default function Skills() {
   return (
-    <Widget title="skills" badge={totalCount} as="section">
+    <Widget title="tyler/skills" badge={totalCount} as="section">
       <div className="flex flex-col">
-        {skillGroups.map(({ label, skills }, i) => (
+        {skillGroups.map(({ label, skills }) => (
           <div
             key={label}
-            className={`flex flex-col xs:flex-row gap-1 xs:gap-6 py-4 ${
-              i < skillGroups.length - 1 ? "border-b border-[var(--color-border)]" : ""
-            }`}
+            className="flex flex-col xs:flex-row gap-1 xs:gap-6 py-3"
           >
-            <span className="font-mono text-xs text-[var(--color-text-dim)] w-28 shrink-0 uppercase tracking-wider">
+            <span className="font-mono text-sm text-[var(--color-text-dim)] w-28 shrink-0">
               {label}
             </span>
             <span className="font-mono text-sm text-[var(--color-text)]">

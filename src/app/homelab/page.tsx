@@ -81,16 +81,11 @@ export default function HomelabPage() {
     <>
       {/* Header */}
       <div className="mb-16">
-        <div className="flex items-center gap-3 mb-4">
-          <span className="font-mono text-xs text-[var(--color-text-label)] tracking-widest uppercase">
-            lerkolabs
-          </span>
-          <div className="flex-1 h-px bg-[var(--color-border)]" aria-hidden="true" />
-        </div>
-        <h1 className="font-mono text-lg font-bold text-[var(--color-text)] mb-3">
-          Home Infrastructure Lab
-        </h1>
-        <p className="font-sans text-sm text-[var(--color-text)] leading-relaxed max-w-2xl opacity-80">
+        <p className="font-mono text-base font-bold text-[var(--color-text)] mb-3">
+          <span className="text-[var(--color-accent-green)] select-none mr-2" aria-hidden="true">❯</span>
+          homelab
+        </p>
+        <p className="font-mono text-sm text-[var(--color-text)] leading-relaxed max-w-2xl opacity-80">
           Personal infrastructure environment for learning, self-hosting, and operational
           practice. Running 24/7 on production-grade hardware with real network segmentation,
           SSO, monitoring, and IaC-style documentation.
@@ -98,7 +93,7 @@ export default function HomelabPage() {
       </div>
 
       {/* At a Glance */}
-      <Widget title="at a glance" badge={glanceStats.length} as="section">
+      <Widget title="homelab/overview" badge={glanceStats.length} as="section">
         <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 gap-px bg-[var(--color-border)]">
           {glanceStats.map(({ label, value }) => (
             <div
@@ -116,7 +111,7 @@ export default function HomelabPage() {
 
       {/* VLAN table */}
       <Widget
-        title="network"
+        title="homelab/network"
         meta="8 isolated vlans · default deny inter-vlan"
         as="section"
       >
@@ -151,7 +146,7 @@ export default function HomelabPage() {
                   <td className="font-mono text-[var(--color-text-label)] py-2.5 pr-6">
                     {v.subnet}
                   </td>
-                  <td className="font-sans text-sm text-[var(--color-text)] py-2.5 opacity-80">{v.purpose}</td>
+                  <td className="font-mono text-sm text-[var(--color-text)] py-2.5 opacity-80">{v.purpose}</td>
                 </tr>
               ))}
             </tbody>
@@ -161,7 +156,7 @@ export default function HomelabPage() {
 
       {/* Services */}
       <Widget
-        title="services"
+        title="homelab/services"
         badge={services.length}
         as="section"
       >
@@ -187,7 +182,7 @@ export default function HomelabPage() {
                         <p className="font-mono text-xs text-[var(--color-text)] mb-0.5">
                           {svc.name}
                         </p>
-                        <p className="font-sans text-sm text-[var(--color-text)] leading-relaxed opacity-75">
+                        <p className="font-mono text-sm text-[var(--color-text)] leading-relaxed opacity-75">
                           {svc.description}
                         </p>
                       </div>
@@ -202,7 +197,7 @@ export default function HomelabPage() {
 
       {/* ADRs */}
       <Widget
-        title="architecture decisions"
+        title="homelab/ADRs"
         meta="why things are configured the way they are"
         badge={adrs.length}
         as="section"
@@ -214,11 +209,11 @@ export default function HomelabPage() {
               className="bg-[var(--color-surface)] hover:bg-[var(--color-surface-raised)] px-4 py-4"
             >
               <p className="font-mono text-sm text-[var(--color-text)] mb-2">{adr.title}</p>
-              <p className="font-sans text-sm text-[var(--color-text)] leading-relaxed mb-1.5 opacity-75">
+              <p className="font-mono text-sm text-[var(--color-text)] leading-relaxed mb-1.5 opacity-75">
                 <span className="text-[var(--color-text-label)] opacity-100">decision: </span>
                 {adr.decision}
               </p>
-              <p className="font-sans text-sm text-[var(--color-text)] leading-relaxed opacity-75">
+              <p className="font-mono text-sm text-[var(--color-text)] leading-relaxed opacity-75">
                 <span className="text-[var(--color-text-label)] opacity-100">why: </span>
                 {adr.why}
               </p>
@@ -228,16 +223,16 @@ export default function HomelabPage() {
       </Widget>
 
       {/* GitHub CTA */}
-      <section className="border-t border-[var(--color-border)] pt-6">
-        <p className="font-mono text-sm text-[var(--color-text-label)] mb-1">lerkolabs on GitHub</p>
-        <p className="font-sans text-sm text-[var(--color-text)] mb-3 opacity-75">
-          Full documentation: VLAN maps, runbooks, service registry, config exports, and setup guides.
+      <section className="pt-2">
+        <p className="font-mono text-sm text-[var(--color-text-dim)] mb-1">homelab/docs → github.com/lerko96/homelab-wip</p>
+        <p className="font-mono text-sm text-[var(--color-text)] mb-3 opacity-75">
+          VLAN maps, runbooks, service registry, config exports, and setup guides.
         </p>
         <a
           href="https://github.com/lerko96/homelab-wip"
           target="_blank"
           rel="noopener noreferrer"
-          className="font-mono text-xs text-[var(--color-text-label)] hover:text-[var(--color-text)]"
+          className="font-mono text-sm text-[var(--color-text-label)] hover:text-[var(--color-text)]"
         >
           ↗ github.com/lerko96/homelab-wip
         </a>

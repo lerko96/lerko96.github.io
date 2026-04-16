@@ -11,22 +11,17 @@ export default function ArchivePage() {
   return (
     <>
       <div className="mb-16">
-        <div className="flex items-center gap-3 mb-4">
-          <span className="font-mono text-xs text-[var(--color-text-label)] tracking-widest uppercase">
-            archive
-          </span>
-          <div className="flex-1 h-px bg-[var(--color-border)]" aria-hidden="true" />
-        </div>
-        <h1 className="font-mono text-lg font-bold text-[var(--color-text)] mb-3">
-          Earlier Work
-        </h1>
-        <p className="font-sans text-sm text-[var(--color-text)] leading-relaxed max-w-xl opacity-80">
+        <p className="font-mono text-base font-bold text-[var(--color-text)] mb-3">
+          <span className="text-[var(--color-accent-green)] select-none mr-2" aria-hidden="true">❯</span>
+          tyler/projects/archive
+        </p>
+        <p className="font-mono text-sm text-[var(--color-text)] leading-relaxed max-w-xl opacity-80">
           Experiments, browser extensions, and bootcamp projects. Kept here for context — not
           representative of current work.
         </p>
       </div>
 
-      <Widget title="projects" badge={archiveProjects.length} as="section">
+      <Widget title="tyler/projects/archive" badge={archiveProjects.length} as="section">
         <div className="flex flex-col gap-px bg-[var(--color-border)]">
           {archiveProjects.map((project) => (
             <a
@@ -47,7 +42,7 @@ export default function ArchivePage() {
                     {project.title}
                   </span>
                 </div>
-                <p className="font-sans text-sm text-[var(--color-text)] leading-relaxed opacity-75">
+                <p className="font-mono text-sm text-[var(--color-text)] leading-relaxed opacity-75">
                   {project.description}
                 </p>
                 <div className="flex flex-wrap gap-x-3 gap-y-0.5">
