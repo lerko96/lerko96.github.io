@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Hero from "@/components/Hero";
 import Skills from "@/components/Skills";
+import Timeline from "@/components/Timeline";
 import ProjectCard from "@/components/ProjectCard";
 import Widget from "@/components/Widget";
 import { featuredProjects } from "@/data/projects";
@@ -15,14 +16,15 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <Skills />
-      <Widget title="projects" badge={featuredProjects.length}>
+      <Widget title="tyler/projects" badge={featuredProjects.length}>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {featuredProjects.map((project) => (
             <ProjectCard key={project.slug} project={project} />
           ))}
         </div>
       </Widget>
+      <Skills />
+      <Timeline />
     </>
   );
 }
