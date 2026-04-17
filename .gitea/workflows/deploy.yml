@@ -41,3 +41,30 @@ jobs:
              docker stop portfolio 2>/dev/null || true && \
              docker rm portfolio 2>/dev/null || true && \
              docker run -d --name portfolio -p 80:80 --restart unless-stopped portfolio"
+
+      - name: Tag release (CalVer)
+        run: |
+          git fetch --tags
+          if git describe --exact-match --tags HEAD 2>/dev/null; then
+            echo "Commit already tagged, skipping."
+          else
+            YEAR=$(date +%Y)
+            MONTH=$(date +%m)
+            LATEST=$(git tag --sort=-v:refname | grep -E '^[0-9]{4}\.[0-9]{2}\.[0-9]+$' | head -1)
+            if [ -n "$LATEST" ]; then
+              LATEST_YEAR=$(echo "$LATEST" | cut -d. -f1)
+              LATEST_MONTH=$(echo "$LATEST" | cut -d. -f2)
+              LATEST_MICRO=$(echo "$LATEST" | cut -d. -f3)
+              if [ "$YEAR" = "$LATEST_YEAR" ] && [ "$MONTH" = "$LATEST_MONTH" ]; then
+                MICRO=$((LATEST_MICRO + 1))
+              else
+                MICRO=1
+              fi
+            else
+              MICRO=1
+            fi
+            NEW_TAG="${YEAR}.$(printf '%02d' $MONTH).${MICRO}"
+            git tag "$NEW_TAG"
+            git push origin "$NEW_TAG"
+            echo "Tagged $NEW_TAG"
+          fi

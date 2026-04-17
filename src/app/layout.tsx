@@ -27,12 +27,6 @@ export default function RootLayout({
     <html lang="en" className="dark">
       <head>
         <ThemeScript />
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-          crossOrigin="anonymous"
-          referrerPolicy="no-referrer"
-        />
       </head>
       <body
         className={`${sourceCodePro.variable} bg-[var(--color-bg)] text-[var(--color-text)] font-mono min-h-screen`}

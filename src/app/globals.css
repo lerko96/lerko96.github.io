@@ -3,17 +3,24 @@
 @variant dark (&:where(.dark, .dark *));
 
 @theme {
-  /* Terminal-Noir palette */
-  --color-bg:             #0a0a0a;
-  --color-surface:        #111111;
-  --color-surface-raised: #1a1a1a;
-  --color-border:         #2a2a2a;
-  --color-border-bright:  #444444;
-  --color-text:           #e8e8e8;
-  --color-text-label:     #666666;
-  --color-text-dim:       #444444;
-  --color-accent-green:   #00cc44;
-  --color-accent-red:     #cc2200;
+  /* macOS Classic Dark (default) */
+  --color-bg:             #131313;
+  --color-surface:        #1e1d1e;
+  --color-surface-raised: #272727;
+  --color-border:         #3a3a3a;
+  --color-border-bright:  #404040;
+  --color-text:           #caccca;
+  --color-text-label:     #9e9e9e;
+  --color-text-dim:       #8f8f8f;
+  --color-accent-green:   #62ba46;
+  --color-accent-red:     #c74028;
+
+  /* Timeline type colors — dark */
+  --color-timeline-career:    #62ba46;
+  --color-timeline-education: #c28b12;
+  --color-timeline-cert:      #c75828;
+  --color-timeline-project:   #c72855;
+  --color-timeline-homelab:   #e1d797;
 
   /* Typography */
   --font-mono: "Source Code Pro", ui-monospace, monospace;
@@ -34,10 +41,14 @@
 /* Base */
 html {
   scroll-behavior: smooth;
+  font-size: 14px;
   background-color: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-mono);
 }
+
+@keyframes blink { 50% { opacity: 0; } }
+.animate-cursor { animation: blink 1s step-start infinite; }
 
 @layer base {
   * {
@@ -45,6 +56,26 @@ html {
     margin: 0;
     padding: 0;
   }
+}
+
+/* macOS Classic Light overrides */
+:root:not(.dark) {
+  --color-bg:             #ffffff;
+  --color-surface:        #f9f9f9;
+  --color-surface-raised: #f7f7f7;
+  --color-border:         #e0e0e0;
+  --color-border-bright:  #d2d2d2;
+  --color-text:           #000000;
+  --color-text-label:     #505050;
+  --color-text-dim:       #929292;
+  --color-accent-green:   #036a07;
+  --color-accent-red:     #d21f07;
+
+  --color-timeline-career:    #036a07;
+  --color-timeline-education: #0433ff;
+  --color-timeline-cert:      #957931;
+  --color-timeline-project:   #6f42c1;
+  --color-timeline-homelab:   #0000a2;
 }
 
 /* Default transitions — linear, fast */
