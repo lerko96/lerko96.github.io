@@ -7,6 +7,8 @@ export type Project = {
   tier: "featured" | "archive";
   stats?: string;
   year?: number;
+  statusBadge?: string;
+  externalUrl?: string;
 };
 
 export const projects: Project[] = [
@@ -20,6 +22,8 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/lerko96/golf-book-mobile",
     tier: "featured",
     stats: "211 commits",
+    statusBadge: "Pending App Store Approval",
+    externalUrl: "#",
   },
   {
     slug: "plaiground",
@@ -28,7 +32,8 @@ export const projects: Project[] = [
       "Cross-platform desktop AI chat app for developers. Supports OpenAI, Anthropic Claude, and Google Gemini in a single interface with real-time cost tracking, conversation export, and automatic code explanation.",
     tags: ["Electron", "Node.js", "OpenAI", "Claude", "Gemini"],
     githubUrl: "https://github.com/lerko96/plaiground",
-    tier: "featured",
+    tier: "archive",
+    year: 2025,
   },
   {
     slug: "service-monitor",
@@ -37,7 +42,8 @@ export const projects: Project[] = [
       "Web dashboard for tracking uptime across multiple services with 30-second polling, status history visualization, JWT-authenticated API, and Docker + nginx deployment.",
     tags: ["React 18", "Vite", "Express", "SQLite", "Docker", "JWT"],
     githubUrl: "https://github.com/lerko96/service-monitor",
-    tier: "featured",
+    tier: "archive",
+    year: 2025,
   },
   {
     slug: "tht-1.2",
@@ -46,10 +52,40 @@ export const projects: Project[] = [
       "3D visualization platform for exploring and organizing thoughts using a radio-tuning metaphor. Filter ideas by frequency and bandwidth in an instanced Three.js scene with persistent local storage.",
     tags: ["React", "TypeScript", "Three.js", "React Three Fiber", "Zustand"],
     githubUrl: "https://github.com/lerko96/tht-1.2",
+    tier: "archive",
+    year: 2025,
+  },
+
+  {
+    slug: "open-pact",
+    title: "open-pact",
+    description:
+      "Open protocol for AI agent identity, delegation, and portable memory. Ed25519 keypair identity, signed delegation warrants, portable signed memory facts. No central registry.",
+    tags: ["TypeScript", "Ed25519", "DID", "npm", "CC0"],
+    githubUrl: "https://github.com/lerko96/open-pact",
+    tier: "featured",
+  },
+  {
+    slug: "helm",
+    title: "helm",
+    description:
+      "Full-stack personal productivity dashboard. Go backend with chi router and SQLite, React + TypeScript frontend. Notes, todos, calendar (CalDAV), clipboard, bookmarks, memos. Self-hosted, single-user, daily use.",
+    tags: ["Go", "React", "TypeScript", "SQLite", "CalDAV"],
+    githubUrl: "https://github.com/lerko96/helm",
     tier: "featured",
   },
 
   // --- Archive ---
+  {
+    slug: "risk-ops",
+    title: "risk-ops",
+    description:
+      "Browser-based strategy dashboard for Risk: Global Domination (SMG Studio). Open one HTML file — no install needed.",
+    tags: ["HTML", "JavaScript"],
+    githubUrl: "#",
+    tier: "archive",
+    year: 2026,
+  },
   {
     slug: "twitter-thread-ext",
     title: "twitter-thread-ext",

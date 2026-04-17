@@ -41,7 +41,7 @@ export const timeline: TimelineEntry[] = [
     date: 'ongoing',
     title: 'Homelab — Proxmox Cluster',
     type: 'homelab',
-    description: '8-VLAN segmented network, Proxmox VMs/LXCs, SSO via Authentik, full monitoring stack (Grafana + Prometheus + Loki).',
+    description: '8-VLAN segmented network, Proxmox VMs/LXCs, SSO via Authentik, full monitoring stack (VictoriaMetrics + Grafana + Beszel + ntfy).',
     tags: ['proxmox', 'networking', 'monitoring', 'sso'],
   },
   {

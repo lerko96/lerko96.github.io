@@ -8,15 +8,15 @@ export default function Hero() {
             tyler koenig
           </p>
           <p className="font-mono text-sm text-[var(--color-text-label)] mt-0.5">
-            SOC Helpdesk I · Homelab Operator
+            Security Operations · Self-Hosted Infrastructure
           </p>
         </div>
 
         <p className="font-mono text-sm text-[var(--color-text)] leading-relaxed max-w-lg opacity-70">
-          I write software and run infrastructure that goes well past what my
-          job title implies. Games, AI tooling, mobile apps, and a homelab
-          running 20+ self-hosted services on segmented VLANs. Continuously
-          learning by building things that actually work.{' '}
+          Security operations and self-hosted infrastructure. Homelab runs 37
+          services across segmented VLANs — pfSense, Authentik SSO, full
+          observability stack. Write software too: mobile apps, Go backends,
+          open protocols. Daily drivers, all of it.{' '}
           <span className="animate-cursor text-[var(--color-accent-green)]" aria-hidden="true">█</span>
         </p>
 

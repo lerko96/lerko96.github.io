@@ -22,6 +22,17 @@ export default function ProjectCard({ project }: Props) {
               {project.stats}
             </span>
           )}
+          {project.externalUrl && (
+            <a
+              href={project.externalUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`View ${project.title} externally`}
+              className="font-mono text-sm text-[var(--color-text-label)] hover:text-[var(--color-text)]"
+            >
+              ↗
+            </a>
+          )}
           <a
             href={project.githubUrl}
             target="_blank"
@@ -33,6 +44,12 @@ export default function ProjectCard({ project }: Props) {
           </a>
         </div>
       </div>
+
+      {project.statusBadge && (
+        <span className="font-mono text-xs text-[var(--color-accent-amber,#d4a027)] border border-[var(--color-accent-amber,#d4a027)] px-1.5 py-0.5 w-fit opacity-80">
+          {project.statusBadge}
+        </span>
+      )}
 
       <p className="font-mono text-sm text-[var(--color-text)] leading-relaxed flex-1 opacity-70">
         {project.description}

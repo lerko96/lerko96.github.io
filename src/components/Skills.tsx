@@ -3,7 +3,7 @@ import Widget from "@/components/Widget";
 const skillGroups = [
   {
     label: "Languages",
-    skills: ["JavaScript", "TypeScript", "HTML", "CSS"],
+    skills: ["Go", "JavaScript", "TypeScript", "HTML", "CSS"],
   },
   {
     label: "Frontend",

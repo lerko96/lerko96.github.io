@@ -74,6 +74,11 @@ const adrs = [
       "act_runner v0.3.1 on Gitea LXC (10.99.0.22). Push to dev → node:22-alpine container builds Next.js → rsync out/ to Portfolio LXC → SSH docker rebuild.",
     why: "Keeps the full pipeline internal — no GitHub Actions, no external runners. Build runs in an isolated Alpine container so the Gitea LXC isn't polluted. Portfolio LXC (10.99.0.23) just serves pre-built static files via nginx.",
   },
+  {
+    title: "Authentik over Authelia",
+    decision: "Authentik as the SSO provider across all self-hosted services.",
+    why: "Full OIDC provider + forward auth in one. Lets services like Outline, Gitea, and Vikunja use real SSO rather than just a login gate. Authelia is forward-auth only — no OIDC provider capability.",
+  },
 ];
 
 export default function HomelabPage() {
