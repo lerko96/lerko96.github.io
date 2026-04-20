@@ -6,8 +6,8 @@ type Props = {
 
 export default function ProjectCard({ project }: Props) {
   return (
-    <article className="border border-[var(--color-border)] bg-[var(--color-surface)] flex flex-col gap-4 p-5 hover:bg-[var(--color-surface-raised)]">
-      <div className="flex items-start justify-between gap-3">
+    <article className="border border-[var(--color-border)] bg-[var(--color-surface)] flex flex-col gap-1lh p-2ch hover:bg-[var(--color-surface-raised)]">
+      <div className="flex items-start justify-between gap-1ch">
         <a
           href={project.githubUrl}
           target="_blank"
@@ -16,7 +16,7 @@ export default function ProjectCard({ project }: Props) {
         >
           {project.title}
         </a>
-        <div className="flex items-center gap-3 shrink-0">
+        <div className="flex items-center gap-1ch shrink-0">
           {project.stats && (
             <span className="font-mono text-sm text-[var(--color-text-dim)]">
               {project.stats}
@@ -46,7 +46,7 @@ export default function ProjectCard({ project }: Props) {
       </div>
 
       {project.statusBadge && (
-        <span className="font-mono text-xs text-[var(--color-accent-amber,#d4a027)] border border-[var(--color-accent-amber,#d4a027)] px-1.5 py-0.5 w-fit opacity-80">
+        <span className="font-mono text-sm text-[var(--color-accent-amber,#d4a027)] border border-[var(--color-accent-amber,#d4a027)] px-1ch py-0.5 w-fit opacity-80">
           {project.statusBadge}
         </span>
       )}
@@ -55,9 +55,9 @@ export default function ProjectCard({ project }: Props) {
         {project.description}
       </p>
 
-      <div className="flex flex-wrap gap-x-3 gap-y-1 mt-1">
+      <div className="flex flex-wrap gap-x-1ch gap-y-half-lh mt-half-lh">
         {project.tags.map((tag) => (
-          <span key={tag} className="font-mono text-xs text-[var(--color-text-dim)]">
+          <span key={tag} className="font-mono text-sm text-[var(--color-text-dim)]">
             {tag}
           </span>
         ))}
