@@ -29,6 +29,20 @@
   /* Breakpoints */
   --breakpoint-xs: 576px;
 
+  /* Character-grid spacing — horizontal (ch) */
+  --spacing-1ch:     1ch;
+  --spacing-2ch:     2ch;
+  --spacing-3ch:     3ch;
+  --spacing-4ch:     4ch;
+
+  /* Character-grid spacing — vertical (lh, requires line-height:1.5 on html) */
+  --spacing-qtr-lh:  0.25lh;
+  --spacing-half-lh: 0.5lh;
+  --spacing-1lh:     1lh;
+  --spacing-2lh:     2lh;
+  --spacing-3lh:     3lh;
+  --spacing-4lh:     4lh;
+
   /* Animations */
   --animate-fade-in: fadeIn 120ms linear forwards;
 
@@ -41,7 +55,8 @@
 /* Base */
 html {
   scroll-behavior: smooth;
-  font-size: 14px;
+  font-size: 15px;
+  line-height: 1.5;
   background-color: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-mono);

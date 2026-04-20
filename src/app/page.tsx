@@ -16,15 +16,15 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <Timeline />
       <Widget title="tyler/projects" badge={featuredProjects.length}>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-1ch">
           {featuredProjects.map((project) => (
             <ProjectCard key={project.slug} project={project} />
           ))}
         </div>
       </Widget>
       <Skills />
-      <Timeline />
     </>
   );
 }

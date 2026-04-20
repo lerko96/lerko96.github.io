@@ -37,7 +37,7 @@ export default function RootLayout({
 
           {/* Centered content column — border-l/r makes centering always visible */}
           <div className="max-w-[740px] mx-auto border-l border-r border-[var(--color-border)]">
-            <main className="px-8 py-14">
+            <main className="px-4ch py-3lh">
               {children}
             </main>
             <Footer />

@@ -15,7 +15,7 @@ export default function Nav() {
   const { isDark, toggle } = useTheme();
   return (
     <header className="sticky top-0 z-50 bg-[var(--color-surface)] border-b border-[var(--color-border)]">
-      <nav className="max-w-[740px] mx-auto px-8 h-11 flex items-center justify-between">
+      <nav className="max-w-[740px] mx-auto px-4ch h-11 flex items-center justify-between">
         <Link
           href="/"
           className="font-mono text-sm font-bold text-[var(--color-text)] hover:text-[var(--color-text-label)]"
@@ -23,7 +23,7 @@ export default function Nav() {
           ~/
         </Link>
 
-        <ul className="flex items-center gap-6">
+        <ul className="flex items-center gap-2ch">
           {links.map(({ href, label }) => {
             const active =
               pathname === href || pathname === href.replace(/\/$/, "");

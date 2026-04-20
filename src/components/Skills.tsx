@@ -2,24 +2,24 @@ import Widget from "@/components/Widget";
 
 const skillGroups = [
   {
+    label: "Infrastructure",
+    skills: ["Proxmox", "pfSense", "VLANs", "WireGuard", "Linux", "Caddy"],
+  },
+  {
+    label: "Desktop & Tools",
+    skills: ["Git", "Docker", "TDD", "Node.js", "REST APIs", ],
+  },
+  {
+    label: "Practices",
+    skills: ["Agile / Scrum", "Relational Databases", "Self-hosting"],
+  },
+  {
     label: "Languages",
     skills: ["Go", "JavaScript", "TypeScript", "HTML", "CSS"],
   },
   {
     label: "Frontend",
     skills: ["React", "React Native", "Expo", "Next.js", "Three.js"],
-  },
-  {
-    label: "Desktop & Tools",
-    skills: ["Electron", "Node.js", "REST APIs", "Git", "Docker", "TDD"],
-  },
-  {
-    label: "Infrastructure",
-    skills: ["Proxmox", "pfSense", "VLANs", "WireGuard", "Linux", "Caddy"],
-  },
-  {
-    label: "Practices",
-    skills: ["Agile / Scrum", "Relational Databases", "Self-hosting"],
   },
 ];
 
@@ -32,7 +32,7 @@ export default function Skills() {
         {skillGroups.map(({ label, skills }) => (
           <div
             key={label}
-            className="flex flex-col xs:flex-row gap-1 xs:gap-6 py-3"
+            className="flex flex-col xs:flex-row gap-1ch xs:gap-2ch py-half-lh"
           >
             <span className="font-mono text-sm text-[var(--color-text-dim)] w-28 shrink-0">
               {label}

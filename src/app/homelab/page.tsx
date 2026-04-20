@@ -21,14 +21,54 @@ const glanceStats = [
 ];
 
 const vlans = [
-  { id: "1000", name: "MGMT",    subnet: "10.0.0.0/24",   purpose: "Network equipment only" },
-  { id: "1010", name: "LAN",     subnet: "10.1.0.0/24",   purpose: "Trusted personal devices" },
-  { id: "1020", name: "Homelab", subnet: "10.2.0.0/24",   purpose: "All self-hosted services" },
-  { id: "1030", name: "Guests",  subnet: "10.3.0.0/24",   purpose: "Internet only, RFC1918 blocked" },
-  { id: "1040", name: "IoT",     subnet: "10.4.0.0/24",   purpose: "Smart home, isolated" },
-  { id: "1050", name: "WFH",     subnet: "10.5.0.0/24",   purpose: "Work devices, no personal access" },
-  { id: "DMZ",  name: "DMZ",     subnet: "10.99.0.0/24",  purpose: "Public-facing, hard-blocked internally" },
-  { id: "VPN",  name: "VPN",     subnet: "10.200.0.0/24", purpose: "WireGuard clients = LAN access" },
+  {
+    id: "1000",
+    name: "MGMT",
+    subnet: "10.0.0.0/24",
+    purpose: "Network equipment only",
+  },
+  {
+    id: "1010",
+    name: "LAN",
+    subnet: "10.1.0.0/24",
+    purpose: "Trusted personal devices",
+  },
+  {
+    id: "1020",
+    name: "Homelab",
+    subnet: "10.2.0.0/24",
+    purpose: "All self-hosted services",
+  },
+  {
+    id: "1030",
+    name: "Guests",
+    subnet: "10.3.0.0/24",
+    purpose: "Internet only, RFC1918 blocked",
+  },
+  {
+    id: "1040",
+    name: "IoT",
+    subnet: "10.4.0.0/24",
+    purpose: "Smart home, isolated",
+  },
+  {
+    id: "1050",
+    name: "WFH",
+    subnet: "10.5.0.0/24",
+    purpose: "Work devices, no personal access",
+  },
+  {
+    id: "1099",
+    name: "DMZ",
+    subnet: "10.99.0.0/24",
+    purpose: "Public-facing, hard-blocked internally",
+  },
+  {
+    id: "VPN",
+    name: "VPN",
+    subnet: "10.200.0.0/24",
+    purpose: "WireGuard clients = LAN access",
+  },
 ];
 
 const adrs = [
@@ -69,7 +109,8 @@ const adrs = [
     why: "Avoids 15 separate DB containers. Reduces RAM overhead significantly. All productivity apps share the same LXC (10.2.0.60).",
   },
   {
-    title: "Gitea CI/CD: Self-hosted runner with container build + SSH rsync deploy",
+    title:
+      "Gitea CI/CD: Self-hosted runner with container build + SSH rsync deploy",
     decision:
       "act_runner v0.3.1 on Gitea LXC (10.99.0.22). Push to dev → node:22-alpine container builds Next.js → rsync out/ to Portfolio LXC → SSH docker rebuild.",
     why: "Keeps the full pipeline internal — no GitHub Actions, no external runners. Build runs in an isolated Alpine container so the Gitea LXC isn't polluted. Portfolio LXC (10.99.0.23) just serves pre-built static files via nginx.",
@@ -85,15 +126,21 @@ export default function HomelabPage() {
   return (
     <>
       {/* Header */}
-      <div className="mb-16">
-        <p className="font-mono text-base font-bold text-[var(--color-text)] mb-3">
-          <span className="text-[var(--color-accent-green)] select-none mr-2" aria-hidden="true">❯</span>
+      <div className="mb-4lh">
+        <p className="font-mono text-sm font-bold text-[var(--color-text)] mb-1lh">
+          <span
+            className="text-[var(--color-accent-green)] select-none mr-1ch"
+            aria-hidden="true"
+          >
+            ❯
+          </span>
           homelab
         </p>
         <p className="font-mono text-sm text-[var(--color-text)] leading-relaxed max-w-2xl opacity-80">
-          Personal infrastructure environment for learning, self-hosting, and operational
-          practice. Running 24/7 on production-grade hardware with real network segmentation,
-          SSO, monitoring, and IaC-style documentation.
+          Personal infrastructure environment for learning, self-hosting, and
+          operational practice. Running 24/7 on production-grade hardware with
+          real network segmentation, SSO, monitoring, and IaC-style
+          documentation.
         </p>
       </div>
 
@@ -101,14 +148,13 @@ export default function HomelabPage() {
       <Widget title="homelab/overview" badge={glanceStats.length} as="section">
         <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 gap-px bg-[var(--color-border)]">
           {glanceStats.map(({ label, value }) => (
-            <div
-              key={label}
-              className="bg-[var(--color-surface)] px-4 py-3"
-            >
-              <p className="font-mono text-xs text-[var(--color-text-dim)] uppercase tracking-wider mb-1">
+            <div key={label} className="bg-[var(--color-surface)] px-2ch py-half-lh">
+              <p className="font-mono text-sm text-[var(--color-text-dim)] mb-half-lh">
                 {label}
               </p>
-              <p className="font-mono text-sm text-[var(--color-text)]">{value}</p>
+              <p className="font-mono text-sm text-[var(--color-text)]">
+                {value}
+              </p>
             </div>
           ))}
         </div>
@@ -121,19 +167,19 @@ export default function HomelabPage() {
         as="section"
       >
         <div className="overflow-x-auto">
-          <table className="w-full text-xs border-collapse">
+          <table className="w-full text-sm border-collapse">
             <thead>
               <tr className="border-b border-[var(--color-border)]">
-                <th className="font-mono text-[var(--color-text-dim)] text-left py-2 pr-6 uppercase tracking-wider">
+                <th className="font-mono text-[var(--color-text-dim)] text-left py-qtr-lh pr-[3ch] uppercase">
                   VLAN
                 </th>
-                <th className="font-mono text-[var(--color-text-dim)] text-left py-2 pr-6 uppercase tracking-wider">
+                <th className="font-mono text-[var(--color-text-dim)] text-left py-qtr-lh pr-[3ch] uppercase">
                   Name
                 </th>
-                <th className="font-mono text-[var(--color-text-dim)] text-left py-2 pr-6 uppercase tracking-wider">
+                <th className="font-mono text-[var(--color-text-dim)] text-left py-qtr-lh pr-[3ch] uppercase">
                   Subnet
                 </th>
-                <th className="font-mono text-[var(--color-text-dim)] text-left py-2 uppercase tracking-wider">
+                <th className="font-mono text-[var(--color-text-dim)] text-left py-qtr-lh uppercase">
                   Purpose
                 </th>
               </tr>
@@ -144,14 +190,18 @@ export default function HomelabPage() {
                   key={v.id}
                   className="border-b border-[var(--color-border)] hover:bg-[var(--color-surface)]"
                 >
-                  <td className="font-mono text-[var(--color-accent-green)] py-2.5 pr-6">
+                  <td className="font-mono text-[var(--color-accent-green)] py-half-lh pr-[3ch]">
                     {v.id}
                   </td>
-                  <td className="font-mono text-[var(--color-text)] py-2.5 pr-6">{v.name}</td>
-                  <td className="font-mono text-[var(--color-text-label)] py-2.5 pr-6">
+                  <td className="font-mono text-[var(--color-text)] py-half-lh pr-[3ch]">
+                    {v.name}
+                  </td>
+                  <td className="font-mono text-[var(--color-text-label)] py-half-lh pr-[3ch]">
                     {v.subnet}
                   </td>
-                  <td className="font-mono text-sm text-[var(--color-text)] py-2.5 opacity-80">{v.purpose}</td>
+                  <td className="font-mono text-sm text-[var(--color-text)] py-2.5 opacity-80">
+                    {v.purpose}
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -160,31 +210,27 @@ export default function HomelabPage() {
       </Widget>
 
       {/* Services */}
-      <Widget
-        title="homelab/services"
-        badge={services.length}
-        as="section"
-      >
-        <div className="flex flex-col gap-8">
+      <Widget title="homelab/services" badge={services.length} as="section">
+        <div className="flex flex-col gap-3ch">
           {categoryOrder.map((cat) => {
             const catServices = services.filter((s) => s.category === cat);
             return (
               <div key={cat}>
-                <p className="font-mono text-xs text-[var(--color-text-dim)] uppercase tracking-wider mb-3">
+                <p className="font-mono text-sm text-[var(--color-text-dim)] mb-1lh">
                   {categoryLabels[cat]}
                 </p>
                 <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 gap-px bg-[var(--color-border)]">
                   {catServices.map((svc) => (
                     <div
                       key={svc.name}
-                      className="bg-[var(--color-surface)] hover:bg-[var(--color-surface-raised)] flex items-start gap-3 px-4 py-3"
+                      className="bg-[var(--color-surface)] hover:bg-[var(--color-surface-raised)] flex items-start gap-1ch px-2ch py-half-lh"
                     >
                       <i
                         className={`${svc.icon} text-[var(--color-text-label)] text-xs mt-0.5 w-3.5 shrink-0`}
                         aria-hidden="true"
                       />
                       <div>
-                        <p className="font-mono text-xs text-[var(--color-text)] mb-0.5">
+                        <p className="font-mono text-sm text-[var(--color-text)] mb-0.5">
                           {svc.name}
                         </p>
                         <p className="font-mono text-sm text-[var(--color-text)] leading-relaxed opacity-75">
@@ -211,15 +257,21 @@ export default function HomelabPage() {
           {adrs.map((adr) => (
             <div
               key={adr.title}
-              className="bg-[var(--color-surface)] hover:bg-[var(--color-surface-raised)] px-4 py-4"
+              className="bg-[var(--color-surface)] hover:bg-[var(--color-surface-raised)] px-2ch py-1lh"
             >
-              <p className="font-mono text-sm text-[var(--color-text)] mb-2">{adr.title}</p>
-              <p className="font-mono text-sm text-[var(--color-text)] leading-relaxed mb-1.5 opacity-75">
-                <span className="text-[var(--color-text-label)] opacity-100">decision: </span>
+              <p className="font-mono text-sm text-[var(--color-text)] mb-1lh">
+                {adr.title}
+              </p>
+              <p className="font-mono text-sm text-[var(--color-text)] leading-relaxed mb-half-lh opacity-75">
+                <span className="text-[var(--color-text-label)] opacity-100">
+                  decision:{" "}
+                </span>
                 {adr.decision}
               </p>
               <p className="font-mono text-sm text-[var(--color-text)] leading-relaxed opacity-75">
-                <span className="text-[var(--color-text-label)] opacity-100">why: </span>
+                <span className="text-[var(--color-text-label)] opacity-100">
+                  why:{" "}
+                </span>
                 {adr.why}
               </p>
             </div>
@@ -227,19 +279,22 @@ export default function HomelabPage() {
         </div>
       </Widget>
 
-      {/* GitHub CTA */}
-      <section className="pt-2">
-        <p className="font-mono text-sm text-[var(--color-text-dim)] mb-1">homelab/docs → github.com/lerko96/homelab-wip</p>
-        <p className="font-mono text-sm text-[var(--color-text)] mb-3 opacity-75">
-          VLAN maps, runbooks, service registry, config exports, and setup guides.
+      {/* Gitea CTA */}
+      <section className="pt-qtr-lh">
+        <p className="font-mono text-sm text-[var(--color-text-dim)] mb-half-lh">
+          homelab/docs
+        </p>
+        <p className="font-mono text-sm text-[var(--color-text)] mb-1lh opacity-75">
+          VLAN maps, runbooks, service registry, config exports, and setup
+          guides.
         </p>
         <a
-          href="https://github.com/lerko96/homelab-wip"
+          href="https://gitea.lerkolabs.com/lerko/homelab"
           target="_blank"
           rel="noopener noreferrer"
           className="font-mono text-sm text-[var(--color-text-label)] hover:text-[var(--color-text)]"
         >
-          ↗ github.com/lerko96/homelab-wip
+          ↗ gitea.lerkolabs.com/lerko/homelab
         </a>
       </section>
     </>

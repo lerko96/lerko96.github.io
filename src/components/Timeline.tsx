@@ -54,9 +54,9 @@ export default function Timeline() {
 
   return (
     <Widget title="tyler/journey">
-      <ol ref={listRef} className="relative border-l border-[var(--color-border)] ml-1.5 flex flex-col gap-0">
+      <ol ref={listRef} className="relative border-l border-[var(--color-border)] ml-[2px] flex flex-col gap-0">
         {timeline.map((entry, i) => (
-          <li key={i} data-tl-entry className="pl-6 pb-8 last:pb-0 relative">
+          <li key={i} data-tl-entry className="pl-[3ch] pb-2lh last:pb-0 relative">
             {/* Spine dot */}
             <span
               className="absolute -left-[7px] top-[3px] w-3 h-3 rounded-full border border-[var(--color-bg)] shrink-0"
@@ -65,10 +65,10 @@ export default function Timeline() {
             />
 
             {/* Date + type badge */}
-            <div className="flex items-center gap-2 mb-1">
+            <div className="flex items-center gap-1ch mb-half-lh">
               <span className="font-mono text-sm text-[var(--color-text-dim)]">{entry.date}</span>
               <span
-                className="font-mono text-[10px] uppercase tracking-wider px-1 rounded-sm border"
+                className="font-mono text-sm px-1 border"
                 style={{
                   color: typeColor[entry.type],
                   borderColor: typeColor[entry.type],
@@ -80,20 +80,20 @@ export default function Timeline() {
             </div>
 
             {/* Title */}
-            <p className="font-mono text-sm font-semibold text-[var(--color-text)] mb-1">
+            <p className="font-mono text-sm font-semibold text-[var(--color-text)] mb-half-lh">
               {entry.title}
             </p>
 
             {/* Description */}
-            <p className="font-mono text-sm text-[var(--color-text)] opacity-70 leading-relaxed mb-2">
+            <p className="font-mono text-sm text-[var(--color-text)] opacity-70 leading-relaxed mb-half-lh">
               {entry.description}
             </p>
 
             {/* Tags */}
             {entry.tags && entry.tags.length > 0 && (
-              <div className="flex flex-wrap gap-x-3 gap-y-1">
+              <div className="flex flex-wrap gap-x-1ch gap-y-half-lh">
                 {entry.tags.map((tag) => (
-                  <span key={tag} className="font-mono text-xs text-[var(--color-text-dim)]">
+                  <span key={tag} className="font-mono text-sm text-[var(--color-text-dim)]">
                     {tag}
                   </span>
                 ))}
