@@ -17,19 +17,9 @@ export const projects: Project[] = [
     slug: "homelab",
     title: "homelab",
     description:
-      "8-VLAN segmented network, Proxmox VMs/LXCs, SSO via Authentik, full monitoring stack (VictoriaMetrics + Grafana + Beszel + ntfy).",
+      "7-VLAN segmented network, Wireguard VPN, Proxmox VMs/LXCs, SSO via Authentik, full monitoring stack (VictoriaMetrics + Grafana + Beszel + ntfy).",
     tags: ["Markdown", "Mermaid", "Proxmox", "Monitor", "Backup"],
     githubUrl: "https://gitea.lerkolabs.com/lerko/homelab",
-    tier: "featured",
-    year: 2026,
-  },
-  {
-    slug: "open-pact",
-    title: "open-pact",
-    description:
-      "Open protocol for AI agent identity, delegation, and portable memory. Ed25519 keypair identity, signed delegation warrants, portable signed memory facts. No central registry.",
-    tags: ["TypeScript", "Ed25519", "DID", "npm", "CC0"],
-    githubUrl: "https://github.com/lerko96/open-pact",
     tier: "featured",
     year: 2026,
   },
@@ -44,26 +34,46 @@ export const projects: Project[] = [
     year: 2021,
   },
   {
+    slug: "nib",
+    title: "nib",
+    description:
+      "Capture-first personal journal built with Go + React + SQLite.  Currently developing in private when I have spare time.",
+    tags: ["Go", "React", "SQLite", "Journal", "Stream-of-Thought"],
+    githubUrl: "https://github.com/lerko96/nib",
+    tier: "featured",
+    year: 2026,
+  },
+  {
+    slug: "open-pact",
+    title: "open-pact",
+    description:
+      "Open protocol for AI agent identity, delegation, and portable memory. Ed25519 keypair identity, signed delegation warrants, portable signed memory facts. No central registry.",
+    tags: ["TypeScript", "Ed25519", "DID", "npm", "CC0"],
+    githubUrl: "https://github.com/lerko96/open-pact",
+    tier: "featured",
+    year: 2026,
+  },
+  // --- Archive ---
+  {
     slug: "helm",
     title: "helm",
     description:
       "Full-stack personal productivity dashboard. Go backend with chi router and SQLite, React + TypeScript frontend. Notes, todos, calendar (CalDAV), clipboard, bookmarks, memos. Self-hosted, single-user, daily use.",
     tags: ["Go", "React", "TypeScript", "SQLite", "CalDAV"],
     githubUrl: "https://github.com/lerko96/helm",
-    tier: "featured",
+    tier: "archive",
     year: 2026,
   },
   {
-    slug: "claude-vault",
-    title: "claude-vault",
+    slug: "risk-ops",
+    title: "risk-ops",
     description:
-      "A scaffolding system for maintaining a living project knowledge base alongside a code repo, powered by Claude Code skills.",
-    tags: ["Shell", "Developer-Tools", "Claude", "Knowledge-Management"],
-    githubUrl: "https://github.com/lerko96/claude-vault",
-    tier: "featured",
+      "Browser-based strategy dashboard for Risk: Global Domination (SMG Studio). Open one HTML file — no install needed.",
+    tags: ["HTML", "JavaScript"],
+    githubUrl: "#",
+    tier: "archive",
     year: 2026,
   },
-  // --- Archive ---
   {
     slug: "golf-book-mobile",
     title: "golf-book-mobile",
@@ -75,16 +85,6 @@ export const projects: Project[] = [
     stats: "200+ commits",
     statusBadge: "Pending App Store Approval",
     year: 2025,
-  },
-  {
-    slug: "risk-ops",
-    title: "risk-ops",
-    description:
-      "Browser-based strategy dashboard for Risk: Global Domination (SMG Studio). Open one HTML file — no install needed.",
-    tags: ["HTML", "JavaScript"],
-    githubUrl: "#",
-    tier: "archive",
-    year: 2026,
   },
   {
     slug: "twitter-thread-ext",
