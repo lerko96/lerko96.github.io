@@ -7,7 +7,7 @@ import { useTheme } from "@/context/ThemeContext";
 const links = [
   { href: "/", label: "tyler" },
   { href: "/homelab/", label: "homelab" },
-  { href: "/archive/", label: "archive" },
+  { href: "/projects/", label: "projects" },
 ];
 
 export default function Nav() {

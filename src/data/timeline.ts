@@ -47,12 +47,19 @@ export const timeline: TimelineEntry[] = [
     tags: ["go", "react", "typescript"],
   },
   {
-    date: "2024-08",
+    date: "2025",
+    title: "Proxmox Backup Server",
+    type: "homelab",
+    description: "Deployed PBS on used desktop hardware for disaster recovery.",
+    tags: ["backup", "recovery", "retention"],
+  },
+  {
+    date: "2025",
     title: "Proxmox Cluster",
     type: "homelab",
     description:
-      "Proxmox VMs/LXCs, SSO via Authentik, full monitoring stack (VictoriaMetrics + Grafana + Beszel + ntfy).",
-    tags: ["proxmox", "networking", "monitoring", "sso"],
+      "Proxmox installed on dedicated server and the fun begins. VMs/LXCs, SSO via Authentik, full monitoring stack (VictoriaMetrics + Grafana + Beszel + ntfy).",
+    tags: ["proxmox", "containers", "VMs", "linux"],
   },
   {
     date: "2024-06",
@@ -66,7 +73,8 @@ export const timeline: TimelineEntry[] = [
     date: "2024-03",
     title: "pfSense",
     type: "homelab",
-    description: "Netgate pfSense n100 picked up on ebay.",
+    description:
+      "Netgate 1100 picked up on ebay to experience hands on networking configuration and troubleshooting.",
     tags: ["network", "firewall", "vlan", "dhcp"],
   },
   {

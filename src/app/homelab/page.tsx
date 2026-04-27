@@ -22,98 +22,90 @@ const glanceStats = [
 
 const vlans = [
   {
-    id: "1000",
+    id: "MGMT",
     name: "MGMT",
-    subnet: "10.0.0.0/24",
     purpose: "Network equipment only",
   },
   {
-    id: "1010",
+    id: "LAN",
     name: "LAN",
-    subnet: "10.1.0.0/24",
     purpose: "Trusted personal devices",
   },
   {
-    id: "1020",
+    id: "Lab",
     name: "Homelab",
-    subnet: "10.2.0.0/24",
     purpose: "All self-hosted services",
   },
   {
-    id: "1030",
+    id: "Guest",
     name: "Guests",
-    subnet: "10.3.0.0/24",
     purpose: "Internet only, RFC1918 blocked",
   },
   {
-    id: "1040",
+    id: "IoT",
     name: "IoT",
-    subnet: "10.4.0.0/24",
     purpose: "Smart home, isolated",
   },
   {
-    id: "1050",
+    id: "WFH",
     name: "WFH",
-    subnet: "10.5.0.0/24",
     purpose: "Work devices, no personal access",
   },
   {
-    id: "1099",
+    id: "DMZ",
     name: "DMZ",
-    subnet: "10.99.0.0/24",
     purpose: "Public-facing, hard-blocked internally",
   },
   {
     id: "VPN",
     name: "VPN",
-    subnet: "10.200.0.0/24",
-    purpose: "WireGuard clients = LAN access",
+    purpose: "WireGuard clients, LAN-equivalent access",
   },
 ];
 
 const adrs = [
   {
-    title: "AT&T Gateway: IP Passthrough over EAP bypass",
+    title: "ISP gateway: passthrough mode",
     decision:
-      "BGW320 stays in-line with IP Passthrough mode. pfSense gets the public IP directly. Gateway WiFi disabled.",
-    why: "AT&T locks 802.1X auth to their gateway hardware. EAP proxy bypass is brittle — breaks on firmware updates and only saves 1–2ms. True bridge mode isn't supported.",
+      "ISP gateway stays in-line in passthrough mode, pfSense gets the public IP directly. Gateway WiFi disabled.",
+    why: "Carrier locks 802.1X auth to their own gateway hardware, and bypassing it is brittle — breaks on firmware updates and only saves a millisecond or two. True bridge mode isn't supported. Passthrough is the cleanest option that keeps pfSense as the actual perimeter.",
   },
   {
     title: "Caddy over NGINX Proxy Manager",
     decision:
-      "Caddy with DNS-01 challenge via Cloudflare API. All subdomains resolve to Caddy internally via Pi-hole. Caddy terminates SSL and proxies to backends.",
-    why: "Single Caddyfile, auto-cert without exposing port 80/443 to the internet. NPM has more UI overhead for the same outcome. Traefik is more complex for no benefit here.",
+      "Caddy with DNS-01 challenge via Cloudflare API. All subdomains resolve to Caddy internally via Pi-hole. Caddy terminates TLS and proxies to backends.",
+    why: "Single Caddyfile, automatic certs without ever needing to expose internal services to the internet for an HTTP-01 challenge. NPM has more UI overhead for the same outcome. Traefik is more complex for no benefit at this scale.",
   },
   {
     title: "WireGuard over OpenVPN",
     decision:
-      "WireGuard on pfSense, UDP 51820, VPN subnet 10.200.0.0/24. Clients get LAN + MGMT access, blocked from Guest/IoT/WFH.",
-    why: "Faster, simpler config, better battery life on mobile. ~600–900 Mbps on an N100. OpenVPN has no advantage here. Tailscale adds an external relay dependency.",
+      "WireGuard on pfSense as the only remote-access path. Clients get the access tier documented in the access model — same as LAN, plus the admin surfaces that aren't reachable any other way.",
+    why: "Faster, simpler config, better battery life on mobile. Throughput on the firewall hardware comfortably exceeds the WAN link. OpenVPN has no advantage here. Tailscale would add an external relay dependency for a problem WireGuard already solves.",
   },
   {
     title: "Pi-hole in Homelab VLAN, not MGMT",
     decision:
-      "Pi-hole at 10.2.0.11 (VLAN 1020). Firewall allows port 53 inbound from all VLANs. MGMT uses pfSense Unbound as its primary DNS.",
-    why: "Putting Pi-hole in MGMT would require opening MGMT to all VLANs — a larger attack surface. DNS traffic crossing into Homelab VLAN is the lesser risk.",
+      "Pi-hole runs in the Homelab VLAN. Firewall allows port 53 inbound from VLANs that need local resolution. MGMT uses pfSense Unbound as its primary resolver instead.",
+    why: "Putting Pi-hole in MGMT would mean opening MGMT to all the VLANs that need DNS — much bigger attack surface for the most sensitive tier. DNS traffic crossing into the Homelab VLAN is the lesser risk, and Homelab is already where service traffic terminates anyway.",
   },
   {
-    title: "N100 for pfSense",
+    title: "Mini-PC for pfSense",
     decision:
-      "Intel N100 mini PC: 4-core 3.4 GHz, ~6W idle. Handles 2–3 Gbps routing and 600–900 Mbps WireGuard.",
-    why: "Right-sized for 1 Gbps fiber with headroom. Raspberry Pi can't handle 1 Gbps + VPN. A full rack server wastes power for this role.",
+      "Intel N100 mini-PC as the firewall host. ~6W idle, handles multi-Gbps routing, saturates the WAN link with WireGuard headroom to spare.",
+    why: "Right-sized for 1 Gbps fiber. A Raspberry Pi can't handle 1 Gbps plus VPN. A full rack server wastes power for this role and adds noise to a room I sit in.",
   },
   {
     title: "Shared Postgres + Redis in apps LXC",
     decision:
-      "One Postgres instance, multiple databases. One Redis instance. A single init script provisions all schemas on first run.",
-    why: "Avoids 15 separate DB containers. Reduces RAM overhead significantly. All productivity apps share the same LXC (10.2.0.60).",
+      "One Postgres instance hosting multiple databases. One Redis instance. A single init script provisions schemas on first run.",
+    why: "Avoids ~15 separate DB containers. Big RAM savings. Productivity apps colocate in one LXC anyway, so a shared backing store there is the natural shape.",
   },
   {
     title:
-      "Gitea CI/CD: Self-hosted runner with container build + SSH rsync deploy",
+      "Gitea CI/CD: self-hosted runner, internal pipeline, static deploy",
     decision:
-      "act_runner v0.3.1 on Gitea LXC (10.99.0.22). Push to dev → node:22-alpine container builds Next.js → rsync out/ to Portfolio LXC → SSH docker rebuild.",
-    why: "Keeps the full pipeline internal — no GitHub Actions, no external runners. Build runs in an isolated Alpine container so the Gitea LXC isn't polluted. Portfolio LXC (10.99.0.23) just serves pre-built static files via nginx.",
+      "Self-hosted Gitea Actions runner builds the portfolio on push, then deploys pre-built static files to the public-facing host. Build runs in an isolated container so the runner host stays clean. Public host serves static files only — no build toolchain on it.",
+    why: "Keeps the whole pipeline internal. No external runners, no GitHub Actions. The build/serve split means the public-facing host has the smallest possible footprint — static file server, nothing more.",
   },
   {
     title: "Authentik over Authelia",
@@ -163,7 +155,7 @@ export default function HomelabPage() {
       {/* VLAN table */}
       <Widget
         title="homelab/network"
-        meta="8 isolated vlans · default deny inter-vlan"
+        meta="8 network segments · default deny"
         as="section"
       >
         <div className="overflow-x-auto">
@@ -171,13 +163,10 @@ export default function HomelabPage() {
             <thead>
               <tr className="border-b border-[var(--color-border)]">
                 <th className="font-mono text-[var(--color-text-dim)] text-left py-qtr-lh pr-[3ch] uppercase">
-                  VLAN
+                  Segment
                 </th>
                 <th className="font-mono text-[var(--color-text-dim)] text-left py-qtr-lh pr-[3ch] uppercase">
                   Name
-                </th>
-                <th className="font-mono text-[var(--color-text-dim)] text-left py-qtr-lh pr-[3ch] uppercase">
-                  Subnet
                 </th>
                 <th className="font-mono text-[var(--color-text-dim)] text-left py-qtr-lh uppercase">
                   Purpose
@@ -195,9 +184,6 @@ export default function HomelabPage() {
                   </td>
                   <td className="font-mono text-[var(--color-text)] py-half-lh pr-[3ch]">
                     {v.name}
-                  </td>
-                  <td className="font-mono text-[var(--color-text-label)] py-half-lh pr-[3ch]">
-                    {v.subnet}
                   </td>
                   <td className="font-mono text-sm text-[var(--color-text)] py-2.5 opacity-80">
                     {v.purpose}
