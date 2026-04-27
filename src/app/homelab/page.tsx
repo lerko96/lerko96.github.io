@@ -155,7 +155,7 @@ export default function HomelabPage() {
       {/* VLAN table */}
       <Widget
         title="homelab/network"
-        meta="8 isolated vlans · default deny inter-vlan"
+        meta="8 network segments · default deny"
         as="section"
       >
         <div className="overflow-x-auto">
@@ -163,7 +163,7 @@ export default function HomelabPage() {
             <thead>
               <tr className="border-b border-[var(--color-border)]">
                 <th className="font-mono text-[var(--color-text-dim)] text-left py-qtr-lh pr-[3ch] uppercase">
-                  VLAN
+                  Segment
                 </th>
                 <th className="font-mono text-[var(--color-text-dim)] text-left py-qtr-lh pr-[3ch] uppercase">
                   Name
