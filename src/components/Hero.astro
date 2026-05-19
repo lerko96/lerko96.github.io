@@ -1,71 +1,62 @@
-<section class="mb-16">
-  <div class="flex flex-col gap-1ch">
+---
+const identity = [
+  ["role", "soc analyst i · fortress srm"],
+  ["based", "cleveland, oh · est. 2021"],
+  ["stack", "go · react · typescript · linux"],
+  ["infra", "proxmox · pfsense · authentik · nginx"],
+  ["observ", "victoriametrics · grafana · beszel · ntfy"],
+  ["certs", "comptia a+ · network+ (in progress)"],
+];
+
+const contact = [
+  { key: "github", value: "lerko96", href: "https://github.com/lerko96", glyph: "↗" },
+  { key: "gitea", value: "gitea.lerkolabs.com/lerko", href: "https://gitea.lerkolabs.com/lerko", glyph: "↗" },
+  { key: "linkedin", value: "tyler-koenig", href: "https://www.linkedin.com/in/tyler-koenig", glyph: "↗" },
+  { key: "email", value: "tyler@lerkolabs.com", href: "mailto:tyler@lerkolabs.com", glyph: "✉" },
+];
+---
+
+<section class="border-b border-[var(--color-border)]">
+  <div class="flex items-baseline justify-between px-5 py-3.5 border-b border-[var(--color-border)]">
+    <span class="text-[var(--color-text-fg)] text-[11px] tracking-[0.16em] uppercase">identity</span>
+    <span class="text-[var(--color-text-label)] text-[11px]">~/identity.toml</span>
+  </div>
+
+  <div class="px-6 py-6 grid grid-cols-1 md:grid-cols-[1.4fr_1fr] gap-9">
     <div>
-      <p class="font-mono text-sm font-bold text-[var(--color-text)]">
-        <span
-          class="text-[var(--color-accent-green)] select-none mr-1ch"
-          aria-hidden="true"
-        >
-          ❯
-        </span>
+      <h1 class="text-[var(--color-text-heading)] text-[38px] leading-[1.05] tracking-tight font-semibold">
         tyler koenig
+      </h1>
+      <p class="text-[var(--color-text)] text-sm mt-2 leading-relaxed max-w-[540px]">
+        security operations, self-hosted infrastructure, and the software that holds it together.
       </p>
-      <p class="font-mono text-sm text-[var(--color-text-label)] mt-0.5">
-        Security Operations · Self-Hosted Infrastructure
-      </p>
+
+      <dl class="mt-6 grid grid-cols-[auto_1fr] gap-x-6 gap-y-1.5 text-[13px] tabular-nums">
+        {identity.map(([k, v]) => (
+          <Fragment>
+            <dt class="text-[var(--color-text-label)] tracking-wide">{k}</dt>
+            <dd class="text-[var(--color-text-fg)]">{v}</dd>
+          </Fragment>
+        ))}
+      </dl>
     </div>
 
-    <p class="font-mono text-sm text-[var(--color-text)] leading-relaxed opacity-70">
-      Homelab runs 30+
-      services across segmented VLANs — pfSense, Authentik SSO, full
-      observability stack. Write software too: mobile apps, Go backends,
-      open protocols. Daily drivers, all of it.{" "}
-      <span
-        class="animate-cursor text-[var(--color-accent-green)]"
-        aria-hidden="true"
-      >
-        █
-      </span>
-    </p>
-
-    <div class="flex flex-wrap items-center gap-x-1ch gap-y-half-lh">
-      <span class="font-mono text-sm text-[var(--color-accent-green)]">
-        ● available
-      </span>
-      <a
-        href="https://github.com/lerko96"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="GitHub"
-        class="font-mono text-sm text-[var(--color-text-label)] hover:text-[var(--color-text)]"
-      >
-        [github]
-      </a>
-      <a
-        href="https://gitea.lerkolabs.com/lerko"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Gitea"
-        class="font-mono text-sm text-[var(--color-text-label)] hover:text-[var(--color-text)]"
-      >
-        [gitea]
-      </a>
-      <a
-        href="https://www.linkedin.com/in/tyler-koenig"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="LinkedIn"
-        class="font-mono text-sm text-[var(--color-text-label)] hover:text-[var(--color-text)]"
-      >
-        [linkedin]
-      </a>
-      <a
-        href="mailto:tyler@lerkolabs.com"
-        aria-label="Email"
-        class="font-mono text-sm text-[var(--color-text-label)] hover:text-[var(--color-text)]"
-      >
-        [email]
-      </a>
-    </div>
+    <aside>
+      <div class="text-[var(--color-text-label)] text-[11px] tracking-[0.12em] mb-2.5">CONTACT</div>
+      <div class="grid gap-px">
+        {contact.map(({ key, value, href, glyph }) => (
+          <a
+            href={href}
+            target={href.startsWith("mailto") ? undefined : "_blank"}
+            rel={href.startsWith("mailto") ? undefined : "noopener noreferrer"}
+            class="grid grid-cols-[90px_1fr_16px] gap-x-2.5 items-baseline py-[7px] border-b border-[var(--color-border)] text-[13px] no-underline hover:bg-[var(--color-surface)]"
+          >
+            <span class="text-[var(--color-text-label)] tracking-wide">{key}</span>
+            <span class="text-[var(--color-text-fg)] overflow-hidden text-ellipsis whitespace-nowrap">{value}</span>
+            <span class="text-[var(--color-accent)] text-right">{glyph}</span>
+          </a>
+        ))}
+      </div>
+    </aside>
   </div>
 </section>

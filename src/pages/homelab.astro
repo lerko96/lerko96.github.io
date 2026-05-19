@@ -85,17 +85,9 @@ const adrs = [
 >
   <Nav slot="nav" />
 
-  <div class="mb-4lh">
-    <p class="font-mono text-sm font-bold text-[var(--color-text)] mb-1lh">
-      <span
-        class="text-[var(--color-accent-green)] select-none mr-1ch"
-        aria-hidden="true"
-      >
-        ❯
-      </span>
-      homelab
-    </p>
-    <p class="font-mono text-sm text-[var(--color-text)] leading-relaxed max-w-2xl opacity-80">
+  <div class="px-6 py-6 border-b border-[var(--color-border)]">
+    <h1 class="text-[var(--color-text-heading)] text-lg font-semibold mb-2">homelab</h1>
+    <p class="text-[var(--color-text)] text-sm leading-relaxed max-w-2xl">
       Personal infrastructure environment for learning, self-hosting, and
       operational practice. Running 24/7 on production-grade hardware with
       real network segmentation, SSO, monitoring, and IaC-style
@@ -106,11 +98,11 @@ const adrs = [
   <Widget title="homelab/overview" badge={glanceStats.length} as="section">
     <div class="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 gap-px bg-[var(--color-border)]">
       {glanceStats.map(({ label, value }) => (
-        <div class="bg-[var(--color-surface)] px-2ch py-half-lh">
-          <p class="font-mono text-sm text-[var(--color-text-dim)] mb-half-lh">
+        <div class="bg-[var(--color-surface)] px-5 py-3">
+          <p class="text-sm text-[var(--color-text-label)] mb-1">
             {label}
           </p>
-          <p class="font-mono text-sm text-[var(--color-text)]">
+          <p class="text-sm text-[var(--color-text-fg)]">
             {value}
           </p>
         </div>
@@ -123,17 +115,17 @@ const adrs = [
     meta="8 network segments · default deny"
     as="section"
   >
-    <div class="overflow-x-auto">
+    <div class="overflow-x-auto px-5">
       <table class="w-full text-sm border-collapse">
         <thead>
           <tr class="border-b border-[var(--color-border)]">
-            <th class="font-mono text-[var(--color-text-dim)] text-left py-qtr-lh pr-[3ch] uppercase">
+            <th class="text-[var(--color-text-label)] text-left py-2 pr-8 text-[10px] tracking-[0.16em] uppercase">
               Segment
             </th>
-            <th class="font-mono text-[var(--color-text-dim)] text-left py-qtr-lh pr-[3ch] uppercase">
+            <th class="text-[var(--color-text-label)] text-left py-2 pr-8 text-[10px] tracking-[0.16em] uppercase">
               Name
             </th>
-            <th class="font-mono text-[var(--color-text-dim)] text-left py-qtr-lh uppercase">
+            <th class="text-[var(--color-text-label)] text-left py-2 text-[10px] tracking-[0.16em] uppercase">
               Purpose
             </th>
           </tr>
@@ -141,13 +133,13 @@ const adrs = [
         <tbody>
           {vlans.map((v) => (
             <tr class="border-b border-[var(--color-border)] hover:bg-[var(--color-surface)]">
-              <td class="font-mono text-[var(--color-accent-green)] py-half-lh pr-[3ch]">
+              <td class="text-[var(--color-accent)] py-2.5 pr-8 text-sm">
                 {v.id}
               </td>
-              <td class="font-mono text-[var(--color-text)] py-half-lh pr-[3ch]">
+              <td class="text-[var(--color-text-fg)] py-2.5 pr-8 text-sm">
                 {v.name}
               </td>
-              <td class="font-mono text-sm text-[var(--color-text)] py-2.5 opacity-80">
+              <td class="text-[var(--color-text)] py-2.5 text-sm">
                 {v.purpose}
               </td>
             </tr>
@@ -158,25 +150,23 @@ const adrs = [
   </Widget>
 
   <Widget title="homelab/services" badge={services.length} as="section">
-    <div class="flex flex-col gap-3ch">
+    <div class="flex flex-col gap-6 px-5 py-4">
       {categoryOrder.map((cat) => {
         const catServices = services.filter((s) => s.category === cat);
         return (
           <div>
-            <p class="font-mono text-sm text-[var(--color-text-dim)] mb-1lh">
+            <p class="text-[var(--color-text-label)] text-[10px] tracking-[0.14em] uppercase mb-2 px-1">
               {categoryLabels[cat]}
             </p>
             <div class="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 gap-px bg-[var(--color-border)]">
               {catServices.map((svc) => (
-                <div class="bg-[var(--color-surface)] hover:bg-[var(--color-surface-raised)] flex items-start gap-1ch px-2ch py-half-lh">
-                  <div>
-                    <p class="font-mono text-sm text-[var(--color-text)] mb-0.5">
-                      {svc.name}
-                    </p>
-                    <p class="font-mono text-sm text-[var(--color-text)] leading-relaxed opacity-75">
-                      {svc.description}
-                    </p>
-                  </div>
+                <div class="bg-[var(--color-surface)] hover:bg-[var(--color-surface-raised)] px-5 py-3">
+                  <p class="text-sm text-[var(--color-text-fg)] mb-0.5">
+                    {svc.name}
+                  </p>
+                  <p class="text-xs text-[var(--color-text)] leading-relaxed">
+                    {svc.description}
+                  </p>
                 </div>
               ))}
             </div>
@@ -192,20 +182,20 @@ const adrs = [
     badge={adrs.length}
     as="section"
   >
-    <div class="flex flex-col gap-px bg-[var(--color-border)]">
+    <div class="flex flex-col gap-px bg-[var(--color-border)] mx-5 my-4">
       {adrs.map((adr) => (
-        <div class="bg-[var(--color-surface)] hover:bg-[var(--color-surface-raised)] px-2ch py-1lh">
-          <p class="font-mono text-sm text-[var(--color-text)] mb-1lh">
+        <div class="bg-[var(--color-surface)] hover:bg-[var(--color-surface-raised)] px-5 py-4">
+          <p class="text-sm text-[var(--color-text-fg)] mb-3">
             {adr.title}
           </p>
-          <p class="font-mono text-sm text-[var(--color-text)] leading-relaxed mb-half-lh opacity-75">
-            <span class="text-[var(--color-text-label)] opacity-100">
+          <p class="text-sm text-[var(--color-text)] leading-relaxed mb-2">
+            <span class="text-[var(--color-text-label)]">
               decision:{" "}
             </span>
             {adr.decision}
           </p>
-          <p class="font-mono text-sm text-[var(--color-text)] leading-relaxed opacity-75">
-            <span class="text-[var(--color-text-label)] opacity-100">
+          <p class="text-sm text-[var(--color-text)] leading-relaxed">
+            <span class="text-[var(--color-text-label)]">
               why:{" "}
             </span>
             {adr.why}
@@ -215,21 +205,20 @@ const adrs = [
     </div>
   </Widget>
 
-  <section class="pt-qtr-lh">
-    <p class="font-mono text-sm text-[var(--color-text-dim)] mb-half-lh">
+  <section class="px-5 py-6">
+    <p class="text-[var(--color-text-label)] text-[10px] tracking-[0.14em] uppercase mb-2">
       homelab/docs
     </p>
-    <p class="font-mono text-sm text-[var(--color-text)] mb-1lh opacity-75">
-      VLAN maps, runbooks, service registry, config exports, and setup
-      guides.
+    <p class="text-sm text-[var(--color-text)] mb-3">
+      VLAN maps, runbooks, service registry, config exports, and setup guides.
     </p>
     <a
       href="https://gitea.lerkolabs.com/lerko/homelab"
       target="_blank"
       rel="noopener noreferrer"
-      class="font-mono text-sm text-[var(--color-text-label)] hover:text-[var(--color-text)]"
+      class="text-sm text-[var(--color-text-label)] hover:text-[var(--color-accent)]"
     >
-      ↗ gitea.lerkolabs.com/lerko/homelab
+      <span class="text-[var(--color-accent)]">↗</span> gitea.lerkolabs.com/lerko/homelab
     </a>
   </section>
 

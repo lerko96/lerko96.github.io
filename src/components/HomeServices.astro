@@ -1,0 +1,67 @@
+---
+const vlans = [
+  {
+    id: "vlan10",
+    label: "management",
+    services: [
+      { name: "pfsense", kind: "firewall" },
+      { name: "authentik", kind: "sso" },
+      { name: "proxmox", kind: "hypervisor" },
+      { name: "pbs", kind: "backup" },
+    ],
+  },
+  {
+    id: "vlan20",
+    label: "public-facing",
+    services: [
+      { name: "gitea", kind: "scm/ci" },
+      { name: "caddy", kind: "proxy" },
+      { name: "lerkolabs.com", kind: "web" },
+    ],
+  },
+  {
+    id: "vlan30",
+    label: "internal services",
+    services: [
+      { name: "victoriametrics", kind: "tsdb" },
+      { name: "grafana", kind: "dashboards" },
+      { name: "beszel", kind: "host-mon" },
+      { name: "ntfy", kind: "alerts" },
+      { name: "jellyfin", kind: "media" },
+    ],
+  },
+];
+
+const totalSvc = vlans.reduce((n, v) => n + v.services.length, 0);
+---
+
+<section>
+  <div class="flex items-baseline justify-between px-5 py-3.5 border-b border-[var(--color-border)]">
+    <span class="text-[var(--color-text-fg)] text-[11px] tracking-[0.16em] uppercase">infrastructure</span>
+    <span class="text-[var(--color-text-label)] text-[11px]">{totalSvc} up · 0 failed</span>
+  </div>
+
+  <div>
+    {vlans.map((vlan, gi) => (
+      <div class:list={[gi < vlans.length - 1 && "border-b border-[var(--color-border)]"]}>
+        <div class="flex items-baseline gap-2.5 px-5 pt-2.5 pb-1 text-[var(--color-text-label)] text-[10px] tracking-[0.14em]">
+          <span class="text-[var(--color-text-fg)]">{vlan.id}</span>
+          <span>·</span>
+          <span class="uppercase">{vlan.label}</span>
+          <span class="ml-auto text-[var(--color-text-faint)]">{vlan.services.length} svc</span>
+        </div>
+
+        {vlan.services.map((s) => (
+          <div class="grid grid-cols-[12px_1fr_110px_60px] gap-x-2.5 px-5 py-1.5 text-[13px] items-baseline tabular-nums">
+            <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-accent-green)] self-center" />
+            <span class="text-[var(--color-text-fg)]">{s.name}</span>
+            <span class="text-[var(--color-text-label)] text-[11px]">{s.kind}</span>
+            <span class="text-[var(--color-text-label)] text-[11px] text-right">up</span>
+          </div>
+        ))}
+
+        <div class="h-2" />
+      </div>
+    ))}
+  </div>
+</section>

@@ -8,54 +8,66 @@ const links = [
 ];
 ---
 
-<header class="sticky top-0 z-50 bg-[var(--color-surface)] border-b border-[var(--color-border)]">
-  <nav class="max-w-[740px] mx-auto px-4ch h-11 flex items-center justify-between">
-    <a
-      href="/"
-      class="font-mono text-sm font-bold text-[var(--color-text)] hover:text-[var(--color-text-label)]"
-    >
-      ~/
-    </a>
+<header class="sticky top-0 z-50 bg-[var(--color-surface-raised)] border-b border-[var(--color-border)]">
+  <nav class="max-w-[960px] mx-auto px-6 h-11 flex items-center justify-between text-xs tabular-nums">
+    <div class="flex items-center gap-4">
+      <a href="/" class="text-[var(--color-text-fg)] tracking-wide hover:text-[var(--color-text-heading)]">
+        lerkolabs
+      </a>
+      <span class="text-[var(--color-text-faint)]">/</span>
+      <span class="text-[var(--color-text-label)]">tyler</span>
+      <span class="text-[var(--color-text-faint)]">/</span>
+      <span class="text-[var(--color-text-label)]">~</span>
+    </div>
 
-    <ul class="flex items-center gap-2ch">
+    <div class="flex items-center gap-5">
+      <span class="hidden sm:inline-flex items-center gap-1.5">
+        <span class="inline-block w-1.5 h-1.5 rounded-full bg-[var(--color-accent-green)] status-pip" />
+        <span class="text-[var(--color-text-fg)]">available</span>
+      </span>
+
       {links.map(({ href, label }) => {
         const active = pathname === href || pathname === href.replace(/\/$/, "");
         return (
-          <li>
-            <a
-              href={href}
-              aria-current={active ? "page" : undefined}
-              class:list={[
-                "font-mono text-sm",
-                active
-                  ? "text-[var(--color-text)]"
-                  : "text-[var(--color-text-label)] hover:text-[var(--color-text)]",
-              ]}
-            >
-              {label}
-            </a>
-          </li>
+          <a
+            href={href}
+            aria-current={active ? "page" : undefined}
+            class:list={[
+              active
+                ? "text-[var(--color-text-fg)]"
+                : "text-[var(--color-text-label)] hover:text-[var(--color-text-fg)]",
+            ]}
+          >
+            {label}
+          </a>
         );
       })}
-      <li>
-        <button
-          data-theme-toggle
-          aria-label="Switch to light mode"
-          class="font-mono text-sm text-[var(--color-text-label)] hover:text-[var(--color-text)] cursor-pointer"
-        >
-          [light]
-        </button>
-      </li>
-    </ul>
+      <button
+        data-theme-toggle
+        aria-label="Switch to light mode"
+        class="text-[var(--color-text-fg)] hover:text-[var(--color-accent)] cursor-pointer"
+      >
+        light
+      </button>
+    </div>
   </nav>
 </header>
+
+<style>
+  .status-pip {
+    box-shadow: 0 0 6px color-mix(in srgb, var(--color-accent-green) 67%, transparent);
+  }
+  :root:not(.dark) .status-pip {
+    box-shadow: none;
+  }
+</style>
 
 <script>
   const btn = document.querySelector("[data-theme-toggle]") as HTMLButtonElement;
 
   function update() {
     const isDark = document.documentElement.classList.contains("dark");
-    btn.textContent = isDark ? "[light]" : "[dark]";
+    btn.textContent = isDark ? "light" : "dark";
     btn.setAttribute(
       "aria-label",
       isDark ? "Switch to light mode" : "Switch to dark mode",

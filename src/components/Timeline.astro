@@ -1,8 +1,7 @@
 ---
-import Widget from "./Widget.astro";
-import { timeline, type TimelineType } from "@/data/timeline";
+import { timeline } from "@/data/timeline";
 
-const typeColor: Record<TimelineType, string> = {
+const branchColor: Record<string, string> = {
   career: "var(--color-timeline-career)",
   education: "var(--color-timeline-education)",
   cert: "var(--color-timeline-cert)",
@@ -10,79 +9,93 @@ const typeColor: Record<TimelineType, string> = {
   homelab: "var(--color-timeline-homelab)",
 };
 
-const typeLabel: Record<TimelineType, string> = {
-  career: "career",
-  education: "education",
-  cert: "cert",
-  project: "project",
-  homelab: "homelab",
-};
+const hashes = [
+  "a14c2e1", "8f9b3d2", "7a02b41", "4c1f0aa", "3e9d8c0",
+  "2b6a51f", "9d4c12a", "6e0b8a3", "1c7a4ff", "d5b3e92",
+  "5a8f1ee", "e2b71ac", "f0a39db", "0000000",
+];
 ---
 
-<Widget title="tyler/journey">
-  <ol class="relative border-l border-[var(--color-border)] ml-[2px] flex flex-col gap-0">
-    {timeline.map((entry) => (
-      <li data-tl-entry class="pl-[3ch] pb-2lh last:pb-0 relative">
-        <span
-          class="absolute -left-[7px] top-[3px] w-3 h-3 rounded-full border border-[var(--color-bg)] shrink-0"
-          style={`background-color: ${typeColor[entry.type]}`}
-          aria-hidden="true"
-        />
+<section class="border-t border-[var(--color-border)]">
+  <div class="flex items-baseline justify-between px-5 py-3.5 border-b border-[var(--color-border)]">
+    <span class="text-[var(--color-text-fg)] text-[11px] tracking-[0.16em] uppercase">journey</span>
+    <span class="text-[var(--color-text-label)] text-[11px]">{timeline.length} commits · 5 branches · git log --all</span>
+  </div>
 
-        <div class="flex items-center gap-1ch mb-half-lh">
-          <span class="font-mono text-sm text-[var(--color-text-dim)]">{entry.date}</span>
-          <span
-            class="font-mono text-sm px-1 border"
-            style={`color: ${typeColor[entry.type]}; border-color: ${typeColor[entry.type]}; opacity: 0.7;`}
-          >
-            {typeLabel[entry.type]}
-          </span>
-        </div>
-
-        <p class="font-mono text-sm font-semibold text-[var(--color-text)] mb-half-lh">
-          {entry.title}
-        </p>
-
-        <p class="font-mono text-sm text-[var(--color-text)] opacity-70 leading-relaxed mb-half-lh">
-          {entry.description}
-        </p>
-
-        {entry.tags && entry.tags.length > 0 && (
-          <div class="flex flex-wrap gap-x-1ch gap-y-half-lh">
-            {entry.tags.map((tag) => (
-              <span class="font-mono text-sm text-[var(--color-text-dim)]">
-                {tag}
-              </span>
-            ))}
-          </div>
-        )}
-      </li>
+  <!-- Desktop: tabular grid -->
+  <div class="hidden md:grid grid-cols-[92px_86px_92px_1fr] text-[13px] tabular-nums">
+    {["date", "commit", "scope", "message"].map((h) => (
+      <div class:list={[
+        "text-[var(--color-text-label)] text-[10px] tracking-[0.16em] uppercase py-3 px-3 border-b border-[var(--color-border)]",
+        h === "date" && "pl-6",
+      ]}>
+        {h}
+      </div>
     ))}
-  </ol>
-</Widget>
 
-<script>
-  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    const entries = document.querySelectorAll<HTMLElement>("[data-tl-entry]");
+    {timeline.map((entry, i) => {
+      const color = branchColor[entry.type] || "var(--color-text-fg)";
+      const hash = hashes[i] || "0000000";
+      const last = i === timeline.length - 1;
+      const borderClass = last ? "" : "border-b border-[var(--color-border)]";
+      return (
+        <Fragment>
+          <div class:list={["py-3.5 px-3 pl-6", borderClass]}>
+            <span class="text-[var(--color-text-fg)]">{entry.date}</span>
+          </div>
+          <div class:list={["py-3.5 px-3", borderClass]}>
+            <span class="text-[var(--color-accent)]">{hash}</span>
+          </div>
+          <div class:list={["py-3.5 px-3", borderClass]}>
+            <span class="text-[11px] border-b border-dotted pb-px" style={`color: ${color}; border-color: ${color}`}>
+              {entry.type}
+            </span>
+          </div>
+          <div class:list={["py-3.5 px-3 pr-6", borderClass]}>
+            <span class="text-[var(--color-text-heading)]">{entry.title}</span>
+            <div class="text-[var(--color-text)] text-xs mt-0.5 leading-relaxed">{entry.description}</div>
+            {entry.tags && entry.tags.length > 0 && (
+              <div class="mt-1.5 flex gap-3.5 flex-wrap text-[var(--color-text-label)] text-[10px]">
+                {entry.tags.map((t) => (
+                  <span>· {t}</span>
+                ))}
+              </div>
+            )}
+          </div>
+        </Fragment>
+      );
+    })}
+  </div>
 
-    const observer = new IntersectionObserver(
-      (observed) => {
-        observed.forEach((entry) => {
-          if (entry.isIntersecting) {
-            (entry.target as HTMLElement).style.opacity = "1";
-            (entry.target as HTMLElement).style.transform = "translateY(0)";
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.15 },
-    );
-
-    entries.forEach((el) => {
-      el.style.opacity = "0";
-      el.style.transform = "translateY(8px)";
-      el.style.transition = "opacity 240ms linear, transform 240ms linear";
-      observer.observe(el);
-    });
-  }
-</script>
+  <!-- Mobile: stacked cards -->
+  <div class="md:hidden">
+    {timeline.map((entry, i) => {
+      const color = branchColor[entry.type] || "var(--color-text-fg)";
+      const hash = hashes[i] || "0000000";
+      const last = i === timeline.length - 1;
+      return (
+        <div class:list={[
+          "px-5 py-4",
+          !last && "border-b border-[var(--color-border)]",
+        ]}>
+          <div class="flex items-center gap-3 mb-1.5 text-xs">
+            <span class="text-[var(--color-text-fg)]">{entry.date}</span>
+            <span class="text-[var(--color-accent)]">{hash}</span>
+            <span class="border-b border-dotted pb-px text-[11px]" style={`color: ${color}; border-color: ${color}`}>
+              {entry.type}
+            </span>
+          </div>
+          <div class="text-[var(--color-text-heading)] text-sm">{entry.title}</div>
+          <div class="text-[var(--color-text)] text-xs mt-0.5 leading-relaxed">{entry.description}</div>
+          {entry.tags && entry.tags.length > 0 && (
+            <div class="mt-1.5 flex gap-3 flex-wrap text-[var(--color-text-label)] text-[10px]">
+              {entry.tags.map((t) => (
+                <span>· {t}</span>
+              ))}
+            </div>
+          )}
+        </div>
+      );
+    })}
+  </div>
+</section>

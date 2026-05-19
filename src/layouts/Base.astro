@@ -30,10 +30,8 @@ const {
     class="bg-[var(--color-bg)] text-[var(--color-text)] font-mono min-h-screen"
   >
     <slot name="nav" />
-    <div
-      class="max-w-[740px] mx-auto border-l border-r border-[var(--color-border)]"
-    >
-      <main class="px-4ch py-3lh">
+    <div class="max-w-[960px] mx-auto">
+      <main>
         <slot />
       </main>
       <slot name="footer" />

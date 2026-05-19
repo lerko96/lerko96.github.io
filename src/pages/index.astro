@@ -3,12 +3,18 @@ import Base from "@/layouts/Base.astro";
 import Nav from "@/components/Nav.astro";
 import Footer from "@/components/Footer.astro";
 import Hero from "@/components/Hero.astro";
+import Active from "@/components/Active.astro";
+import HomeServices from "@/components/HomeServices.astro";
 import Timeline from "@/components/Timeline.astro";
 ---
 
 <Base>
   <Nav slot="nav" />
   <Hero />
+  <div class="grid grid-cols-1 md:grid-cols-[1fr_1.2fr] border-b border-[var(--color-border)]">
+    <Active />
+    <HomeServices />
+  </div>
   <Timeline />
   <Footer slot="footer" />
 </Base>

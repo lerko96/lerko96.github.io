@@ -1,0 +1,51 @@
+---
+const items = [
+  {
+    label: "studying",
+    title: "comptia network+",
+    meta: "ch. 7 · ipv6 addressing",
+    progress: 0.62,
+    progressText: "62%",
+  },
+  {
+    label: "shipping",
+    title: "portfolio site v2",
+    meta: "astro 5 · gitea actions ci · dmz lxc",
+  },
+  {
+    label: "maintaining",
+    title: "32 services across 4 vlans",
+    meta: "last alert 11d ago · backups green",
+  },
+];
+---
+
+<section class="border-r border-[var(--color-border)]">
+  <div class="flex items-baseline justify-between px-5 py-3.5 border-b border-[var(--color-border)]">
+    <span class="text-[var(--color-text-fg)] text-[11px] tracking-[0.16em] uppercase">active</span>
+    <span class="text-[var(--color-text-label)] text-[11px]">updated 4m ago</span>
+  </div>
+
+  <div>
+    {items.map((it, i) => (
+      <div class:list={[
+        "px-5 py-4",
+        i < items.length - 1 && "border-b border-[var(--color-border)]",
+      ]}>
+        <div class="flex items-baseline justify-between gap-2.5">
+          <span class="text-[var(--color-text-label)] text-[10px] tracking-[0.16em] uppercase">{it.label}</span>
+          {it.progress != null && (
+            <span class="text-[var(--color-text-fg)] text-[11px] tabular-nums">{it.progressText}</span>
+          )}
+        </div>
+        <div class="text-[var(--color-text-heading)] text-[15px] mt-1">{it.title}</div>
+        <div class="text-[var(--color-text)] text-xs mt-0.5">{it.meta}</div>
+        {it.progress != null && (
+          <div class="mt-2.5 h-[3px] bg-[var(--color-border-bright)]">
+            <div class="h-full bg-[var(--color-accent)]" style={`width: ${it.progress * 100}%`} />
+          </div>
+        )}
+      </div>
+    ))}
+  </div>
+</section>

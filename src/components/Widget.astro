@@ -8,23 +8,15 @@ interface Props {
 }
 
 const { title, badge, meta, as: Tag = "section", class: className } = Astro.props;
-const slashIdx = title.lastIndexOf("/");
-const prefix = slashIdx >= 0 ? title.slice(0, slashIdx + 1) : null;
-const name = slashIdx >= 0 ? title.slice(slashIdx + 1) : title;
 ---
 
-<Tag class:list={["mb-4lh", className]}>
-  <div class="flex items-center gap-1ch mb-2lh">
-    {prefix && (
-      <span class="font-mono text-sm text-[var(--color-text-dim)] select-none">{prefix}</span>
-    )}
-    <span class="font-mono text-sm font-semibold text-[var(--color-text)]">{name}</span>
-    {badge !== undefined && (
-      <span class="font-mono text-sm text-[var(--color-text-dim)]">[{badge}]</span>
-    )}
-    {meta && (
-      <span class="font-mono text-sm text-[var(--color-text-dim)]">— {meta}</span>
-    )}
+<Tag class:list={["mb-0", className]}>
+  <div class="flex items-baseline justify-between px-5 py-3.5 border-b border-[var(--color-border)]">
+    <span class="text-[var(--color-text-fg)] text-[11px] tracking-[0.16em] uppercase">{title}</span>
+    <span class="text-[var(--color-text-label)] text-[11px]">
+      {badge !== undefined && <span>[{badge}]</span>}
+      {meta && <span>{meta}</span>}
+    </span>
   </div>
   <slot />
 </Tag>
