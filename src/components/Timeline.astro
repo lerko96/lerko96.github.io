@@ -1,0 +1,88 @@
+---
+import Widget from "./Widget.astro";
+import { timeline, type TimelineType } from "@/data/timeline";
+
+const typeColor: Record<TimelineType, string> = {
+  career: "var(--color-timeline-career)",
+  education: "var(--color-timeline-education)",
+  cert: "var(--color-timeline-cert)",
+  project: "var(--color-timeline-project)",
+  homelab: "var(--color-timeline-homelab)",
+};
+
+const typeLabel: Record<TimelineType, string> = {
+  career: "career",
+  education: "education",
+  cert: "cert",
+  project: "project",
+  homelab: "homelab",
+};
+---
+
+<Widget title="tyler/journey">
+  <ol class="relative border-l border-[var(--color-border)] ml-[2px] flex flex-col gap-0">
+    {timeline.map((entry) => (
+      <li data-tl-entry class="pl-[3ch] pb-2lh last:pb-0 relative">
+        <span
+          class="absolute -left-[7px] top-[3px] w-3 h-3 rounded-full border border-[var(--color-bg)] shrink-0"
+          style={`background-color: ${typeColor[entry.type]}`}
+          aria-hidden="true"
+        />
+
+        <div class="flex items-center gap-1ch mb-half-lh">
+          <span class="font-mono text-sm text-[var(--color-text-dim)]">{entry.date}</span>
+          <span
+            class="font-mono text-sm px-1 border"
+            style={`color: ${typeColor[entry.type]}; border-color: ${typeColor[entry.type]}; opacity: 0.7;`}
+          >
+            {typeLabel[entry.type]}
+          </span>
+        </div>
+
+        <p class="font-mono text-sm font-semibold text-[var(--color-text)] mb-half-lh">
+          {entry.title}
+        </p>
+
+        <p class="font-mono text-sm text-[var(--color-text)] opacity-70 leading-relaxed mb-half-lh">
+          {entry.description}
+        </p>
+
+        {entry.tags && entry.tags.length > 0 && (
+          <div class="flex flex-wrap gap-x-1ch gap-y-half-lh">
+            {entry.tags.map((tag) => (
+              <span class="font-mono text-sm text-[var(--color-text-dim)]">
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
+      </li>
+    ))}
+  </ol>
+</Widget>
+
+<script>
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const entries = document.querySelectorAll<HTMLElement>("[data-tl-entry]");
+
+    const observer = new IntersectionObserver(
+      (observed) => {
+        observed.forEach((entry) => {
+          if (entry.isIntersecting) {
+            (entry.target as HTMLElement).style.opacity = "1";
+            (entry.target as HTMLElement).style.transform = "translateY(0)";
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 },
+    );
+
+    entries.forEach((el) => {
+      el.style.opacity = "0";
+      el.style.transform = "translateY(8px)";
+      el.style.transition = "opacity 240ms linear, transform 240ms linear";
+      observer.observe(el);
+    });
+  }
+</script>

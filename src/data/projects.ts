@@ -27,8 +27,8 @@ export const projects: Project[] = [
     slug: "portfolio",
     title: "portfolio",
     description:
-      "Next.js 16 static site, self-hosted in a DMZ LXC behind Nginx, deployed via Gitea Actions CI.",
-    tags: ["Next.js", "Dockerfile", "Tailwind", "nginx", "Caddy"],
+      "Astro static site, self-hosted in a DMZ LXC behind Nginx, deployed via Gitea Actions CI.",
+    tags: ["Astro", "Dockerfile", "Tailwind", "nginx", "Caddy"],
     githubUrl: "https://gitea.lerkolabs.com/lerko/portfolio",
     tier: "featured",
     year: 2021,

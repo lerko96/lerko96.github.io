@@ -27,8 +27,8 @@ export const timeline: TimelineEntry[] = [
     title: "Portfolio Site v2",
     type: "project",
     description:
-      "Next.js 16 portfolio site, self-hosted in a DMZ LXC behind Nginx, deployed via Gitea Actions CI.",
-    tags: ["next.js", "tailwind", "self-hosted"],
+      "Astro portfolio site, self-hosted in a DMZ LXC behind Nginx, deployed via Gitea Actions CI.",
+    tags: ["astro", "tailwind", "self-hosted"],
   },
   {
     date: "2026-04",
@@ -74,7 +74,7 @@ export const timeline: TimelineEntry[] = [
     title: "pfSense",
     type: "homelab",
     description:
-      "Netgate 1100 picked up on ebay to experience hands on networking configuration and troubleshooting.",
+      "Netgate 1100 (Marvell ARMADA 3720) picked up on eBay — hands-on networking configuration, VLANs, firewall rules, and troubleshooting.",
     tags: ["network", "firewall", "vlan", "dhcp"],
   },
   {

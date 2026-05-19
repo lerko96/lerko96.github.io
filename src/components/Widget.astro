@@ -1,0 +1,30 @@
+---
+interface Props {
+  title: string;
+  badge?: string | number;
+  meta?: string;
+  as?: "section" | "div" | "article";
+  class?: string;
+}
+
+const { title, badge, meta, as: Tag = "section", class: className } = Astro.props;
+const slashIdx = title.lastIndexOf("/");
+const prefix = slashIdx >= 0 ? title.slice(0, slashIdx + 1) : null;
+const name = slashIdx >= 0 ? title.slice(slashIdx + 1) : title;
+---
+
+<Tag class:list={["mb-4lh", className]}>
+  <div class="flex items-center gap-1ch mb-2lh">
+    {prefix && (
+      <span class="font-mono text-sm text-[var(--color-text-dim)] select-none">{prefix}</span>
+    )}
+    <span class="font-mono text-sm font-semibold text-[var(--color-text)]">{name}</span>
+    {badge !== undefined && (
+      <span class="font-mono text-sm text-[var(--color-text-dim)]">[{badge}]</span>
+    )}
+    {meta && (
+      <span class="font-mono text-sm text-[var(--color-text-dim)]">— {meta}</span>
+    )}
+  </div>
+  <slot />
+</Tag>

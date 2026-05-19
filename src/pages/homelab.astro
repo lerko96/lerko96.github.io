@@ -1,0 +1,237 @@
+---
+import Base from "@/layouts/Base.astro";
+import Nav from "@/components/Nav.astro";
+import Footer from "@/components/Footer.astro";
+import Widget from "@/components/Widget.astro";
+import { services, categoryOrder, categoryLabels } from "@/data/services";
+
+const glanceStats = [
+  { label: "Hypervisor", value: "Proxmox VE" },
+  { label: "Firewall", value: "pfSense (Netgate 1100)" },
+  { label: "Switching", value: "TP-Link Omada (managed)" },
+  { label: "ISP", value: "AT&T Fiber 1 Gbps" },
+  { label: "VPN", value: "WireGuard (pfSense)" },
+  { label: "Reverse Proxy", value: "Caddy + Cloudflare DNS-01" },
+  { label: "Auth", value: "Authentik SSO" },
+  { label: "DNS", value: "Pi-hole → Unbound → Cloudflare" },
+  { label: "Containers", value: "9 LXC + 2 VMs" },
+];
+
+const vlans = [
+  { id: "MGMT", name: "MGMT", purpose: "Network equipment only" },
+  { id: "LAN", name: "LAN", purpose: "Trusted personal devices" },
+  { id: "Lab", name: "Homelab", purpose: "All self-hosted services" },
+  { id: "Guest", name: "Guests", purpose: "Internet only, RFC1918 blocked" },
+  { id: "IoT", name: "IoT", purpose: "Smart home, isolated" },
+  { id: "WFH", name: "WFH", purpose: "Work devices, no personal access" },
+  { id: "DMZ", name: "DMZ", purpose: "Public-facing, hard-blocked internally" },
+  { id: "VPN", name: "VPN", purpose: "WireGuard clients, LAN-equivalent access" },
+];
+
+const adrs = [
+  {
+    title: "ISP gateway: passthrough mode",
+    decision:
+      "ISP gateway stays in-line in passthrough mode, pfSense gets the public IP directly. Gateway WiFi disabled.",
+    why: "Carrier locks 802.1X auth to their own gateway hardware, and bypassing it is brittle — breaks on firmware updates and only saves a millisecond or two. True bridge mode isn't supported. Passthrough is the cleanest option that keeps pfSense as the actual perimeter.",
+  },
+  {
+    title: "Caddy over NGINX Proxy Manager",
+    decision:
+      "Caddy with DNS-01 challenge via Cloudflare API. All subdomains resolve to Caddy internally via Pi-hole. Caddy terminates TLS and proxies to backends.",
+    why: "Single Caddyfile, automatic certs without ever needing to expose internal services to the internet for an HTTP-01 challenge. NPM has more UI overhead for the same outcome. Traefik is more complex for no benefit at this scale.",
+  },
+  {
+    title: "WireGuard over OpenVPN",
+    decision:
+      "WireGuard on pfSense as the only remote-access path. Clients get the access tier documented in the access model — same as LAN, plus the admin surfaces that aren't reachable any other way.",
+    why: "Faster, simpler config, better battery life on mobile. Throughput on the firewall hardware comfortably exceeds the WAN link. OpenVPN has no advantage here. Tailscale would add an external relay dependency for a problem WireGuard already solves.",
+  },
+  {
+    title: "Pi-hole in Homelab VLAN, not MGMT",
+    decision:
+      "Pi-hole runs in the Homelab VLAN. Firewall allows port 53 inbound from VLANs that need local resolution. MGMT uses pfSense Unbound as its primary resolver instead.",
+    why: "Putting Pi-hole in MGMT would mean opening MGMT to all the VLANs that need DNS — much bigger attack surface for the most sensitive tier. DNS traffic crossing into the Homelab VLAN is the lesser risk, and Homelab is already where service traffic terminates anyway.",
+  },
+  {
+    title: "Netgate 1100 for pfSense",
+    decision:
+      "Netgate 1100 (Marvell ARMADA 3720, dual-core ARM) as the firewall appliance. ~6W idle, line-rate NAT at 1 Gbps, WireGuard at ~100–150 Mbps.",
+    why: "Purpose-built for pfSense. Right-sized for 1 Gbps fiber — NAT saturates the link, WireGuard is fast enough for remote access. A full rack server wastes power for this role. Configs and version tracked in private repo.",
+  },
+  {
+    title: "Shared Postgres + Redis in apps LXC",
+    decision:
+      "One Postgres instance hosting multiple databases. One Redis instance. A single init script provisions schemas on first run.",
+    why: "Avoids ~15 separate DB containers. Big RAM savings. Productivity apps colocate in one LXC anyway, so a shared backing store there is the natural shape.",
+  },
+  {
+    title: "Gitea CI/CD: self-hosted runner, internal pipeline, static deploy",
+    decision:
+      "Self-hosted Gitea Actions runner builds the portfolio on push, then deploys pre-built static files to the public-facing host. Build runs in an isolated container so the runner host stays clean. Public host serves static files only — no build toolchain on it.",
+    why: "Keeps the whole pipeline internal. No external runners, no GitHub Actions. The build/serve split means the public-facing host has the smallest possible footprint — static file server, nothing more.",
+  },
+  {
+    title: "Authentik over Authelia",
+    decision: "Authentik as the SSO provider across all self-hosted services.",
+    why: "Full OIDC provider + forward auth in one. Lets services like Outline, Gitea, and Vikunja use real SSO rather than just a login gate. Authelia is forward-auth only — no OIDC provider capability.",
+  },
+];
+---
+
+<Base
+  title="Homelab | Tyler Koenig"
+  description="Production-grade personal homelab: Proxmox, pfSense, 8 VLANs, WireGuard, Caddy, Authentik SSO, and 20+ self-hosted services."
+>
+  <Nav slot="nav" />
+
+  <div class="mb-4lh">
+    <p class="font-mono text-sm font-bold text-[var(--color-text)] mb-1lh">
+      <span
+        class="text-[var(--color-accent-green)] select-none mr-1ch"
+        aria-hidden="true"
+      >
+        ❯
+      </span>
+      homelab
+    </p>
+    <p class="font-mono text-sm text-[var(--color-text)] leading-relaxed max-w-2xl opacity-80">
+      Personal infrastructure environment for learning, self-hosting, and
+      operational practice. Running 24/7 on production-grade hardware with
+      real network segmentation, SSO, monitoring, and IaC-style
+      documentation.
+    </p>
+  </div>
+
+  <Widget title="homelab/overview" badge={glanceStats.length} as="section">
+    <div class="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 gap-px bg-[var(--color-border)]">
+      {glanceStats.map(({ label, value }) => (
+        <div class="bg-[var(--color-surface)] px-2ch py-half-lh">
+          <p class="font-mono text-sm text-[var(--color-text-dim)] mb-half-lh">
+            {label}
+          </p>
+          <p class="font-mono text-sm text-[var(--color-text)]">
+            {value}
+          </p>
+        </div>
+      ))}
+    </div>
+  </Widget>
+
+  <Widget
+    title="homelab/network"
+    meta="8 network segments · default deny"
+    as="section"
+  >
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm border-collapse">
+        <thead>
+          <tr class="border-b border-[var(--color-border)]">
+            <th class="font-mono text-[var(--color-text-dim)] text-left py-qtr-lh pr-[3ch] uppercase">
+              Segment
+            </th>
+            <th class="font-mono text-[var(--color-text-dim)] text-left py-qtr-lh pr-[3ch] uppercase">
+              Name
+            </th>
+            <th class="font-mono text-[var(--color-text-dim)] text-left py-qtr-lh uppercase">
+              Purpose
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {vlans.map((v) => (
+            <tr class="border-b border-[var(--color-border)] hover:bg-[var(--color-surface)]">
+              <td class="font-mono text-[var(--color-accent-green)] py-half-lh pr-[3ch]">
+                {v.id}
+              </td>
+              <td class="font-mono text-[var(--color-text)] py-half-lh pr-[3ch]">
+                {v.name}
+              </td>
+              <td class="font-mono text-sm text-[var(--color-text)] py-2.5 opacity-80">
+                {v.purpose}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </Widget>
+
+  <Widget title="homelab/services" badge={services.length} as="section">
+    <div class="flex flex-col gap-3ch">
+      {categoryOrder.map((cat) => {
+        const catServices = services.filter((s) => s.category === cat);
+        return (
+          <div>
+            <p class="font-mono text-sm text-[var(--color-text-dim)] mb-1lh">
+              {categoryLabels[cat]}
+            </p>
+            <div class="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 gap-px bg-[var(--color-border)]">
+              {catServices.map((svc) => (
+                <div class="bg-[var(--color-surface)] hover:bg-[var(--color-surface-raised)] flex items-start gap-1ch px-2ch py-half-lh">
+                  <div>
+                    <p class="font-mono text-sm text-[var(--color-text)] mb-0.5">
+                      {svc.name}
+                    </p>
+                    <p class="font-mono text-sm text-[var(--color-text)] leading-relaxed opacity-75">
+                      {svc.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </Widget>
+
+  <Widget
+    title="homelab/ADRs"
+    meta="why things are configured the way they are"
+    badge={adrs.length}
+    as="section"
+  >
+    <div class="flex flex-col gap-px bg-[var(--color-border)]">
+      {adrs.map((adr) => (
+        <div class="bg-[var(--color-surface)] hover:bg-[var(--color-surface-raised)] px-2ch py-1lh">
+          <p class="font-mono text-sm text-[var(--color-text)] mb-1lh">
+            {adr.title}
+          </p>
+          <p class="font-mono text-sm text-[var(--color-text)] leading-relaxed mb-half-lh opacity-75">
+            <span class="text-[var(--color-text-label)] opacity-100">
+              decision:{" "}
+            </span>
+            {adr.decision}
+          </p>
+          <p class="font-mono text-sm text-[var(--color-text)] leading-relaxed opacity-75">
+            <span class="text-[var(--color-text-label)] opacity-100">
+              why:{" "}
+            </span>
+            {adr.why}
+          </p>
+        </div>
+      ))}
+    </div>
+  </Widget>
+
+  <section class="pt-qtr-lh">
+    <p class="font-mono text-sm text-[var(--color-text-dim)] mb-half-lh">
+      homelab/docs
+    </p>
+    <p class="font-mono text-sm text-[var(--color-text)] mb-1lh opacity-75">
+      VLAN maps, runbooks, service registry, config exports, and setup
+      guides.
+    </p>
+    <a
+      href="https://gitea.lerkolabs.com/lerko/homelab"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="font-mono text-sm text-[var(--color-text-label)] hover:text-[var(--color-text)]"
+    >
+      ↗ gitea.lerkolabs.com/lerko/homelab
+    </a>
+  </section>
+
+  <Footer slot="footer" />
+</Base>

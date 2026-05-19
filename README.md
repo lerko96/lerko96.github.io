@@ -4,7 +4,7 @@ Personal portfolio site. Live at [lerkolabs.com](https://lerkolabs.com) — self
 
 Source: [gitea.lerkolabs.com/lerko/portfolio](https://gitea.lerkolabs.com/lerko/portfolio)
 
-**Stack:** Next.js 16 · React 19 · TypeScript · Tailwind v4
+**Stack:** Astro 5 · TypeScript · Tailwind v4
 
 ---
 
@@ -18,8 +18,9 @@ Source: [gitea.lerkolabs.com/lerko/portfolio](https://gitea.lerkolabs.com/lerko/
 ## Commands
 
 ```bash
-npm run dev      # dev server at localhost:3000
+npm run dev      # dev server at localhost:4321
 npm run build    # static export into out/
+npm run preview  # preview production build
 ```
 
 ---
@@ -41,19 +42,22 @@ Push to `dev` triggers Gitea Actions (`.gitea/workflows/deploy.yml`):
 
 ```
 src/
-  app/
-    layout.tsx          # root layout, fonts, ThemeProvider
-    page.tsx            # home: hero, skills, project cards
-    homelab/page.tsx    # homelab page: VLANs, services, ADRs
-    archive/page.tsx    # older projects grid
-    globals.css         # full design system (Tailwind v4 CSS-first, all tokens here)
-  components/           # Nav, Footer, Hero, ThemeScript, etc.
-  context/
-    ThemeContext.tsx     # dark mode provider + useTheme hook
+  layouts/
+    Base.astro            # root layout, fonts, theme script, nav/footer
+  pages/
+    index.astro           # home: hero, timeline
+    projects.astro        # featured + archive projects
+    homelab.astro         # VLANs, services, ADRs
+    archive.astro         # redirect to /projects/
+  components/             # Nav, Footer, Hero, Timeline, Widget, ProjectCard, Skills
   data/
-    projects.ts         # all projects, featured + archive split
-    services.ts         # homelab services with categories
-public/                 # static assets copied into out/ on build
+    projects.ts           # all projects, featured + archive split
+    services.ts           # homelab services with categories
+    timeline.ts           # career/project timeline
+  styles/
+    globals.css           # full design system (Tailwind v4 CSS-first, all tokens here)
+public/
+  fonts/                  # self-hosted Source Code Pro woff2
 ```
 
 > Tailwind v4 is CSS-first — no `tailwind.config.ts`. All custom tokens live in `globals.css` under `@theme {}`.

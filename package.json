@@ -4,27 +4,15 @@
   "private": true,
   "homepage": "https://www.lerko96.com",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "postbuild": "node -e \"require('fs').writeFileSync('out/.nojekyll', '')\"",
-    "start": "next start",
-    "lint": "eslint",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -b master -d out -t"
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
   },
   "dependencies": {
-    "next": "16.2.2",
-    "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "astro": "^5"
   },
   "devDependencies": {
-    "gh-pages": "^6.0.0",
     "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "16.2.2",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
