@@ -8,15 +8,8 @@ const links = [
 ];
 ---
 
-<header class="sticky top-0 z-50 bg-[var(--color-surface)] border-b border-[var(--color-border)]">
+<header class="sticky top-0 z-50 bg-[var(--color-bg)] border-b border-[var(--color-border)]">
   <nav class="max-w-[740px] mx-auto px-4ch h-11 flex items-center justify-between">
-    <a
-      href="/"
-      class="font-mono text-sm font-bold text-[var(--color-text)] hover:text-[var(--color-text-label)]"
-    >
-      ~/
-    </a>
-
     <ul class="flex items-center gap-2ch">
       {links.map(({ href, label }) => {
         const active = pathname === href || pathname === href.replace(/\/$/, "");
@@ -26,7 +19,6 @@ const links = [
               href={href}
               aria-current={active ? "page" : undefined}
               class:list={[
-                "font-mono text-sm",
                 active
                   ? "text-[var(--color-text)]"
                   : "text-[var(--color-text-label)] hover:text-[var(--color-text)]",
@@ -37,37 +29,73 @@ const links = [
           </li>
         );
       })}
-      <li>
-        <button
-          data-theme-toggle
-          aria-label="Switch to light mode"
-          class="font-mono text-sm text-[var(--color-text-label)] hover:text-[var(--color-text)] cursor-pointer"
-        >
-          [light]
-        </button>
-      </li>
     </ul>
+
+    <div class="flex items-center gap-2ch">
+      <div role="group" aria-label="Typeface" class="flex items-center gap-[0.5ch] text-[var(--color-text-dim)]">
+        <button data-typeface-btn="sans" class="hover:text-[var(--color-text)] cursor-pointer">sans</button>
+        <span aria-hidden="true">/</span>
+        <button data-typeface-btn="serif" class="hover:text-[var(--color-text)] cursor-pointer">serif</button>
+        <span aria-hidden="true">/</span>
+        <button data-typeface-btn="mono" class="hover:text-[var(--color-text)] cursor-pointer">mono</button>
+      </div>
+
+      <button
+        data-theme-toggle
+        aria-label="Switch to light mode"
+        class="text-[var(--color-text-label)] hover:text-[var(--color-text)] cursor-pointer"
+      >
+        light
+      </button>
+    </div>
   </nav>
 </header>
 
 <script>
-  const btn = document.querySelector("[data-theme-toggle]") as HTMLButtonElement;
+  const themeBtn = document.querySelector("[data-theme-toggle]") as HTMLButtonElement;
 
-  function update() {
+  function updateTheme() {
     const isDark = document.documentElement.classList.contains("dark");
-    btn.textContent = isDark ? "[light]" : "[dark]";
-    btn.setAttribute(
+    themeBtn.textContent = isDark ? "light" : "dark";
+    themeBtn.setAttribute(
       "aria-label",
       isDark ? "Switch to light mode" : "Switch to dark mode",
     );
   }
 
-  btn.addEventListener("click", () => {
+  themeBtn.addEventListener("click", () => {
     const next = !document.documentElement.classList.contains("dark");
     document.documentElement.classList.toggle("dark", next);
     localStorage.setItem("lerko96-dark-mode", String(next));
-    update();
+    updateTheme();
   });
 
-  update();
+  updateTheme();
+
+  const tfBtns = document.querySelectorAll("[data-typeface-btn]");
+
+  function updateTypeface() {
+    const current = document.documentElement.dataset.typeface || "sans";
+    tfBtns.forEach((b) => {
+      const val = b.getAttribute("data-typeface-btn");
+      if (val === current) {
+        b.classList.add("font-bold", "text-[var(--color-text)]");
+        b.classList.remove("text-[var(--color-text-dim)]");
+      } else {
+        b.classList.remove("font-bold", "text-[var(--color-text)]");
+        b.classList.add("text-[var(--color-text-dim)]");
+      }
+    });
+  }
+
+  tfBtns.forEach((b) => {
+    b.addEventListener("click", () => {
+      const val = b.getAttribute("data-typeface-btn")!;
+      document.documentElement.dataset.typeface = val;
+      localStorage.setItem("lerko96-typeface", val);
+      updateTypeface();
+    });
+  });
+
+  updateTypeface();
 </script>

@@ -86,16 +86,8 @@ const adrs = [
   <Nav slot="nav" />
 
   <div class="mb-4lh">
-    <p class="font-mono text-sm font-bold text-[var(--color-text)] mb-1lh">
-      <span
-        class="text-[var(--color-accent-green)] select-none mr-1ch"
-        aria-hidden="true"
-      >
-        ❯
-      </span>
-      homelab
-    </p>
-    <p class="font-mono text-sm text-[var(--color-text)] leading-relaxed max-w-2xl opacity-80">
+    <h1 class="text-xl font-bold mb-half-lh">Homelab</h1>
+    <p class="text-[var(--color-text-label)] leading-relaxed max-w-2xl">
       Personal infrastructure environment for learning, self-hosting, and
       operational practice. Running 24/7 on production-grade hardware with
       real network segmentation, SSO, monitoring, and IaC-style
@@ -103,53 +95,43 @@ const adrs = [
     </p>
   </div>
 
-  <Widget title="homelab/overview" badge={glanceStats.length} as="section">
-    <div class="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 gap-px bg-[var(--color-border)]">
+  <Widget title="Overview" badge={glanceStats.length} as="section">
+    <dl class="flex flex-col">
       {glanceStats.map(({ label, value }) => (
-        <div class="bg-[var(--color-surface)] px-2ch py-half-lh">
-          <p class="font-mono text-sm text-[var(--color-text-dim)] mb-half-lh">
-            {label}
-          </p>
-          <p class="font-mono text-sm text-[var(--color-text)]">
-            {value}
-          </p>
+        <div class="flex gap-2ch py-qtr-lh">
+          <dt class="text-[var(--color-text-dim)] w-[16ch] shrink-0">{label}</dt>
+          <dd>{value}</dd>
         </div>
       ))}
-    </div>
+    </dl>
   </Widget>
 
   <Widget
-    title="homelab/network"
-    meta="8 network segments · default deny"
+    title="Network"
+    meta="8 segments, default deny"
     as="section"
   >
     <div class="overflow-x-auto">
-      <table class="w-full text-sm border-collapse">
+      <table class="w-full border-collapse">
         <thead>
           <tr class="border-b border-[var(--color-border)]">
-            <th class="font-mono text-[var(--color-text-dim)] text-left py-qtr-lh pr-[3ch] uppercase">
+            <th class="text-[var(--color-text-dim)] text-left py-qtr-lh pr-[3ch]">
               Segment
             </th>
-            <th class="font-mono text-[var(--color-text-dim)] text-left py-qtr-lh pr-[3ch] uppercase">
+            <th class="text-[var(--color-text-dim)] text-left py-qtr-lh pr-[3ch]">
               Name
             </th>
-            <th class="font-mono text-[var(--color-text-dim)] text-left py-qtr-lh uppercase">
+            <th class="text-[var(--color-text-dim)] text-left py-qtr-lh">
               Purpose
             </th>
           </tr>
         </thead>
         <tbody>
           {vlans.map((v) => (
-            <tr class="border-b border-[var(--color-border)] hover:bg-[var(--color-surface)]">
-              <td class="font-mono text-[var(--color-accent-green)] py-half-lh pr-[3ch]">
-                {v.id}
-              </td>
-              <td class="font-mono text-[var(--color-text)] py-half-lh pr-[3ch]">
-                {v.name}
-              </td>
-              <td class="font-mono text-sm text-[var(--color-text)] py-2.5 opacity-80">
-                {v.purpose}
-              </td>
+            <tr class="border-b border-[var(--color-border)]">
+              <td class="py-half-lh pr-[3ch]">{v.id}</td>
+              <td class="py-half-lh pr-[3ch]">{v.name}</td>
+              <td class="text-[var(--color-text-label)] py-half-lh">{v.purpose}</td>
             </tr>
           ))}
         </tbody>
@@ -157,29 +139,23 @@ const adrs = [
     </div>
   </Widget>
 
-  <Widget title="homelab/services" badge={services.length} as="section">
-    <div class="flex flex-col gap-3ch">
+  <Widget title="Services" badge={services.length} as="section">
+    <div class="flex flex-col gap-2lh">
       {categoryOrder.map((cat) => {
         const catServices = services.filter((s) => s.category === cat);
         return (
           <div>
-            <p class="font-mono text-sm text-[var(--color-text-dim)] mb-1lh">
+            <h3 class="text-[var(--color-text-dim)] font-semibold mb-half-lh">
               {categoryLabels[cat]}
-            </p>
-            <div class="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 gap-px bg-[var(--color-border)]">
+            </h3>
+            <ul class="flex flex-col">
               {catServices.map((svc) => (
-                <div class="bg-[var(--color-surface)] hover:bg-[var(--color-surface-raised)] flex items-start gap-1ch px-2ch py-half-lh">
-                  <div>
-                    <p class="font-mono text-sm text-[var(--color-text)] mb-0.5">
-                      {svc.name}
-                    </p>
-                    <p class="font-mono text-sm text-[var(--color-text)] leading-relaxed opacity-75">
-                      {svc.description}
-                    </p>
-                  </div>
-                </div>
+                <li class="py-qtr-lh">
+                  <span class="font-semibold">{svc.name}</span>
+                  <span class="text-[var(--color-text-label)]"> — {svc.description}</span>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
         );
       })}
@@ -187,49 +163,38 @@ const adrs = [
   </Widget>
 
   <Widget
-    title="homelab/ADRs"
+    title="ADRs"
     meta="why things are configured the way they are"
     badge={adrs.length}
     as="section"
   >
-    <div class="flex flex-col gap-px bg-[var(--color-border)]">
+    <div class="flex flex-col gap-2lh">
       {adrs.map((adr) => (
-        <div class="bg-[var(--color-surface)] hover:bg-[var(--color-surface-raised)] px-2ch py-1lh">
-          <p class="font-mono text-sm text-[var(--color-text)] mb-1lh">
-            {adr.title}
+        <div>
+          <h3 class="font-semibold mb-half-lh">{adr.title}</h3>
+          <p class="text-[var(--color-text-label)] leading-relaxed mb-half-lh">
+            <strong>Decision:</strong> {adr.decision}
           </p>
-          <p class="font-mono text-sm text-[var(--color-text)] leading-relaxed mb-half-lh opacity-75">
-            <span class="text-[var(--color-text-label)] opacity-100">
-              decision:{" "}
-            </span>
-            {adr.decision}
-          </p>
-          <p class="font-mono text-sm text-[var(--color-text)] leading-relaxed opacity-75">
-            <span class="text-[var(--color-text-label)] opacity-100">
-              why:{" "}
-            </span>
-            {adr.why}
+          <p class="text-[var(--color-text-label)] leading-relaxed">
+            <strong>Why:</strong> {adr.why}
           </p>
         </div>
       ))}
     </div>
   </Widget>
 
-  <section class="pt-qtr-lh">
-    <p class="font-mono text-sm text-[var(--color-text-dim)] mb-half-lh">
-      homelab/docs
-    </p>
-    <p class="font-mono text-sm text-[var(--color-text)] mb-1lh opacity-75">
-      VLAN maps, runbooks, service registry, config exports, and setup
-      guides.
+  <section class="mb-4lh">
+    <h2 class="text-lg font-semibold mb-half-lh">Docs</h2>
+    <p class="text-[var(--color-text-label)] mb-half-lh">
+      VLAN maps, runbooks, service registry, config exports, and setup guides.
     </p>
     <a
       href="https://gitea.lerkolabs.com/lerko/homelab"
       target="_blank"
       rel="noopener noreferrer"
-      class="font-mono text-sm text-[var(--color-text-label)] hover:text-[var(--color-text)]"
+      class="underline hover:text-[var(--color-text-label)]"
     >
-      ↗ gitea.lerkolabs.com/lerko/homelab
+      gitea.lerkolabs.com/lerko/homelab
     </a>
   </section>
 

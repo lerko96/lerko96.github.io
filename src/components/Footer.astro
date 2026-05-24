@@ -3,45 +3,39 @@ const year = new Date().getFullYear();
 ---
 
 <footer class="border-t border-[var(--color-border)] py-1lh mt-2lh">
-  <div class="px-4ch flex items-center justify-between">
-    <span class="font-mono text-sm text-[var(--color-text-dim)]">
-      &copy; {year} Tyler Koenig
-    </span>
-    <div class="flex items-center gap-2ch">
+  <div class="px-4ch flex items-center justify-between text-[var(--color-text-dim)]">
+    <span>&copy; {year} Tyler Koenig</span>
+    <nav class="flex items-center gap-2ch">
       <a
         href="https://github.com/lerko96"
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="GitHub"
-        class="font-mono text-sm text-[var(--color-text-label)] hover:text-[var(--color-text)]"
+        class="underline hover:text-[var(--color-text)]"
       >
-        [github]
+        GitHub
       </a>
       <a
         href="https://gitea.lerkolabs.com/lerko"
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Gitea"
-        class="font-mono text-sm text-[var(--color-text-label)] hover:text-[var(--color-text)]"
+        class="underline hover:text-[var(--color-text)]"
       >
-        [gitea]
+        Gitea
       </a>
       <a
         href="https://www.linkedin.com/in/tyler-koenig"
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="LinkedIn"
-        class="font-mono text-sm text-[var(--color-text-label)] hover:text-[var(--color-text)]"
+        class="underline hover:text-[var(--color-text)]"
       >
-        [linkedin]
+        LinkedIn
       </a>
       <a
         href="mailto:tyler@lerkolabs.com"
-        aria-label="Email"
-        class="font-mono text-sm text-[var(--color-text-label)] hover:text-[var(--color-text)]"
+        class="underline hover:text-[var(--color-text)]"
       >
-        [email]
+        Email
       </a>
-    </div>
+    </nav>
   </div>
 </footer>
