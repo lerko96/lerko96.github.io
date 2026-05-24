@@ -25,14 +25,18 @@ const {
         if (dark) document.documentElement.classList.add("dark");
       })();
     </script>
+    <script is:inline>
+      (function () {
+        var tf = localStorage.getItem("lerko96-typeface") || "sans";
+        document.documentElement.dataset.typeface = tf;
+      })();
+    </script>
   </head>
   <body
-    class="bg-[var(--color-bg)] text-[var(--color-text)] font-mono min-h-screen"
+    class="bg-[var(--color-bg)] text-[var(--color-text)] min-h-screen"
   >
     <slot name="nav" />
-    <div
-      class="max-w-[740px] mx-auto border-l border-r border-[var(--color-border)]"
-    >
+    <div class="max-w-[740px] mx-auto">
       <main class="px-4ch py-3lh">
         <slot />
       </main>
