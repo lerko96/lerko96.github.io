@@ -1,64 +1,12 @@
----
-import Base from "@/layouts/Base.astro";
-import Nav from "@/components/Nav.astro";
-import Footer from "@/components/Footer.astro";
-import Widget from "@/components/Widget.astro";
-import ProjectCard from "@/components/ProjectCard.astro";
-import { featuredProjects, archiveProjects } from "@/data/projects";
----
-
-<Base
-  title="Projects | Tyler Koenig"
-  description="Featured projects and earlier work — homelab, open-pact, helm, and bootcamp/experiment archive."
->
-  <Nav slot="nav" />
-
-  <div class="mb-4lh">
-    <h1 class="text-xl font-bold mb-half-lh">Projects</h1>
-    <p class="text-[var(--color-text-label)] leading-relaxed max-w-xl">
-      Featured work first. Earlier experiments, browser extensions, and bootcamp projects below — kept for context.
-    </p>
-  </div>
-
-  <Widget title="Featured" badge={featuredProjects.length} as="section">
-    <div class="flex flex-col">
-      {featuredProjects.map((project) => (
-        <ProjectCard project={project} />
-      ))}
-    </div>
-  </Widget>
-
-  <Widget title="Archive" badge={archiveProjects.length} as="section">
-    <div class="flex flex-col gap-2lh">
-      {archiveProjects.map((project) => (
-        <div>
-          <div class="flex items-baseline gap-1ch mb-half-lh">
-            {project.year && (
-              <span class="text-[var(--color-text-dim)] shrink-0">
-                {project.year}
-              </span>
-            )}
-            <h3>
-              <a
-                href={project.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="font-semibold underline hover:text-[var(--color-text-label)]"
-              >
-                {project.title}
-              </a>
-            </h3>
-          </div>
-          <p class="text-[var(--color-text-label)] leading-relaxed mb-half-lh">
-            {project.description}
-          </p>
-          <p class="text-[var(--color-text-dim)]">
-            {project.tags.join(" · ")}
-          </p>
-        </div>
-      ))}
-    </div>
-  </Widget>
-
-  <Footer slot="footer" />
-</Base>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content="0; url=/#projects" />
+    <link rel="canonical" href="/" />
+    <title>Redirecting...</title>
+  </head>
+  <body>
+    <p>This page moved. <a href="/#projects">/#projects</a></p>
+  </body>
+</html>

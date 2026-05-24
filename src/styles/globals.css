@@ -17,8 +17,6 @@
   --font-sans:  -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-serif: Charter, "Bitstream Charter", "Sitka Text", Cambria, serif;
   --font-mono:  "Source Code Pro", ui-monospace, monospace;
-  --font-body:  var(--font-sans);
-
   /* Breakpoints */
   --breakpoint-xs: 576px;
 
@@ -44,13 +42,8 @@ html {
   line-height: 1.5;
   background-color: var(--color-bg);
   color: var(--color-text);
-  font-family: var(--font-body);
+  font-family: var(--font-sans);
 }
-
-/* Typeface picker overrides */
-html[data-typeface="sans"]  { --font-body: var(--font-sans); }
-html[data-typeface="serif"] { --font-body: var(--font-serif); line-height: 1.6; }
-html[data-typeface="mono"]  { --font-body: var(--font-mono); font-size: 15px; letter-spacing: -0.01em; }
 
 @layer base {
   * {
@@ -82,11 +75,23 @@ a:hover {
   text-decoration-color: currentColor;
 }
 
+/* Focus states */
+a:focus-visible {
+  text-decoration-color: currentColor;
+  outline: 2px solid var(--color-border-bright);
+  outline-offset: 2px;
+}
+button:focus-visible {
+  outline: 2px solid var(--color-border-bright);
+  outline-offset: 2px;
+}
+
 /* Default transitions */
 a,
 button {
   transition: color 120ms linear, border-color 120ms linear,
-    opacity 120ms linear, text-decoration-color 120ms linear;
+    opacity 120ms linear, text-decoration-color 120ms linear,
+    outline-color 120ms linear;
 }
 
 @media (prefers-reduced-motion: reduce) {
