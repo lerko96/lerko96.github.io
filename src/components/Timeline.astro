@@ -14,29 +14,24 @@ const typeLabel: Record<TimelineType, string> = {
 ---
 
 <Widget title="Journey">
-  <ol class="flex flex-col gap-0">
+  <ol class="flex flex-col">
     {timeline.map((entry) => (
-      <li class="pb-2lh last:pb-0">
-        <p class="text-[var(--color-text-dim)] mb-qtr-lh">
+      <li class="grid grid-cols-[10ch_1fr] gap-2ch py-half-lh border-b border-[var(--color-border)] last:border-b-0">
+        <div class="text-[var(--color-text-dim)] pt-[0.1em]">
           {isDate(entry.date)
             ? <time datetime={entry.date}>{entry.date}</time>
             : <span>{entry.date}</span>
           }
-          <span class="mx-[0.5ch]">·</span>
-          <em>{typeLabel[entry.type]}</em>
-        </p>
-
-        <h3 class="font-semibold mb-half-lh">{entry.title}</h3>
-
-        <p class="text-[var(--color-text-label)] leading-relaxed mb-half-lh">
-          {entry.description}
-        </p>
-
-        {entry.tags && entry.tags.length > 0 && (
-          <p class="text-[var(--color-text-dim)]">
-            {entry.tags.join(" · ")}
+        </div>
+        <div>
+          <h3 class="font-semibold">
+            {entry.title}
+            <span class="font-normal text-[var(--color-text-dim)]"> · {typeLabel[entry.type]}</span>
+          </h3>
+          <p class="text-[var(--color-text-label)] leading-relaxed">
+            {entry.description}
           </p>
-        )}
+        </div>
       </li>
     ))}
   </ol>

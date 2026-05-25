@@ -1,50 +1,17 @@
----
-const pathname = Astro.url.pathname;
-
-const links = [
-  { href: "/", label: "tyler" },
-  { href: "/homelab/", label: "homelab" },
-  { href: "/projects/", label: "projects" },
-];
----
-
 <header class="sticky top-0 z-50 bg-[var(--color-bg)] border-b border-[var(--color-border)]">
   <nav class="max-w-[740px] mx-auto px-4ch h-11 flex items-center justify-between">
-    <ul class="flex items-center gap-2ch">
-      {links.map(({ href, label }) => {
-        const active = pathname === href || pathname === href.replace(/\/$/, "");
-        return (
-          <li>
-            <a
-              href={href}
-              aria-current={active ? "page" : undefined}
-              class:list={[
-                active
-                  ? "text-[var(--color-text)]"
-                  : "text-[var(--color-text-label)] hover:text-[var(--color-text)]",
-              ]}
-            >
-              {label}
-            </a>
-          </li>
-        );
-      })}
-    </ul>
+    <a href="/" class="font-semibold">Tyler Koenig</a>
 
     <div class="flex items-center gap-2ch">
-      <div role="group" aria-label="Typeface" class="flex items-center gap-[0.5ch] text-[var(--color-text-dim)]">
-        <button data-typeface-btn="sans" class="hover:text-[var(--color-text)] cursor-pointer">sans</button>
-        <span aria-hidden="true">/</span>
-        <button data-typeface-btn="serif" class="hover:text-[var(--color-text)] cursor-pointer">serif</button>
-        <span aria-hidden="true">/</span>
-        <button data-typeface-btn="mono" class="hover:text-[var(--color-text)] cursor-pointer">mono</button>
-      </div>
+      <a href="#projects" class="text-[var(--color-text-label)] hover:text-[var(--color-text)]">projects</a>
+      <a href="#journey" class="text-[var(--color-text-label)] hover:text-[var(--color-text)]">journey</a>
+      <a href="#homelab" class="text-[var(--color-text-label)] hover:text-[var(--color-text)]">homelab</a>
 
       <button
-        data-theme-toggle
-        aria-label="Switch to light mode"
-        class="text-[var(--color-text-label)] hover:text-[var(--color-text)] cursor-pointer"
-      >
+      data-theme-toggle
+      aria-label="Switch to light mode"
+      class="text-[var(--color-text-label)] hover:text-[var(--color-text)] cursor-pointer"
+    >
         light
       </button>
     </div>
@@ -71,31 +38,4 @@ const links = [
   });
 
   updateTheme();
-
-  const tfBtns = document.querySelectorAll("[data-typeface-btn]");
-
-  function updateTypeface() {
-    const current = document.documentElement.dataset.typeface || "sans";
-    tfBtns.forEach((b) => {
-      const val = b.getAttribute("data-typeface-btn");
-      if (val === current) {
-        b.classList.add("font-bold", "text-[var(--color-text)]");
-        b.classList.remove("text-[var(--color-text-dim)]");
-      } else {
-        b.classList.remove("font-bold", "text-[var(--color-text)]");
-        b.classList.add("text-[var(--color-text-dim)]");
-      }
-    });
-  }
-
-  tfBtns.forEach((b) => {
-    b.addEventListener("click", () => {
-      const val = b.getAttribute("data-typeface-btn")!;
-      document.documentElement.dataset.typeface = val;
-      localStorage.setItem("lerko96-typeface", val);
-      updateTypeface();
-    });
-  });
-
-  updateTypeface();
 </script>
