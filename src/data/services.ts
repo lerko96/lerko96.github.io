@@ -2,6 +2,7 @@ export type Service = {
   name: string;
   description: string;
   category: "infrastructure" | "security" | "monitoring" | "productivity" | "media";
+  hidden?: boolean;
 };
 
 export const services: Service[] = [
@@ -11,7 +12,7 @@ export const services: Service[] = [
   { name: "Pi-hole", description: "Network-wide DNS + ad blocking", category: "infrastructure" },
   { name: "WireGuard", description: "VPN — full LAN access for remote clients", category: "infrastructure" },
   { name: "mail relay", description: "Outbound SMTP relay for self-hosted service notifications", category: "infrastructure" },
-  { name: "gluetun", description: "VPN container routing download client traffic", category: "infrastructure" },
+  { name: "gluetun", description: "VPN container routing download client traffic", category: "infrastructure", hidden: true },
   { name: "Home Assistant", description: "Smart home automation and device management", category: "infrastructure" },
 
   // Security / Auth
@@ -23,34 +24,36 @@ export const services: Service[] = [
   { name: "Grafana", description: "Dashboards and alerting across all hosts and services", category: "monitoring" },
   { name: "Beszel", description: "Lightweight container and host monitoring", category: "monitoring" },
   { name: "ntfy", description: "Self-hosted push notifications", category: "monitoring" },
+  { name: "Uptime Kuma", description: "Self-hosted monitoring tool (GUI)", category: "monitoring" },
 
   // Productivity
   { name: "Gitea", description: "Personal Git server", category: "productivity" },
   { name: "Outline", description: "Team wiki and knowledge base", category: "productivity" },
-  { name: "Vikunja", description: "Task management", category: "productivity" },
   { name: "Actual Budget", description: "Personal budgeting", category: "productivity" },
-  { name: "Ghostfolio", description: "Investment portfolio tracking", category: "productivity" },
-  { name: "Hoarder", description: "Bookmark manager with tagging", category: "productivity" },
-  { name: "FreshRSS", description: "RSS reader", category: "productivity" },
-  { name: "Memos", description: "Quick notes and journal", category: "productivity" },
-  { name: "Traggo", description: "Time tracking", category: "productivity" },
   { name: "Baikal", description: "CalDAV / CardDAV server", category: "productivity" },
   { name: "Grist", description: "Spreadsheets and structured data", category: "productivity" },
   { name: "Glance", description: "Self-hosted start page with feeds and service status", category: "productivity" },
-  { name: "Filebrowser", description: "Web-based file manager", category: "productivity" },
-
+  { name: "Hoarder", description: "Bookmark manager with tagging", category: "productivity", hidden: true },
+  { name: "FreshRSS", description: "RSS reader", category: "productivity", hidden: true },
+  { name: "Memos", description: "Quick notes and journal", category: "productivity", hidden: true },
+  { name: "Ghostfolio", description: "Investment portfolio tracking", category: "productivity", hidden: true },
+  { name: "Vikunja", description: "Task management", category: "productivity", hidden: true },
+  { name: "Traggo", description: "Time tracking", category: "productivity", hidden: true },
+  { name: "Filebrowser", description: "Web-based file manager", category: "productivity", hidden: true },
+  
   // Media
-  { name: "Plex", description: "Media streaming — movies, TV, music", category: "media" },
-  { name: "Jellyfin", description: "Open-source media streaming", category: "media" },
-  { name: "Sonarr", description: "Automated TV show management", category: "media" },
-  { name: "Radarr", description: "Automated movie management", category: "media" },
-  { name: "Lidarr", description: "Automated music management", category: "media" },
-  { name: "Prowlarr", description: "Indexer manager and proxy for the *arr stack", category: "media" },
-  { name: "Bazarr", description: "Automatic subtitle download and management", category: "media" },
-  { name: "nzbget", description: "Usenet downloader", category: "media" },
-  { name: "qBittorrent", description: "Torrent client with web UI", category: "media" },
+  { name: "Immich", description: "Open-source photo library", category: "media"}, 
   { name: "Kavita", description: "Self-hosted manga and book reader", category: "media" },
-  { name: "Openshelf", description: "Book library with auto-ingest", category: "media" },
+  { name: "Jellyfin", description: "Open-source media streaming", category: "media" },
+  { name: "Prowlarr", description: "Indexer manager and proxy for the *arr stack", category: "media" },
+  { name: "*Arr stack", description: "Automated media management for streaming", category: "media" },
+  { name: "Bazarr", description: "Automatic subtitle download and management", category: "media" },
+  { name: "Lidarr", description: "Automated music management", category: "media", hidden: true },
+  { name: "Radarr", description: "Automated movie management", category: "media", hidden: true },
+  { name: "Plex", description: "Media streaming — movies, TV, music", category: "media", hidden: true },
+  { name: "nzbget", description: "Usenet downloader", category: "media", hidden: true },
+  { name: "qBittorrent", description: "Torrent client with web UI", category: "media", hidden: true },
+  { name: "Openshelf", description: "Book library with auto-ingest", category: "media", hidden: true },
 ];
 
 export const categoryOrder: Service["category"][] = [

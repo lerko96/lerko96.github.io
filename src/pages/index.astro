@@ -89,7 +89,7 @@ const adrs = [
   <Hero />
 
   <section id="projects">
-    <Widget title="Projects" badge={featuredProjects.length} as="div">
+    <Widget title="Projects"  as="div">
       <div class="flex flex-col">
         {featuredProjects.map((project) => (
           <ProjectCard project={project} />
@@ -113,7 +113,7 @@ const adrs = [
       </p>
     </div>
 
-    <Widget title="Overview" badge={glanceStats.length} as="div">
+    <Widget title="Overview"  as="div">
       <dl class="flex flex-col">
         {glanceStats.map(({ label, value }) => (
           <div class="flex gap-2ch py-qtr-lh">
@@ -157,10 +157,10 @@ const adrs = [
       </div>
     </Widget>
 
-    <Widget title="Services" badge={services.length} as="div">
+    <Widget title="Services"  as="div">
       <div class="flex flex-col gap-2lh">
         {categoryOrder.map((cat) => {
-          const catServices = services.filter((s) => s.category === cat);
+          const catServices = services.filter((s) => s.category === cat && !s.hidden);
           return (
             <div>
               <h3 class="text-[var(--color-text-dim)] font-semibold mb-half-lh">
@@ -183,8 +183,7 @@ const adrs = [
     <Widget
       title="ADRs"
       meta="why things are configured the way they are"
-      badge={adrs.length}
-      as="div"
+            as="div"
     >
       <div class="flex flex-col gap-2lh">
         {adrs.map((adr) => (
