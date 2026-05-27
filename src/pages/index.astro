@@ -37,18 +37,15 @@ const glanceStats = [
   </section>
 
   <section id="homelab">
-    <div class="mb-4lh">
-      <h2 class="text-xl font-bold mb-half-lh">Homelab</h2>
-      <p class="text-[var(--color-text-label)] leading-relaxed max-w-2xl">
+    <Widget title="Homelab" as="div">
+      <p class="text-[var(--color-text-label)] leading-relaxed max-w-2xl mb-2lh">
         Personal infrastructure environment for learning, self-hosting, and
         operational practice. Running 24/7 on production-grade hardware with
         real network segmentation, SSO, monitoring, and IaC-style
         documentation.
       </p>
-    </div>
 
-    <Widget title="At a Glance"  as="div">
-      <dl class="flex flex-col">
+      <dl class="flex flex-col mb-2lh">
         {glanceStats.map(({ label, value }) => (
           <div class="flex gap-2ch py-qtr-lh">
             <dt class="text-[var(--color-text-dim)] w-[16ch] shrink-0">{label}</dt>
@@ -56,10 +53,8 @@ const glanceStats = [
           </div>
         ))}
       </dl>
-    </Widget>
 
-    <Widget title="Services"  as="div">
-      <div class="flex flex-wrap gap-x-[3ch] gap-y-qtr-lh">
+      <div class="flex flex-wrap gap-x-[3ch] gap-y-qtr-lh mb-2lh">
         {categoryOrder.map((cat) => {
           const count = services.filter((s) => s.category === cat).length;
           return (
@@ -70,9 +65,7 @@ const glanceStats = [
           );
         })}
       </div>
-    </Widget>
 
-    <div class="mb-4lh">
       <p class="text-[var(--color-text-label)] mb-half-lh">
         Full documentation — network maps, ADRs, runbooks, and service configs.
       </p>
@@ -84,7 +77,7 @@ const glanceStats = [
       >
         gitea.lerkolabs.com/lerko/homelab →
       </a>
-    </div>
+    </Widget>
   </section>
 
   <Footer slot="footer" />

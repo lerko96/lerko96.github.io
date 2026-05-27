@@ -1,3 +1,7 @@
+---
+import { services } from "@/data/services";
+---
+
 <section class="mb-3lh">
   <h1 class="text-xl font-bold mb-half-lh">Tyler Koenig</h1>
   <p class="text-[var(--color-text-label)] mb-1lh">
@@ -5,7 +9,7 @@
   </p>
 
   <p class="text-[var(--color-text-label)] leading-relaxed mb-1lh">
-    Homelab runs 30+ services across segmented VLANs — pfSense, Authentik SSO,
+    Homelab runs {services.length} services across segmented VLANs — pfSense, Authentik SSO,
     full observability stack. Write software too: mobile apps, Go backends, open
     protocols. Daily drivers, all of it.
   </p>
