@@ -12,6 +12,8 @@
   --color-text:           #D4D4D8;
   --color-text-label:     #9CA0AA;
   --color-text-dim:       #888D9B;
+  --color-link:           #8CAFC8;
+  --color-link-visited:   #9A94AB;
 
   /* Typography */
   --font-sans:  -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -63,6 +65,8 @@ html {
   --color-text:           #2C2C2C;
   --color-text-label:     #6B6560;
   --color-text-dim:       #787068;
+  --color-link:           #4A6B8A;
+  --color-link-visited:   #6B6080;
 }
 
 /* Link underlines */
@@ -72,6 +76,16 @@ a {
   text-decoration-color: var(--color-border-bright);
 }
 a:hover {
+  text-decoration-color: currentColor;
+}
+a[target="_blank"] {
+  color: var(--color-link);
+}
+a[target="_blank"]:visited {
+  color: var(--color-link-visited);
+}
+a[target="_blank"]:hover {
+  color: var(--color-link);
   text-decoration-color: currentColor;
 }
 
@@ -92,6 +106,17 @@ button {
   transition: color 120ms linear, border-color 120ms linear,
     opacity 120ms linear, text-decoration-color 120ms linear,
     outline-color 120ms linear;
+}
+
+/* Section anchors — clear sticky nav, visual rhythm */
+section[id] {
+  scroll-margin-top: 3.5rem;
+  padding-top: 2lh;
+  border-top: 1px solid var(--color-border);
+}
+section[id]:first-of-type {
+  border-top: none;
+  padding-top: 0;
 }
 
 @media print {
