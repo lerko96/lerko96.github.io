@@ -3,9 +3,9 @@
     <a href="/" class="font-semibold">Tyler Koenig</a>
 
     <div class="flex items-center gap-2ch">
-      <a href="#projects" class="hidden xs:inline text-[var(--color-text-label)] hover:text-[var(--color-text)]">projects</a>
-      <a href="#journey" class="hidden xs:inline text-[var(--color-text-label)] hover:text-[var(--color-text)]">journey</a>
-      <a href="#homelab" class="hidden xs:inline text-[var(--color-text-label)] hover:text-[var(--color-text)]">homelab</a>
+      <a href="#projects" data-nav-link class="hidden xs:inline text-[var(--color-text-label)] hover:text-[var(--color-text)]">projects</a>
+      <a href="#journey" data-nav-link class="hidden xs:inline text-[var(--color-text-label)] hover:text-[var(--color-text)]">journey</a>
+      <a href="#homelab" data-nav-link class="hidden xs:inline text-[var(--color-text-label)] hover:text-[var(--color-text)]">homelab</a>
 
       <button
       data-theme-toggle
@@ -38,4 +38,52 @@
   });
 
   updateTheme();
+
+  const navLinks = document.querySelectorAll<HTMLAnchorElement>("[data-nav-link]");
+  const sections = Array.from(navLinks).map((link) => ({
+    link,
+    section: document.querySelector(link.hash) as HTMLElement,
+  }));
+
+  const atBottom = () =>
+    window.innerHeight + window.scrollY >= document.body.offsetHeight - 2;
+
+  const observer = new IntersectionObserver(
+    () => {
+      let active: HTMLAnchorElement | null = null;
+      if (atBottom()) {
+        active = sections[sections.length - 1].link;
+      } else {
+        for (const { link, section } of sections) {
+          if (section.getBoundingClientRect().top <= 80) active = link;
+        }
+      }
+      navLinks.forEach((l) => {
+        l.style.color = l === active ? "var(--color-text)" : "";
+      });
+    },
+    { rootMargin: "-56px 0px 0px 0px", threshold: 0 },
+  );
+
+  sections.forEach(({ section }) => observer.observe(section));
+
+  let ticking = false;
+  window.addEventListener("scroll", () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      let active: HTMLAnchorElement | null = null;
+      if (atBottom()) {
+        active = sections[sections.length - 1].link;
+      } else {
+        for (const { link, section } of sections) {
+          if (section.getBoundingClientRect().top <= 80) active = link;
+        }
+      }
+      navLinks.forEach((l) => {
+        l.style.color = l === active ? "var(--color-text)" : "";
+      });
+      ticking = false;
+    });
+  }, { passive: true });
 </script>
