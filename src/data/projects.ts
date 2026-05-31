@@ -14,6 +14,25 @@ export type Project = {
 export const projects: Project[] = [
   // --- Featured ---
   {
+    slug: "uptop",
+    title: "uptop",
+    description: "Live uptime monitoring dashboard for your terminal. SSH-accessible. HTTP, ping, TCP, DNS, push checks with alerts, clustering, and Prometheus metrics.",
+    tags: ["Go", "Bubbletea", "Monitoring", "Uptime"],
+    githubUrl: "https://github.com/lerkolabs/uptop",
+    tier: "featured",
+    year: 2026,
+  },
+  {
+    slug: "nib",
+    title: "nib",
+    description:
+      "Capture-first personal journal built with Go + SQLite.  Currently developing in private when I have spare time.",
+    tags: ["Go", "JavaScript", "SQLite", "Stream-of-Thought"],
+    githubUrl: "https://gitea.lerkolabs.com/lerko/nib-v1",
+    tier: "featured",
+    year: 2026,
+  },
+  {
     slug: "homelab",
     title: "homelab",
     description:
@@ -27,33 +46,22 @@ export const projects: Project[] = [
     slug: "portfolio",
     title: "portfolio",
     description:
-      "Astro static site, self-hosted in a DMZ LXC behind Nginx, deployed via Gitea Actions CI.",
-    tags: ["Astro", "Dockerfile", "Tailwind", "nginx", "Caddy"],
+      "Astro static site, self-hosted in a DMZ LXC behind Caddy, deployed via Gitea Actions CI.",
+    tags: ["Astro", "Typescript", "Dockerfile", "Caddy"],
     githubUrl: "https://gitea.lerkolabs.com/lerko/portfolio",
     tier: "featured",
     year: 2021,
   },
-  {
-    slug: "nib",
-    title: "nib",
-    description:
-      "Capture-first personal journal built with Go + React + SQLite.  Currently developing in private when I have spare time.",
-    tags: ["Go", "React", "SQLite", "Journal", "Stream-of-Thought"],
-    githubUrl: "https://github.com/lerko96/nib",
-    tier: "featured",
-    year: 2026,
-  },
+  // --- Archive ---
   {
     slug: "open-pact",
     title: "open-pact",
-    description:
-      "Open protocol for AI agent identity, delegation, and portable memory. Ed25519 keypair identity, signed delegation warrants, portable signed memory facts. No central registry.",
+    description: "Open protocol for AI agent identity, delegation, and portable memory. Ed25519 keypair identity, signed delegation",
     tags: ["TypeScript", "Ed25519", "DID", "npm", "CC0"],
     githubUrl: "https://github.com/lerko96/open-pact",
-    tier: "featured",
+    tier: "archive",
     year: 2026,
   },
-  // --- Archive ---
   {
     slug: "helm",
     title: "helm",
